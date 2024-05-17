@@ -1,6 +1,5 @@
 import React, { FC } from "react";
-import logo from "./../../../public/images/logo.png";
-import styles from "./HomeCategory.module.scss";
+import styles from "./homeCategory.module.scss";
 import Image from "next/image";
 import Link from "next/link";
 import banner1 from "../../../public/images/home/category/banner1.jpg";
