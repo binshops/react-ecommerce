@@ -1,0 +1,18 @@
+.productContainer {
+  margin: 24px 0;
+  padding: 0 16px;
+  .title {
+    margin-bottom: 64px;
+    p {
+      font-family: Raleway;
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 35.2px;
+      text-align: center;
+    }
+  }
+  .productItem {
+    width: 200px;
+    height: 334px;
+  }
+}
