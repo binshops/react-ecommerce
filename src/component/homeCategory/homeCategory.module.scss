@@ -1,0 +1,12 @@
+.categoryContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  .categoryItem {
+    .image {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+  }
+}
