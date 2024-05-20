@@ -7,7 +7,7 @@
     height: 227px;
     object-fit: cover;
   }
-  .name{
+  .name {
     font-family: Raleway;
     font-size: 14px;
     font-weight: 300;
@@ -17,10 +17,13 @@
     width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: none ;
+    white-space: none;
   }
-  .productItem {
-    width: 200px;
-    height: 334px;
+  .price {
+    font-family: Raleway;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 28.8px;
+    text-align: left;
   }
 }

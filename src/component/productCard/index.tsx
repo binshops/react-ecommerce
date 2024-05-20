@@ -25,6 +25,9 @@ const ProductCard: FC<ProductCardProps> = ({product}) => {
       <h3 className={styles.name}>
         {product.name}
       </h3>
+      <p className={styles.price}>
+        {product.price}
+      </p>
     </div>
   );
 };
