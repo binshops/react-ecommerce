@@ -9,6 +9,7 @@ import ProductCarousel from "@/component/productCarousel";
 import { getData } from "@/utils/fetchData";
 import { HomePageAPI } from "@/const/endPoint";
 import { HomeTransformer } from "@/utils/transformer/home";
+import Subscribe from "@/component/subscribe";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,6 +20,7 @@ export default function Home({data , homeProductCarousel}) {
       <MainSlider />
       <HomeCategory />
       <ProductCarousel product={homeProductCarousel}/>
+      <Subscribe />
       <Link href={"/product"}> product </Link>
     </>
   );
