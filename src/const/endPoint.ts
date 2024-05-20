@@ -1,0 +1,1 @@
+export const HomePageAPI='/bootstrap?menu_with_images=single'

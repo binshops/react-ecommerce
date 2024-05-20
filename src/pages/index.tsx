@@ -6,16 +6,28 @@ import Link from "next/link";
 import MainSlider from "@/component/mainSlider";
 import HomeCategory from "@/component/homeCategory";
 import ProductCarousel from "@/component/productCarousel";
+import { getData } from "@/utils/fetchData";
+import { HomePageAPI } from "@/const/endPoint";
+import { HomeTransformer } from "@/utils/transformer/home";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home() {
+export default function Home({data , homeProductCarousel}) {
   return (
     <>
+    {console.log(data , homeProductCarousel)}
       <MainSlider />
       <HomeCategory />
-      <ProductCarousel />
+      <ProductCarousel product={homeProductCarousel}/>
       <Link href={"/product"}> product </Link>
     </>
   );
+}
+
+export async function getServerSideProps() {
+
+  const data = await getData(HomePageAPI);
+  const {homeProductCarousel}=HomeTransformer(data);
+  return { props: {data, homeProductCarousel } };
+
 }
