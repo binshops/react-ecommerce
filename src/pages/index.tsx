@@ -10,6 +10,7 @@ import { getData } from "@/utils/fetchData";
 import { HomePageAPI } from "@/const/endPoint";
 import { HomeTransformer } from "@/utils/transformer/home";
 import Subscribe from "@/component/subscribe";
+import InstagramPost from "@/component/instagramPost";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,6 +22,7 @@ export default function Home({data , homeProductCarousel}) {
       <HomeCategory />
       <ProductCarousel product={homeProductCarousel}/>
       <Subscribe />
+      <InstagramPost />
       <Link href={"/product"}> product </Link>
     </>
   );
