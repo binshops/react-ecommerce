@@ -14,7 +14,8 @@
     "react-dom": "^18",
     "sass": "^1.76.0",
     "scss": "^0.2.4",
-    "swiper": "^11.1.1"
+    "swiper": "^11.1.1",
+    "yarn": "^1.22.22"
   },
   "devDependencies": {
     "@types/node": "^20",
