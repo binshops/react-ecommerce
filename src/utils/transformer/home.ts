@@ -1,6 +1,6 @@
 
 export const HomeTransformer = (data) =>{
-    const homeProductCarousel=data.psdata.featuredProductsList.map((product)=>{
+    const homeProductCarousel=data?.psdata.featuredProductsList.map((product)=>{
         return{
             id:product.id_product,
             name:product.name,
