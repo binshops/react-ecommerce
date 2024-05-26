@@ -20,3 +20,7 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+main {
+  padding-top: 100px;
+}
