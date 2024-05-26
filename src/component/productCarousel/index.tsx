@@ -5,19 +5,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import ProductCard from "../productCard";
-interface Product {
-  id: string;
-  name: string;
-  price: string;
-  image: string;
-  disconnect: string;
-  quantity: string;
-  rate: string;
-}
-
-interface ProductCarouselProps {
-  product: Product[];
-}
+import { ProductCarouselProps } from "@/utils/type";
 
 const ProductCarousel: FC<ProductCarouselProps> = ({ product = [] }) => {
   return (
