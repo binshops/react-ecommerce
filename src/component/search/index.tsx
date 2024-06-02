@@ -5,24 +5,25 @@ import search from "./../../../public/images/icon/Search.png";
 import { getData } from "@/utils/fetchData";
 import { ProductSearchAPI } from "@/const/endPoint";
 import { debounce } from "@/utils/function";
+import { SearchTransformer } from "@/utils/transformer/search";
+import { Product } from "@/utils/type";
+import ProductCard from "../productCard";
+import { SearchProduct } from "@/utils/type/search";
 
 const Search: FC = () => {
   const [value, setValue] = useState("");
-  const [results, setResults] = useState("");
+  const [results, setResults] = useState<SearchProduct>();
 
   const handleInputChange = useCallback(
     debounce(async (value) => {
       const data = getData(ProductSearchAPI)
         .then((data) => {
-          console.log(data);
+          const products = SearchTransformer(data);
+          setResults(products);
         })
         .catch((error) => {
           console.error("Error fetching data:", error);
         });
-
-      const newData = value ? 'Data for "' + value + '"' : "";
-      setResults(newData);
-      // setResults(data);
     }, 500),
     []
   );
@@ -40,7 +41,11 @@ const Search: FC = () => {
         />
       </div>
       <Image src={search} alt="searchIcon" className={styles.icon} />
-      <div className={styles.searchResult}>{results}</div>
+      <div className={styles.searchResult}>
+        {results?.searchProducts.map((item) => {
+          return <ProductCard product={item} key={item.id} />;
+        })}
+      </div>
     </div>
   );
 };
