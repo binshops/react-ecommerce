@@ -23,31 +23,35 @@ a {
 
 main {
   padding-top: 100px;
+  padding-bottom: 80px;
 }
-.mainRoot{
+.mainRoot {
   margin: 0 auto;
 }
-@media screen and (min-width:576px) {
-  .mainRoot{
+@media screen and (min-width: 576px) {
+  .mainRoot {
     max-width: 540px;
   }
 }
-@media screen and (min-width:768px) {
-  .mainRoot{
+@media screen and (min-width: 768px) {
+  .mainRoot {
     max-width: 720px;
   }
+  main {
+    padding-bottom: 0;
+  }
 }
-@media screen and (min-width:992px) {
-  .mainRoot{
+@media screen and (min-width: 992px) {
+  .mainRoot {
     max-width: 960px;
   }
 }
-@media screen and (min-width:1200px) {
-  .mainRoot{
+@media screen and (min-width: 1200px) {
+  .mainRoot {
     max-width: 1140px;
   }
 }
-@media screen and (min-width:768px) {
+@media screen and (min-width: 768px) {
   main {
     padding-top: 80px;
   }
