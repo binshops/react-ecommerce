@@ -24,12 +24,31 @@ a {
 main {
   padding-top: 100px;
 }
+.mainRoot{
+  margin: 0 auto;
+}
+@media screen and (min-width:576px) {
+  .mainRoot{
+    max-width: 540px;
+  }
+}
+@media screen and (min-width:768px) {
+  .mainRoot{
+    max-width: 720px;
+  }
+}
+@media screen and (min-width:992px) {
+  .mainRoot{
+    max-width: 960px;
+  }
+}
+@media screen and (min-width:1200px) {
+  .mainRoot{
+    max-width: 1140px;
+  }
+}
 @media screen and (min-width:768px) {
   main {
     padding-top: 80px;
   }
-}
-.mainRoot{
-  max-width: 1140px;
-  margin: 0 auto;
 }
