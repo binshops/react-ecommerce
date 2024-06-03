@@ -7,4 +7,10 @@
         height: 100%;
         object-fit: cover;
     }
+  @media screen and (min-width:768px) {
+    height: 400px;
+  }
+  @media screen and (min-width:991px) {
+    height: 600px;
+  }
 }
