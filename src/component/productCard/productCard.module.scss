@@ -24,4 +24,18 @@
     line-height: 28.8px;
     text-align: left;
   }
+  @media screen and (min-width: 991px) {
+    width: 256px;
+    height: 467px;
+    .image {
+      height: 330px;
+    }
+    .name {
+      font-size: 18px;
+      line-height: 28.8px;
+    }
+    .price {
+      font-size: 22px;
+    }
+  }
 }

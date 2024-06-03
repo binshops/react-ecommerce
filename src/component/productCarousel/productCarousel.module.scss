@@ -16,4 +16,20 @@
     width: 200px;
     height: 334px;
   }
+  @media screen and (min-width: 576px) {
+    padding: 0;
+  }
+  @media screen and (min-width: 991px) {
+    .title {
+      margin-bottom: 60px;
+      p {
+        font-size: 42px;
+        line-height: 67.2px;
+      }
+    }
+    .productItem {
+      width: 256px;
+      height: 467px;
+    }
+  }
 }
