@@ -35,4 +35,23 @@
     padding: 16px;
     border: none;
   }
+  @media screen and (min-width: 991px) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 49px 81px;
+    .title {
+      font-size: 42px;
+      line-height: 58.8px;
+    }
+    .description {
+      font-size: 16px;
+      line-height: 25.6px;
+    }
+    .submit {
+      margin: 0;
+      width: 153px;
+      height: 52px;
+    }
+  }
 }
