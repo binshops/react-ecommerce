@@ -1,3 +1,6 @@
+import { Product } from "./product";
+import { menuItems } from "./megaMenu";
+
 export interface HomeAPI {
   psdata: {
     featuredProductsList: {
@@ -10,4 +13,10 @@ export interface HomeAPI {
       rate: number;
     }[];
   };
+}
+
+export interface HomeProps {
+  data: any;
+  homeProductCarousel: Product[];
+  menuItems: menuItems[];
 }

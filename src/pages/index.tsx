@@ -7,18 +7,15 @@ import { HomePageAPI } from "@/const/endPoint";
 import { HomeTransformer } from "@/utils/transformer/home";
 import Subscribe from "@/component/subscribe";
 import InstagramPost from "@/component/instagramPost";
-import { Product } from "@/utils/type";
+import { HomeProps } from "@/utils/type";
 
 export default function Home({
   data,
   homeProductCarousel,
-}: {
-  data: any;
-  homeProductCarousel: Product[];
-}) {
+}: HomeProps): JSX.Element {
   return (
     <>
-      {console.log(data, homeProductCarousel)}
+      {console.log(data)}
       <MainSlider />
       <HomeCategory />
       <ProductCarousel product={homeProductCarousel} />

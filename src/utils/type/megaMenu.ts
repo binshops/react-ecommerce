@@ -1,5 +1,3 @@
-
-
 export interface MegaMenuAPI {
   psdata: {
     menuItems: {
@@ -17,3 +15,16 @@ export interface MegaMenuAPI {
   };
 }
 
+export interface menuItem {
+  id: string;
+  slug: string;
+  label: string;
+  link: string;
+}
+export interface menuItems {
+  id: string;
+  slug: string;
+  label: string;
+  link: string;
+  children: menuItem[];
+}
