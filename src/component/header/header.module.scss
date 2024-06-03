@@ -15,4 +15,10 @@
     height: 41px;
     object-fit: cover;
   }
+  @media screen and (min-width:768px) {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 80px;
+  }
 }

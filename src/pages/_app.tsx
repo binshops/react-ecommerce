@@ -11,7 +11,9 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <main className={inter.className}>
       <Header />
-      <Component {...pageProps} />
+      <div className="mainRoot">
+        <Component {...pageProps} />
+      </div>
       <Footer />
     </main>
   );
