@@ -39,8 +39,8 @@ const Search: FC = () => {
             handleInputChange(e.target.value);
           }}
         />
-      </div>
       <Image src={search} alt="searchIcon" className={styles.icon} />
+      </div>
       <div className={styles.searchResult}>
         {results?.searchProducts.map((item) => {
           return <ProductCard product={item} key={item.id} />;
