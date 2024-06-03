@@ -12,7 +12,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <main className={inter.className}>
       <Header />
-      <div className="mainRoot">
+      <div className="container">
         <Component {...pageProps} />
       </div>
       <NavigationBar />
