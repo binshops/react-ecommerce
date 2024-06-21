@@ -1,6 +1,6 @@
 export async function getData(
   endPoint: string,
-  queryParams?: Record<string, string>,
+  queryParams?: any,
   body?: BodyInit,
   method?: "GET"
 ): Promise<any> {
@@ -10,7 +10,7 @@ export async function getData(
     const queryString = new URLSearchParams(queryParams).toString();
     url += "?" + queryString;
   }
-
+  
   try {
     const res = await fetch(url, {
       method: method || "GET",
