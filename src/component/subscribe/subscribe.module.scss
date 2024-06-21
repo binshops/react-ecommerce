@@ -1,0 +1,57 @@
+.subscribe {
+  width: 100%;
+  padding: 24px;
+  background: #72757e;
+  p {
+    color: #fff;
+    margin-bottom: 16px;
+  }
+  .title {
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 25.83px;
+    letter-spacing: 0.10000000149011612px;
+    text-align: left;
+  }
+  .description {
+    font-family: Roboto;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 25.6px;
+    text-align: left;
+  }
+  .submit {
+    display: block;
+    max-width: 100%;
+    width: 325px;
+    margin: 0 auto;
+    background: #2ba0d0;
+    color: #fff;
+
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19.2px;
+    text-align: center;
+    padding: 16px;
+    border: none;
+  }
+  @media screen and (min-width: 991px) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 49px 81px;
+    .title {
+      font-size: 42px;
+      line-height: 58.8px;
+    }
+    .description {
+      font-size: 16px;
+      line-height: 25.6px;
+    }
+    .submit {
+      margin: 0;
+      width: 153px;
+      height: 52px;
+    }
+  }
+}

@@ -1,0 +1,67 @@
+.categoryContainer {
+  overflow: hidden;
+  .mobileCategory {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .categoryItem {
+      .image {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        max-height: 300px;
+      }
+    }
+  }
+  .desktopCategory {
+    display: none;
+    padding-left: 273px;
+    position: relative;
+    display: none;
+    gap: 8px;
+    flex-wrap: wrap;
+    .image {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+    .absoluteImage {
+      position: absolute;
+      left: 0;
+      width: 264px;
+    }
+    .smallImage {
+      width: 49%;
+      display: block;
+    }
+    .wideImage {
+      width: 100%;
+      display: block;
+    }
+  }
+  @media screen and (min-width: 768px) {
+    .mobileCategory {
+      display: none;
+    }
+    .desktopCategory {
+      display: flex;
+    }
+  }
+  @media screen and (min-width: 991px) {
+    .desktopCategory {
+      padding-left: 361px;
+      .absoluteImage {
+        width: 352px;
+      }
+    }
+  }
+  @media screen and (min-width: 1200px) {
+    .desktopCategory {
+      padding-left: 427px;
+      .absoluteImage {
+        width: 418px;
+      }
+    }
+  }
+}

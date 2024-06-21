@@ -1,0 +1,54 @@
+.megaMenu {
+  flex: 1;
+  height: 100%;
+  display: none;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 8px;
+  .menuItem {
+    height: 100%;
+    padding: 0 8px;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19.2px;
+    text-align: center;
+    &:hover {
+      .subMenu {
+        visibility: visible;
+        opacity: 1;
+        transition: all linear 0.2s;
+      }
+    }
+    .subMenu {
+      width: 100%;
+      position: absolute;
+      height: 400px;
+      background-color: #fff;
+      top: 100%;
+      left: 0;
+      padding: 42px;
+      opacity: 0;
+      visibility: hidden;
+      transition: all linear 0.2s;
+      .linkBox {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        height: 100%;
+      }
+      .link {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 22.4px;
+        text-align: left;
+        margin-bottom: 12px;
+        min-width: 200px;
+      }
+    }
+  }
+  @media screen and (min-width: 768px) {
+    display: flex;
+  }
+}

@@ -1,0 +1,35 @@
+.productContainer {
+  margin: 24px 0;
+  padding: 0 16px;
+  margin-bottom: 24px;
+  .title {
+    margin-bottom: 16px;
+
+    p {
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 35.2px;
+      text-align: center;
+    }
+  }
+  .productItem {
+    width: 200px;
+    height: 334px;
+  }
+  @media screen and (min-width: 576px) {
+    padding: 0;
+  }
+  @media screen and (min-width: 991px) {
+    .title {
+      margin-bottom: 60px;
+      p {
+        font-size: 42px;
+        line-height: 67.2px;
+      }
+    }
+    .productItem {
+      width: 256px;
+      height: 467px;
+    }
+  }
+}
