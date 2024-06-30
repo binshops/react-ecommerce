@@ -1,0 +1,42 @@
+.selectBox {
+  margin-bottom: 16px;
+  .selectedOption {
+    width: 100%;
+    height: 40px;
+    border-bottom: 1px solid #f1f2f3;
+    padding: 0 16px;
+    position: relative;
+    img{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 16px;
+    }
+    p {
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 40px;
+      letter-spacing: 0.10000000149011612px;
+      text-align: left;
+    }
+  }
+  .moreOption{
+    display: none;
+    &.show{
+        display: block;
+        border: 1px solid #f1f2f3;
+        border-top: none;
+        p{
+            width: 100%;
+            height: 40px;
+            padding: 0 16px;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 40px;
+            letter-spacing: 0.10000000149011612px;
+            text-align: left;
+            border-bottom: 1px solid #f1f2f3;
+        }
+    }
+  }
+}
