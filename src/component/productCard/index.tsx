@@ -3,6 +3,7 @@ import styles from "./productCard.module.scss";
 import "swiper/css";
 import "swiper/css/pagination";
 import { ProductCardProps } from "@/utils/type";
+import Price from "../product/price";
 
 const ProductCard: FC<ProductCardProps> = ({ product }) => {
   return (
@@ -11,7 +12,7 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
         <img className={styles.image} src={product.image} alt={product.name} />
       )}
       <h3 className={styles.name}>{product.name}</h3>
-      <p className={styles.price}>{product.price}</p>
+      <Price price={product.price} />
     </div>
   );
 };
