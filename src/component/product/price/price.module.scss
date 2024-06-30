@@ -1,0 +1,13 @@
+.priceBox {
+  .price {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 28.8px;
+    text-align: left;
+  }
+  @media screen and (min-width: 991px) {
+    .price {
+      font-size: 22px;
+    }
+  }
+}
