@@ -1,14 +1,18 @@
 export async function getData(
   endPoint: string,
   queryParams?: any,
+  extraParam?:string,
   body?: BodyInit,
-  method?: "GET"
+  method?: "GET",
 ): Promise<any> {
   let url = process.env.NEXT_PUBLIC_API_BASE_URL + endPoint;
 
   if (queryParams && Object.keys(queryParams).length > 0) {
     const queryString = new URLSearchParams(queryParams).toString();
     url += "?" + queryString;
+  }
+  if (extraParam ) {
+    url += extraParam;
   }
   
   try {
