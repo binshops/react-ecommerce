@@ -1,0 +1,45 @@
+.addToCart {
+  padding: 16px;
+  .quantityBox {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    border-bottom: 1px solid #f1f2f3;
+    width: 355px;
+    padding-bottom: 12px;
+    margin: 0 auto;
+    button {
+      border: none;
+      background-color: transparent;
+      width: 26px;
+      height: 26px;
+    }
+    .plus {
+      background-image: url("./../../../../public/images/icon/plus.png");
+    }
+    .minus {
+      background-image: url("./../../../../public/images/icon/minus.png");
+    }
+    .quantity {
+      border: none;
+
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 28.8px;
+      text-align: center;
+    }
+  }
+  .addToCartButton {
+    width: 353px;
+    height: 52px;
+    background-color: #1d1f22;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 44px;
+    text-align: center;
+    color: #fff;
+    margin: 16px auto;
+    display: block;
+    border-top: 8px solid #2ba0d0;
+  }
+}
