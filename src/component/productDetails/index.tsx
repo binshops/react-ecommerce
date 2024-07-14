@@ -15,6 +15,7 @@ const ProductDetails: FC<productDetailsProps> = ({ product, setProduct }) => {
         options={product.options}
         description={product.description}
         setProduct={setProduct}
+        productAttributeId={product.productAttributeId}
       />
     </div>
   );

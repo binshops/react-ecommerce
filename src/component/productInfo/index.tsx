@@ -4,9 +4,10 @@ import { productInfo } from "@/utils/type";
 import Price from "../product/price";
 import Options from "../product/options";
 import { getData } from "@/utils/fetchData";
-import { ProductDetailAPI } from "@/const/endPoint";
+import { AddToCardAPI, ProductDetailAPI } from "@/const/endPoint";
 import { ProductTransformer } from "@/utils/transformer/product";
 import AddToCart from "../product/addToCart";
+import { useCart } from "@/context/cartContext";
 
 const ProductInfo: FC<productInfo> = ({
   id,
@@ -15,10 +16,14 @@ const ProductInfo: FC<productInfo> = ({
   options,
   description,
   setProduct,
+  productAttributeId,
 }) => {
   const [selectedOption, setSelectedOption] = useState<
     { id: string; value: string }[]
   >([]);
+  const [quantity, setQuantity] = useState(1);
+  const { addToCart } = useCart();
+
   const handleSelectOption = (id: string, value: string) => {
     const index = selectedOption.findIndex((option) => option.id === id);
     if (index > -1) {
@@ -53,7 +58,16 @@ const ProductInfo: FC<productInfo> = ({
     };
     selectedOption.length > 0 && fetchData();
   }, [selectedOption]);
+  const handleAdd = async () => {
+    const item = {
+      id: id,
+      update: 1,
+      productAttributeId: productAttributeId,
+      quantity: quantity,
+    };
 
+    addToCart(item);
+  };
   return (
     <div className={styles.productInfo}>
       <h2 className={styles.productTitle}>{title}</h2>
@@ -61,7 +75,11 @@ const ProductInfo: FC<productInfo> = ({
       {options && (
         <Options options={options} handleSelectOption={handleSelectOption} />
       )}
-      <AddToCart />
+      <AddToCart
+        quantity={quantity}
+        setQuantity={setQuantity}
+        handleAdd={handleAdd}
+      />
       <div
         dangerouslySetInnerHTML={{ __html: description }}
         className={styles.description}

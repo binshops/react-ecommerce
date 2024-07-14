@@ -23,11 +23,12 @@ export interface productInfo {
   options: ProductOptions[];
   description: string;
   setProduct: Function;
+  productAttributeId: number;
 }
 export interface ProductOptions {
   id: number;
   title: string;
-  type:string;
+  type: string;
   items: {
     id: number;
     value: string;
@@ -54,7 +55,7 @@ export interface GroupAttributes {
 export interface Group {
   attributes: GroupAttributes["attributes"];
   group_name: string;
-  group_type:string
+  group_type: string;
 }
 export interface Groups {
   [key: string]: Group;
@@ -69,6 +70,7 @@ export interface ProductData {
   options?: ProductOptions[]; // This should ideally be replaced with a more specific type
   description: string;
   id_product: string;
+  id_product_attribute: number;
 }
 
 export interface ProductAPI {
@@ -82,4 +84,5 @@ export interface ProductType {
   options: ProductOptions[];
   description: string;
   id: string;
+  productAttributeId: number;
 }

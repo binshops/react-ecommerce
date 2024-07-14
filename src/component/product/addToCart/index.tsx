@@ -1,19 +1,8 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import styles from "./addToCart.module.scss";
-import { getData } from "@/utils/fetchData";
-import { AddToCardAPI } from "@/const/endPoint";
+import { AddToCartProps } from "./addToCart.types";
 
-const AddToCart: FC = ({}) => {
-  const [quantity, setQuantity] = useState(1);
-  const handleAdd =  async () => {
-    try {
-      const productData = await getData(AddToCardAPI, {
-      });
-      console.log('productData',productData)
-    } catch (error) {
-      console.error("Failed to fetch product data:", error);
-    }
-  };
+const AddToCart: FC<AddToCartProps> = ({quantity,setQuantity,handleAdd}) => {
   return (
     <div className={styles.addToCart}>
       <div className={styles.quantityBox}>
