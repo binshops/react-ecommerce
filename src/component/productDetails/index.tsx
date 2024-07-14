@@ -1,10 +1,32 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import styles from "./productDetails.module.scss";
 import ProductGallery from "../productGallery";
 import ProductInfo from "../productInfo";
-import { productDetailsProps } from "@/utils/type";
+import { Product, ProductCarouselProps, productDetailsProps } from "@/utils/type";
+import { getData } from "@/utils/fetchData";
+import { FeaturedProductAPI } from "@/const/endPoint";
+import { FeaturedProductTransformer } from "@/utils/transformer/featuredProduct";
+import ProductCarousel from "../productCarousel";
 
 const ProductDetails: FC<productDetailsProps> = ({ product, setProduct }) => {
+  const [featuredProduct,setFeaturedProduct]=useState<Product[]>([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const productData = await getData(
+          FeaturedProductAPI
+        );
+        console.log('proooo',productData)
+        const transformedData = FeaturedProductTransformer(productData);
+        console.log('transformedData',transformedData)
+
+        setFeaturedProduct(transformedData);
+      } catch (error) {
+        console.error("Failed to fetch product data:", error);
+      }
+    };
+    product.id&& fetchData();
+  }, []);
   return (
     <div className={styles.productInfo}>
       <ProductGallery images={product.images} />
@@ -17,6 +39,8 @@ const ProductDetails: FC<productDetailsProps> = ({ product, setProduct }) => {
         setProduct={setProduct}
         productAttributeId={product.productAttributeId}
       />
+      <ProductCarousel product={featuredProduct} />
+
     </div>
   );
 };

@@ -5,7 +5,7 @@ export interface Product {
   image: string;
   disconnect: string;
   quantity: string;
-  rate: string;
+  rate: number;
 }
 
 export interface ProductCarouselProps {
