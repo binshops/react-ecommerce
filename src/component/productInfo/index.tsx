@@ -1,21 +1,72 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import styles from "./productInfo.module.scss";
 import { productInfo } from "@/utils/type";
 import Price from "../product/price";
 import Options from "../product/options";
+import { getData } from "@/utils/fetchData";
+import { ProductDetailAPI } from "@/const/endPoint";
+import { ProductTransformer } from "@/utils/transformer/product";
+import AddToCart from "../product/addToCart";
 
 const ProductInfo: FC<productInfo> = ({
+  id,
   title,
   price,
   options,
   description,
+  setProduct,
 }) => {
+  const [selectedOption, setSelectedOption] = useState<
+    { id: string; value: string }[]
+  >([]);
+  const handleSelectOption = (id: string, value: string) => {
+    const index = selectedOption.findIndex((option) => option.id === id);
+    if (index > -1) {
+      const newOptions = [...selectedOption];
+      newOptions[index].value = value;
+      setSelectedOption(newOptions);
+    } else {
+      setSelectedOption([...selectedOption, { id, value }]);
+    }
+  };
+  useEffect(() => {
+    const fetchData = async () => {
+      const resultString =
+        "&" +
+        selectedOption
+          .map((item) => `group[${item.id}]=${item.value}`)
+          .join("&");
+      try {
+        const productData = await getData(
+          ProductDetailAPI,
+          {
+            product_id: id,
+            refresh: true,
+          },
+          resultString
+        );
+        const transformedData = ProductTransformer(productData);
+        setProduct(transformedData);
+      } catch (error) {
+        console.error("Failed to fetch product data:", error);
+      }
+    };
+    selectedOption.length > 0 && fetchData();
+  }, [selectedOption]);
+
   return (
     <div className={styles.productInfo}>
       <h2 className={styles.productTitle}>{title}</h2>
       <Price price={price} />
-      <Options options={options} />
-      <div dangerouslySetInnerHTML={{ __html: description }} className={styles.description} />    </div>
+      {options && (
+        <Options options={options} handleSelectOption={handleSelectOption} />
+      )}
+      <AddToCart />
+      <div
+        dangerouslySetInnerHTML={{ __html: description }}
+        className={styles.description}
+      />
+    </div>
   );
 };
 
