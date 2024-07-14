@@ -4,11 +4,18 @@ import ProductGallery from "../productGallery";
 import ProductInfo from "../productInfo";
 import { productDetailsProps } from "@/utils/type";
 
-const ProductDetails: FC<productDetailsProps> = ({ title, images,price,options,description }) => {
+const ProductDetails: FC<productDetailsProps> = ({ product, setProduct }) => {
   return (
     <div className={styles.productInfo}>
-      <ProductGallery images={images} />
-      <ProductInfo title={title} price={price} options={options} description={description}/>
+      <ProductGallery images={product.images} />
+      <ProductInfo
+        id={product.id}
+        title={product.title}
+        price={product.price}
+        options={product.options}
+        description={product.description}
+        setProduct={setProduct}
+      />
     </div>
   );
 };
