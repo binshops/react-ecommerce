@@ -27,6 +27,7 @@ export interface productInfo {
 export interface ProductOptions {
   id: number;
   title: string;
+  type:string;
   items: {
     id: number;
     value: string;
@@ -53,6 +54,7 @@ export interface GroupAttributes {
 export interface Group {
   attributes: GroupAttributes["attributes"];
   group_name: string;
+  group_type:string
 }
 export interface Groups {
   [key: string]: Group;
