@@ -1,23 +1,21 @@
-import ProductGallery from "@/component/productGallery";
 import { ProductDetailAPI } from "@/const/endPoint";
 import { getData } from "@/utils/fetchData";
 import { GetServerSidePropsContext } from "next";
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import ProductDetails from "@/component/productDetails";
 import { ProductTransformer } from "@/utils/transformer/product";
 import { ProductPageProps } from "@/utils/type";
 
-const ProductPage: FC<ProductPageProps> = ({ product }) => {
-  console.log("product", product);
+const ProductPage: FC<ProductPageProps> = ({ data }) => {
+  const [product, setProduct] = useState(data);
   return (
     <div>
-      <ProductDetails
-        title={product.title}
-        images={product.images}
-        options={product.options}
-        price={product.price}
-        description={product.description}
-      />
+      {product && (
+        <ProductDetails
+        product={product}
+          setProduct={setProduct}
+        />
+      )}
     </div>
   );
 };
@@ -27,8 +25,8 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
   const productData =
     productId && (await getData(ProductDetailAPI, { product_id: productId }));
-  const product = ProductTransformer(productData);
-  return { props: { product } };
+  const data = ProductTransformer(productData);
+  return { props: { data } };
 }
 
 export default ProductPage;
