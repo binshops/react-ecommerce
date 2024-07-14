@@ -11,7 +11,7 @@ const ProductGallery: FC<productGalleryProps> = ({ images }) => {
   const isLastItem = activeIndex === sliderImages.length - 1;
   const isFirstItem = activeIndex === 0;
 
-  useEffect(() => setMainImage(sliderImages[activeIndex]), [activeIndex]);
+  useEffect(() => setMainImage(sliderImages[activeIndex]), [activeIndex , images]);
 
   return (
     <>
@@ -36,7 +36,7 @@ const ProductGallery: FC<productGalleryProps> = ({ images }) => {
           <img alt="" src={mainImage.src} className={styles.mainImage} />
         </div>
         <div className={styles.sliderWrapper}>
-          {sliderImages.map((image, idx) => {
+          {sliderImages?.map((image, idx) => {
             return (
               <img
                 alt=""
