@@ -6,22 +6,37 @@ import { ProductOptions } from "@/utils/type";
 import { OptionsProps } from "./options.type";
 
 const optionType = {
-  radio: "dimension",
-  color: "Color",
-  select: "Size",
+  radio: "radio",
+  color: "color",
+  select: "select",
 };
 
-const Options: FC<OptionsProps> = ({ options }) => {
+const Options: FC<OptionsProps> = ({ options, handleSelectOption }) => {
   return (
     <div className={styles.options}>
       {options.map((option) => {
-        switch (option.title) {
+        switch (option.type) {
           case optionType.radio:
-            return "dimension";
+            return (
+              <SelectBox
+                productOption={option}
+                handleSelectOption={handleSelectOption}
+              />
+            );
           case optionType.color:
-            return <ColorSelect productOption={option} />;
+            return (
+              <ColorSelect
+                productOption={option}
+                handleSelectOption={handleSelectOption}
+              />
+            );
           case optionType.select:
-            return <SelectBox productOption={option} />;
+            return (
+              <SelectBox
+                productOption={option}
+                handleSelectOption={handleSelectOption}
+              />
+            );
           default:
             break;
         }
