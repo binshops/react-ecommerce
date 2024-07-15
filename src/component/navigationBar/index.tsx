@@ -9,9 +9,17 @@ const NavigationBar: FC = () => {
     <div className={styles.navigationBar}>
       {navigationItems.map((item, idx) => {
         return (
-          <Link className={styles.navigationItem} href={item.link} key={idx}>
-            <Image src={item.icon} alt={item.text} className={styles.image} />
-            <p>{item.text}</p>
+          <Link
+            className={`${styles.navigationItem}`}
+            href={item.link}
+            key={idx}
+          >
+            <div className={`${item.text === "Cart" ? styles.cartImage : ""}`}>
+              <Image src={item.icon} alt={item.text} className={styles.image} />
+            </div>
+            <p className={`${item.text === "Cart" ? styles.cartItem : ""}`}>
+              {item.text}
+            </p>
           </Link>
         );
       })}
