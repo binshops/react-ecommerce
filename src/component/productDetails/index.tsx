@@ -29,7 +29,12 @@ const ProductDetails: FC<productDetailsProps> = ({ product, setProduct }) => {
   }, []);
   return (
     <div className={styles.productInfo}>
+      <div className={styles.galleryContainer}>
+
       <ProductGallery images={product.images} />
+      </div>
+      <div className={styles.infoContainer}>
+
       <ProductInfo
         id={product.id}
         title={product.title}
@@ -38,8 +43,12 @@ const ProductDetails: FC<productDetailsProps> = ({ product, setProduct }) => {
         description={product.description}
         setProduct={setProduct}
         productAttributeId={product.productAttributeId}
-      />
+        />
+        </div>
+        <div className={styles.carouselContainer}>
+
       <ProductCarousel product={featuredProduct} />
+        </div>
 
     </div>
   );
