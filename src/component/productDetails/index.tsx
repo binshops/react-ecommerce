@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from "react";
 import styles from "./productDetails.module.scss";
 import ProductGallery from "../productGallery";
 import ProductInfo from "../productInfo";
-import { Product, ProductCarouselProps, productDetailsProps } from "@/utils/type";
+import { Product, productDetailsProps } from "@/utils/type";
 import { getData } from "@/utils/fetchData";
 import { FeaturedProductAPI } from "@/const/endPoint";
 import { FeaturedProductTransformer } from "@/utils/transformer/featuredProduct";

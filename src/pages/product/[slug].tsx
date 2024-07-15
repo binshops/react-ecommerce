@@ -1,13 +1,16 @@
 import { ProductDetailAPI } from "@/const/endPoint";
 import { getData } from "@/utils/fetchData";
 import { GetServerSidePropsContext } from "next";
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import ProductDetails from "@/component/productDetails";
 import { ProductTransformer } from "@/utils/transformer/product";
 import { ProductPageProps } from "@/utils/type";
 
 const ProductPage: FC<ProductPageProps> = ({ data }) => {
   const [product, setProduct] = useState(data);
+  useEffect(() => {
+    setProduct(data)
+  }, [data]);
   return (
     <div>
       {product && (
