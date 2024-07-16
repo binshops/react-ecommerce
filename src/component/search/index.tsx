@@ -16,7 +16,7 @@ const Search: FC = () => {
 
   const handleInputChange = useCallback(
     debounce(async (value) => {
-      const data = getData(ProductSearchAPI)
+      getData(ProductSearchAPI, { s: value, resultsPerPage: 10 })
         .then((data) => {
           const products = SearchTransformer(data);
           setResults(products);
@@ -39,12 +39,13 @@ const Search: FC = () => {
             handleInputChange(e.target.value);
           }}
         />
-      <Image src={search} alt="searchIcon" className={styles.icon} />
+        <Image src={search} alt="searchIcon" className={styles.icon} />
       </div>
       <div className={styles.searchResult}>
-        {results?.searchProducts.map((item) => {
-          return <ProductCard product={item} key={item.id} />;
-        })}
+        {value.length >= 3 &&
+          results?.searchProducts.map((item) => {
+            return <ProductCard product={item} key={item.id} />;
+          })}
       </div>
     </div>
   );
