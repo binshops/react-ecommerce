@@ -32,7 +32,6 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
         action: "update",
         image_size: "medium_default",
       });
-      console.log("productData", productData);
     } catch (error) {
       console.error("Failed to fetch product data:", error);
     }

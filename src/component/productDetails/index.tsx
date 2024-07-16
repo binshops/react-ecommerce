@@ -16,10 +16,7 @@ const ProductDetails: FC<productDetailsProps> = ({ product, setProduct }) => {
         const productData = await getData(
           FeaturedProductAPI
         );
-        console.log('proooo',productData)
         const transformedData = FeaturedProductTransformer(productData);
-        console.log('transformedData',transformedData)
-
         setFeaturedProduct(transformedData);
       } catch (error) {
         console.error("Failed to fetch product data:", error);
