@@ -6,6 +6,7 @@ import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import ProductCard from "../productCard";
 import { ProductCarouselProps } from "@/utils/type";
+import Link from "next/link";
 
 const ProductCarousel: FC<ProductCarouselProps> = ({ product = [] }) => {
   return (
@@ -25,7 +26,9 @@ const ProductCarousel: FC<ProductCarouselProps> = ({ product = [] }) => {
         {product?.map((item) => {
           return (
             <SwiperSlide key={item.id} className={styles.productItem}>
+              <Link href={`/product/${item.id}`}>
               <ProductCard product={item} />
+              </Link>
             </SwiperSlide>
           );
         })}

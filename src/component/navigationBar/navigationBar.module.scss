@@ -15,16 +15,36 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    .image {
-      width: 20px;
-      height: 20px;
-      margin-bottom: 8px;
+    .cartImage {
+      width: 66px;
+      height: 66px;
+      position: absolute;
+      background: #2ba0d0;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      top: -33px;
+      box-shadow: 0px 4px 11px 0px #1d1f221a;
+      .image {
+        width: 30px !important;
+        height: 30px !important;
+        margin: 0 !important;
+      }
+      .image {
+        width: 20px;
+        height: 20px;
+        margin-bottom: 8px;
+      }
     }
     p {
       font-size: 12px;
       font-weight: 400;
       line-height: 12px;
       text-align: center;
+      &.cartItem {
+        margin-top: 26px;
+      }
     }
   }
   @media screen and (min-width: 768px) {

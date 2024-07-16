@@ -1,0 +1,22 @@
+.productInfo {
+  padding: 16px;
+  .productTitle {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 25.6px;
+  }
+  .description {
+    p {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 25.6px;
+      text-align: left;
+    }
+  }
+  @media screen and (min-width: 991px) {
+    .productTitle {
+      font-size: 26px;
+      line-height: 41.6px;
+    }
+  }
+}

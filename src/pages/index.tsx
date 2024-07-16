@@ -15,7 +15,6 @@ export default function Home({
 }: HomeProps): JSX.Element {
   return (
     <>
-      {console.log(data)}
       <MainSlider />
       <HomeCategory />
       <ProductCarousel product={homeProductCarousel} />
