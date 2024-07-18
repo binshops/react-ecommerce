@@ -16,9 +16,9 @@ export interface MegaMenuAPI {
 }
 
 export interface menuItem {
-  id: string;
-  slug: string;
-  label: string;
+  id?: string;
+  slug?: string;
+  title: string;
   link: string;
 }
 export interface menuItems {

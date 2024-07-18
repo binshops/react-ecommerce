@@ -3,7 +3,7 @@ import React from "react";
 import { useCart } from "@/context/cartContext";
 
 
-const BasketPage = () => {
+const CartPage = () => {
   const { cart, addToCart, removeFromCart, updateQuantity } = useCart();
 
   return (
@@ -21,4 +21,4 @@ const BasketPage = () => {
   );
 };
 
-export default BasketPage;
+export default CartPage;

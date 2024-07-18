@@ -6,13 +6,13 @@ export const MegaMenuTransformer = (data: MegaMenuAPI) => {
       id: item.id,
       slug: item.slug,
       label: item.label,
-      link: item.page_identifier,
+      link: 'category/'+item.page_identifier,
       children: item.children?.map((child) => {
         return {
           id: item.id,
           slug: child.slug,
-          label: child.label,
-          link: child.page_identifier,
+          title: child.label,
+          link:'category/'+ child.page_identifier,
         };
       }),
     };

@@ -20,15 +20,6 @@ const Header: FC = () => {
         <MegaMenu />
         <Search />
       </div>
-      <div>
-        <h1>Your Basket</h1>
-        {cart.length > 0 ? (
-          cart.map((item) => item.id)
-        ) : (
-          <p>Your basket is empty.</p>
-        )}
-        {/* Add buttons for actions like addToCart, updateQuantity, removeFromCart */}
-      </div>
     </header>
   );
 };
