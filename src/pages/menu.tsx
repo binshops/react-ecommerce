@@ -25,6 +25,7 @@ const MenuPage = () => {
           <AccordionItem
             title={item.label}
             links={item.children}
+            titleLink={item.link}
             mode="dark"
             key={item.id}
           />

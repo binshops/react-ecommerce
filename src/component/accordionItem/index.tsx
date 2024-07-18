@@ -4,19 +4,24 @@ import darkArrow from "./../../../public/images/icon/darkArrow.png";
 import styles from "./accordionItem.module.scss";
 import Image from "next/image";
 import { AccordionItemProps } from "./accordion.types";
+import { useRouter } from "next/router";
 
 const AccordionItem: FC<AccordionItemProps> = ({
   title,
   links,
+  titleLink,
   mode = "light",
 }) => {
   const [isOpen, setIsOpen] = useState(Boolean);
+  const router = useRouter();
   return (
     <div
       className={`${styles.accordionItem} ${
         mode === "dark" ? styles.darkMode : ""
       }`}
-      onClick={() => setIsOpen(!isOpen)}
+      onClick={() =>
+        links.length === 0 ? router.push(titleLink) : setIsOpen(!isOpen)
+      }
     >
       <div className={styles.titleRow}>
         <p className={styles.title}>{title}</p>
