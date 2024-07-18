@@ -13,7 +13,6 @@ const MegaMenu: React.FC = () => {
     const fetchData = async () => {
       const data = await getData(MegaMenuAPI);
       const transformedData = MegaMenuTransformer(data);
-      console.log(transformedData.menuItems);
       setMenuItems(transformedData.menuItems);
     };
 
@@ -31,7 +30,7 @@ const MegaMenu: React.FC = () => {
                 {item.children?.map((subLink, idx) => {
                   return (
                     <Link href={item.link} className={styles.link} key={idx}>
-                      {subLink.label}
+                      {subLink.title}
                     </Link>
                   );
                 })}
