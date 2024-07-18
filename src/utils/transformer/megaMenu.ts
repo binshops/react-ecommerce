@@ -11,7 +11,7 @@ export const MegaMenuTransformer = (data: MegaMenuAPI) => {
         return {
           id: item.id,
           slug: child.slug,
-          label: child.label,
+          title: child.label,
           link: child.page_identifier,
         };
       }),
