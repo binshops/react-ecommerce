@@ -28,6 +28,9 @@ main {
 .container {
   margin: 0 auto;
 }
+main >.container {
+  min-height: 100vh;
+}
 @media screen and (min-width: 576px) {
   .container {
     max-width: 540px;
