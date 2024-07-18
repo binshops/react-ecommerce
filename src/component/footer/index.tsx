@@ -9,6 +9,7 @@ const Footer: FC = () => {
       {footerLink.map((item) => {
         return (
           <AccordionItem
+            titleLink={item.footerLink}
             title={item.footerTitle}
             links={item.link}
             key={item.id}
