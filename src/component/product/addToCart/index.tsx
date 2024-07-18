@@ -21,7 +21,7 @@ const AddToCart: FC<AddToCartProps> = ({quantity,setQuantity,handleAdd}) => {
           onClick={() => setQuantity(quantity + 1)}
         ></button>
       </div>
-      <button className={styles.addToCartButton} onClick={()=>handleAdd()}>Pick up in store</button>
+      <button className={styles.addToCartButton} onClick={()=>handleAdd()}>Add To Cart</button>
     </div>
   );
 };
