@@ -1,16 +1,16 @@
 import React, { FC, useState } from "react";
-import arrow from "./../../../../public/images/icon/arrow.png";
-import styles from "./footerItem.module.scss";
+import arrow from "./../../../public/images/icon/arrow.png";
+import styles from "./accordionItem.module.scss";
 import Image from "next/image";
 
-const FooterItem: FC<{
+const AccordionItem: FC<{
   title: string;
   links: { title: string; link: string }[];
 }> = ({ title, links }) => {
   const [isOpen, setIsOpen] = useState(Boolean);
 
   return (
-    <div className={styles.footerItem} onClick={() => setIsOpen(!isOpen)}>
+    <div className={styles.accordionItem} onClick={() => setIsOpen(!isOpen)}>
       <div className={styles.titleRow}>
         <p className={styles.title}>{title}</p>
         <Image src={arrow} alt="arrow" />
@@ -28,4 +28,4 @@ const FooterItem: FC<{
   );
 };
 
-export default FooterItem;
+export default AccordionItem;
