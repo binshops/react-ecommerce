@@ -9,3 +9,5 @@ export const ProductDetailAPI = "/productdetail";
 export const AddToCardAPI = "/cart";
 
 export const FeaturedProductAPI ="/featuredproducts"
+
+export const CategoryAPI="/categoryProducts"
