@@ -24,9 +24,10 @@ const Sort: FC<SortProps> = ({
           id_category: categoryId,
           page: 1,
           order: orderQuery,
-        }).then(() => setIsLoading(false));
+        });
         const transformedData = CategoryTransformer(productData);
         setCategory(transformedData);
+        setIsLoading(false);
       } catch (error) {
         console.error("Failed to fetch product data:", error);
       }
