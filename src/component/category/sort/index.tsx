@@ -7,25 +7,31 @@ import { getData } from "@/utils/fetchData";
 import { CategoryAPI } from "@/const/endPoint";
 import { CategoryTransformer } from "@/utils/transformer/category";
 
-const Sort: FC<SortProps> = ({ sortOptions, setCategory, categoryId }) => {
+const Sort: FC<SortProps> = ({
+  sortOptions,
+  setCategory,
+  categoryId,
+  setIsLoading,
+}) => {
   const activeSort = sortOptions?.find((item) => item.isActive === true);
   const [orderQuery, setOrderQuery] = useState<string>();
   const [showOption, setOption] = useState(false);
   useEffect(() => {
     const fetchData = async () => {
+      setIsLoading(true);
       try {
         const productData = await getData(CategoryAPI, {
           id_category: categoryId,
           page: 1,
           order: orderQuery,
-        });
+        }).then(() => setIsLoading(false));
         const transformedData = CategoryTransformer(productData);
         setCategory(transformedData);
       } catch (error) {
         console.error("Failed to fetch product data:", error);
       }
     };
-    fetchData();
+    orderQuery && fetchData();
     setOption(false);
   }, [orderQuery]);
   return (
