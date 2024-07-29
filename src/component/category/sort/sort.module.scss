@@ -1,11 +1,12 @@
 .sortWrapper {
   position: relative;
-  min-width: 200px;
+  min-width: 170px;
   .activeItem {
     display: flex;
     align-items: center;
     gap: 8px;
     padding: 8px 16px;
+    justify-content: center;
     .title {
       font-size: 18px;
       font-weight: 400;
