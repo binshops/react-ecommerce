@@ -1,0 +1,17 @@
+.filterWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 170px;
+  gap: 8px;
+  .title {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 19px;
+  }
+}
+.filterTitle {
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 41.6px;
+}
