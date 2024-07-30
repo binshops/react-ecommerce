@@ -1,0 +1,33 @@
+.content {
+  .check {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 8px;
+    .box {
+      width: 24px;
+      height: 24px;
+      border: 1px solid #000;
+      border-radius: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .active {
+      background: #2ba0d0;
+      border: 1px solid #fff;
+    }
+    .label {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 25px;
+      text-align: left;
+    }
+    .count {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 25px;
+      text-align: right;
+    }
+  }
+}
