@@ -9,8 +9,10 @@
     left: 0;
     top: 100%;
     z-index: 1;
+    display: none;
     &.open {
       animation: slideUpFullScreen 0.5s forwards;
+      display: block;
     }
     &.close {
       animation: slideDownFullScreen 0.5s forwards;
