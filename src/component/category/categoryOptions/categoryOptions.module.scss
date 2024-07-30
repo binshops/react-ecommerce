@@ -1,0 +1,14 @@
+.optionsWrapper {
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 0;
+  align-items: center;
+  border-bottom: 1px solid #f1f2f3;
+  .count {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22.39px;
+    text-align: center;
+  }
+}
