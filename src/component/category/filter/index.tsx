@@ -4,6 +4,7 @@ import FilterIcon from "./../../../../public/images/icon/Filter.png";
 import Image from "next/image";
 import Modal from "@/component/modal";
 import CheckBox from "./checkBox";
+import { FilterProps } from "@/utils/type/category";
 
 const Filter: FC<FilterProps> = ({
   filters,

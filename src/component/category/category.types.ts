@@ -1,3 +1,5 @@
+import { Sort } from "@/utils/type/category";
+
 export interface CategoryOptionsProps {
   filters: any;
   sortOptions: Sort[];
@@ -13,11 +15,4 @@ export interface SortProps {
   setOrderQuery: Function;
   showSortOption: boolean;
   setShowSortOption: Function;
-}
-
-export interface Sort {
-  label: string;
-  querySort: string;
-  isActive: boolean;
-  setSortOption: Function;
 }
