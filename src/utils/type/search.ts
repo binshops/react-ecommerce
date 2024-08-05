@@ -9,7 +9,7 @@ export interface SearchAPI {
       cover: { url: string };
       discount_amount: string;
       quantity: string;
-      rate: string;
+      rate: number;
     }[];
   };
 }

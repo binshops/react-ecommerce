@@ -11,7 +11,7 @@ const CartPage = () => {
       <h1>Your Basket</h1>
       {cart.length > 0 ? (
         cart.map(item => (
-            item.name
+            item.id
         ))
       ) : (
         <p>Your basket is empty.</p>
