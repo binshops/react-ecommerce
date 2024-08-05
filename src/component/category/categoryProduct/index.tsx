@@ -9,7 +9,7 @@ const CategoryProduct: FC<CategoryProductProps> = ({ product = [] }) => {
     <div className={styles.productWrapper}>
       {product.map((item) => {
         return (
-          <Link href={`/product/${item.id}`}>
+          <Link href={`/product/${item.id}`} key={item.id}>
             <ProductCard product={item} />
           </Link>
         );
