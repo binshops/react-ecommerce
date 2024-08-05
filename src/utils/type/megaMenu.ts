@@ -28,3 +28,7 @@ export interface menuItems {
   link: string;
   children: menuItem[];
 }
+
+export interface MenuPageProps{
+  menu:menuItems[]
+}
