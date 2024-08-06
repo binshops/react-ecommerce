@@ -29,13 +29,14 @@ export interface CategoryFilter {
     nextEncodedFacets: string;
   }[];
 }
-export interface Category {
+export interface CategoryAPI {
   psdata: {
     name: string;
     products: CategoryProducts[];
     sort_orders: CategorySort[];
     facets: CategoryFilter[];
-    sort_selected: string;
+    order_param: string;
+    q_param:string
   };
 }
 
@@ -68,6 +69,7 @@ export interface Category {
   sortOptions: Sort[];
   product: Product[];
   activeSort: string;
+  activeFilter:string
 }
 
 export interface CategoryPageProps {

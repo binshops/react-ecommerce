@@ -1,4 +1,4 @@
-import { Category, CategoryFilter, CategoryProducts, CategorySort } from "../type/category";
+import { CategoryAPI, CategoryFilter, CategoryProducts, CategorySort } from "../type/category";
 
 export const productTransformer = (data: CategoryProducts[]) => {
   const product = data.map((product) => {
@@ -47,12 +47,13 @@ export const filtersTransformer = (data: CategoryFilter[]) => {
 };
 
 
-export const CategoryTransformer = (data: Category) => {
+export const CategoryTransformer = (data: CategoryAPI) => {
   return {
     title: data.psdata.name,
     product: productTransformer(data.psdata.products),
     filters: filtersTransformer(data.psdata.facets),
     sortOptions: sortTransformer(data.psdata.sort_orders),
-    activeSort: data.psdata.sort_selected,
+    activeSort: data.psdata.order_param,
+    activeFilter:data.psdata.q_param
   };
 };

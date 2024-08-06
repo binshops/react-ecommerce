@@ -8,6 +8,7 @@ export interface CategoryOptionsProps {
   categoryId: string;
   setIsLoading: Function;
   activeSort: string;
+  activeFilter:string
 }
 
 export interface SortProps {

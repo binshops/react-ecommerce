@@ -51,6 +51,7 @@ const CategoryPage: FC<CategoryPageProps> = ({ data, categoryId, menu }) => {
               setIsLoading={setIsLoading}
               categoryId={categoryId}
               activeSort={category.activeSort}
+              activeFilter={category.activeFilter}
             />
             <CategoryProduct product={category.product} />
           </div>

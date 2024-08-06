@@ -15,6 +15,7 @@ const CategoryOptions: FC<CategoryOptionsProps> = ({
   categoryId,
   setIsLoading,
   activeSort,
+  activeFilter,
 }) => {
   const [filterQuery, setFilterQuery] = useState();
   const [orderQuery, setOrderQuery] = useState<string | undefined>();
@@ -28,8 +29,8 @@ const CategoryOptions: FC<CategoryOptionsProps> = ({
         const productData = await getData(CategoryAPI, {
           id_category: categoryId,
           page: 1,
-          q: filterQuery,
-          order: orderQuery,
+          q: filterQuery || activeFilter.replace("+", " "),
+          order: orderQuery || activeSort,
         });
         const transformedData = CategoryTransformer(productData);
         setCategory(transformedData);
@@ -42,6 +43,7 @@ const CategoryOptions: FC<CategoryOptionsProps> = ({
     setShowSortOption(false);
     setIsOpenFilter(false);
   }, [orderQuery, filterQuery]);
+
   return (
     <div className={styles.optionsWrapper}>
       <Filter
