@@ -16,7 +16,7 @@ const Filter: FC<FilterProps> = ({
 }) => {
   const { lockScroll, unlockScroll } = useScrollLock();
   const { width } = useWindowSize();
-  const isDeskTop = width > 991;
+  const isDeskTop = width > 768;
   return (
     <>
       <div
