@@ -5,6 +5,7 @@ import Image from "next/image";
 import Modal from "@/component/modal";
 import CheckBox from "./checkBox";
 import { FilterProps } from "@/utils/type/category";
+import { useScrollLock } from "@/utils/hooks/useScrollLock";
 
 const Filter: FC<FilterProps> = ({
   filters,
@@ -12,18 +13,20 @@ const Filter: FC<FilterProps> = ({
   isOpenFilter,
   setIsOpenFilter,
 }) => {
+  const { lockScroll, unlockScroll } = useScrollLock();
+
   return (
     <>
       <div
         className={styles.filterWrapper}
-        onClick={() => setIsOpenFilter(true)}
+        onClick={() => {setIsOpenFilter(true);lockScroll()}}
       >
         <Image src={FilterIcon} alt="filterIcon" />
         <p className={styles.title}>Filters</p>
       </div>
       <Modal
         isOpen={isOpenFilter}
-        onClose={() => setIsOpenFilter(false)}
+        onClose={() =>{ setIsOpenFilter(false);unlockScroll()}}
         isFullScreen
       >
         {filters.map((filter, idx) => {

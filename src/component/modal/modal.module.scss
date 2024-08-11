@@ -17,6 +17,10 @@
     &.close {
       animation: slideDownFullScreen 0.5s forwards;
     }
+    .content{
+      height: calc(100vh - 200px);
+      overflow: scroll;
+    }
   }
   .close {
     position: absolute;

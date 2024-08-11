@@ -4,11 +4,16 @@
   align-items: center;
   min-width: 170px;
   gap: 8px;
+
   .title {
     font-size: 14px;
     font-weight: 500;
     line-height: 19px;
   }
+}
+.filterBox{
+  width: calc(100vh - 100px);
+  overflow: scroll;
 }
 .filterTitle {
   font-size: 26px;
