@@ -6,6 +6,7 @@ import Modal from "@/component/modal";
 import CheckBox from "./checkBox";
 import { FilterProps } from "@/utils/type/category";
 import { useScrollLock } from "@/utils/hooks/useScrollLock";
+import useWindowSize from "@/utils/hooks/useWindowSize";
 
 const Filter: FC<FilterProps> = ({
   filters,
@@ -14,39 +15,48 @@ const Filter: FC<FilterProps> = ({
   setIsOpenFilter,
 }) => {
   const { lockScroll, unlockScroll } = useScrollLock();
-
+  const { width } = useWindowSize();
+  const isDeskTop = width > 991;
   return (
     <>
       <div
         className={styles.filterWrapper}
-        onClick={() => {setIsOpenFilter(true);lockScroll()}}
+        onClick={() => {
+          setIsOpenFilter(true);
+          lockScroll();
+        }}
       >
         <Image src={FilterIcon} alt="filterIcon" />
         <p className={styles.title}>Filters</p>
       </div>
       <Modal
         isOpen={isOpenFilter}
-        onClose={() =>{ setIsOpenFilter(false);unlockScroll()}}
-        isFullScreen
+        onClose={() => {
+          setIsOpenFilter(false);
+          unlockScroll();
+        }}
+        isFullScreen={!isDeskTop}
       >
-        {filters.map((filter, idx) => {
-          return (
-            filter.display && (
-              <div key={idx}>
-                <p className={styles.filterTitle}>{filter.label}</p>
-                {filter.options.map((filter, idx) => {
-                  return (
-                    <CheckBox
-                      filter={filter}
-                      setFilterQuery={setFilterQuery}
-                      key={idx}
-                    />
-                  );
-                })}
-              </div>
-            )
-          );
-        })}
+        <div className={isDeskTop ? styles.row : ""}>
+          {filters.map((filter, idx) => {
+            return (
+              filter.display && (
+                <div className={styles.filterColumn} key={idx}>
+                  <p className={styles.filterTitle}>{filter.label}</p>
+                  {filter.options.map((filter, idx) => {
+                    return (
+                      <CheckBox
+                        filter={filter}
+                        setFilterQuery={setFilterQuery}
+                        key={idx}
+                      />
+                    );
+                  })}
+                </div>
+              )
+            );
+          })}
+        </div>
       </Modal>
     </>
   );
