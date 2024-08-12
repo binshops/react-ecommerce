@@ -42,7 +42,7 @@ const CategoryPage: FC<CategoryPageProps> = ({ data, categoryId, menu }) => {
               );
             })}
           </div>
-          <div>
+          <div className={styles.productWrapper}>
             <CategoryOptions
               filters={category.filters}
               sortOptions={category.sortOptions}

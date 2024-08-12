@@ -4,6 +4,9 @@
   }
   @media screen and (min-width: 768px) {
     display: flex;
+    .productWrapper{
+      flex: 1;
+    }
     .categoryWrapper {
       display: block;
       border-right: 1px solid #f1f2f3;
