@@ -16,9 +16,15 @@ export default function Pagination({
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const currentPage = Number(searchParams.get("page") || "1");
-  const startNumber = currentPage - 2 < 1 ? 2 : currentPage - 2;
-  const length =
-    totalPages - currentPage > 5 ? 5 : totalPages - currentPage + 2;
+  const length = totalPages <= 7 ? totalPages - 2 : 5;
+  const startNumber =
+    totalPages <= 7
+      ? 2
+      : totalPages - 2 <= currentPage
+      ? totalPages - 5
+      : currentPage - 2 > 2
+      ? currentPage - 2
+      : 2;
 
   const createPageURL = (pageNumber: number | string) => {
     const params = new URLSearchParams(searchParams);
@@ -47,7 +53,7 @@ export default function Pagination({
           <p> 1 </p>
         </div>
       </Link>
-      {currentPage - 2 > 1 && totalPages >5&& <p> ... </p>}
+      {currentPage - 3 > 1 && <p> ... </p>}
       {numbers.map((number) => (
         <Link href={createPageURL(number)}>
           <div
@@ -61,17 +67,19 @@ export default function Pagination({
           </div>
         </Link>
       ))}
-      {totalPages - currentPage > 5 && <p> ... </p>}
-      <Link href={createPageURL(totalPages)}>
-        <div
-          className={` ${styles.pageNumber} ${
-            totalPages === currentPage ? styles.active : ""
-          }`}
-          onClick={() => setIsLoading(true)}
-        >
-          <p>{totalPages}</p>
-        </div>
-      </Link>
+      {currentPage + 3 < totalPages && <p> ... </p>}
+      {totalPages !== 1 && (
+        <Link href={createPageURL(totalPages)}>
+          <div
+            className={` ${styles.pageNumber} ${
+              totalPages === currentPage ? styles.active : ""
+            }`}
+            onClick={() => setIsLoading(true)}
+          >
+            <p>{totalPages}</p>
+          </div>
+        </Link>
+      )}
       {currentPage < totalPages && (
         <Link href={createPageURL(currentPage + 1)}>
           <div onClick={() => setIsLoading(true)}>
