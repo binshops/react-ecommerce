@@ -1,0 +1,115 @@
+.modalWrapper {
+  background-color: #fff;
+  position: absolute;
+  transition: all 0.5s ease-out;
+  padding: 120px 20px 76px;
+  opacity: 0;
+  &.isFullScreen {
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 100%;
+    z-index: 1;
+    &.open {
+      animation: slideUpFullScreen 0.5s forwards;
+    }
+    &.close {
+      animation: slideDownFullScreen 0.5s forwards;
+    }
+    .content {
+      height: calc(100vh - 200px);
+      overflow: scroll;
+    }
+  }
+  &.modalBox {
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    right: 50%;
+    transform: translateX(50%);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    border-radius: 16px;
+    padding: 24px;
+    &.open {
+      animation: slideUpModalBox 0.5s forwards;
+      display: block;
+    }
+    &.close {
+      animation: slideDownModalBox 0.5s forwards;
+    }
+    .close {
+      top: 10px;
+      right: 10px;
+    }
+    .content {
+      width: 100%;
+      height: 100%;
+      overflow: scroll;
+      overflow-y: scroll;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      &::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+      }
+    }
+  }
+  &.open {
+    opacity: 100;
+  }
+  .close {
+    position: absolute;
+    right: 20px;
+    top: 120px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #2ba0d0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      width: 23px;
+      height: 23px;
+    }
+  }
+}
+
+@keyframes slideUpFullScreen {
+  from {
+    top: 100%;
+  }
+  to {
+    top: 0;
+  }
+}
+
+@keyframes slideDownFullScreen {
+  from {
+    top: 0;
+  }
+  to {
+    top: 100%;
+  }
+}
+
+@keyframes slideUpModalBox {
+  from {
+    top: 100%;
+    transform: translate(50%, -50%);
+  }
+  to {
+    top: 50%;
+    transform: translate(50%, -50%);
+  }
+}
+
+@keyframes slideDownModalBox {
+  from {
+    top: 50%;
+    transform: translate(50%, -50%);
+  }
+  to {
+    top: 100%;
+  }
+}

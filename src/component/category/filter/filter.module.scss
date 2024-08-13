@@ -1,0 +1,39 @@
+.filterWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 170px;
+  gap: 8px;
+
+  .title {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 19px;
+  }
+}
+.filterBox {
+  width: calc(100vh - 100px);
+  overflow: scroll;
+  overflow: scroll;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+}
+.filterTitle {
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 41.6px;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 16px;
+  gap: 16px;
+  .filterColumn {
+    width: 48%;
+  }
+}

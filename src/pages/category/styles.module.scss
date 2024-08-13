@@ -1,0 +1,27 @@
+.wrapper {
+  .categoryWrapper {
+    display: none;
+  }
+  @media screen and (min-width: 768px) {
+    display: flex;
+    .productWrapper{
+      flex: 1;
+    }
+    .categoryWrapper {
+      display: block;
+      border-right: 1px solid #f1f2f3;
+        min-width: 200px;
+      .title {
+        height: 70px;
+        display: flex;
+        border-bottom: 1px solid #f1f2f3;
+        p {
+          font-size: 26px;
+          font-weight: 600;
+          text-align: left;
+          line-height: 70px;
+        }
+      }
+    }
+  }
+}

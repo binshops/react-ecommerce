@@ -1,0 +1,35 @@
+.sortWrapper {
+  position: relative;
+  min-width: 170px;
+  .activeItem {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    justify-content: center;
+    .title {
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 21px;
+      text-align: center;
+    }
+  }
+  .sortOptions {
+    display: none;
+    &.show {
+      width: 100%;
+      display: block;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #fff;
+    }
+    .item {
+      padding: 16px;
+      border-bottom: 1px solid #f1f2f3;
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+}
