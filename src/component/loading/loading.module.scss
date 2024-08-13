@@ -13,7 +13,8 @@
   background-color: #fff;
   display: flex;
   justify-content: center;
-  z-index: 100;
+  z-index: 1000;
+  left: 0;
   .icon {
     position: fixed;
     top: 50%;
