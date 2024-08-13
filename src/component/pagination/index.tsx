@@ -47,7 +47,7 @@ export default function Pagination({
           <p> 1 </p>
         </div>
       </Link>
-      {currentPage - 2 > 1 && <p> ... </p>}
+      {currentPage - 2 > 1 && totalPages >5&& <p> ... </p>}
       {numbers.map((number) => (
         <Link href={createPageURL(number)}>
           <div
