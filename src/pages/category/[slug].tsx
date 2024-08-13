@@ -9,26 +9,43 @@ import CategoryOptions from "@/component/category/categoryOptions";
 import Loading from "@/component/loading";
 import { MegaMenuTransformer } from "@/utils/transformer/megaMenu";
 import AccordionItem from "@/component/accordionItem";
-import { CategoryPageProps } from "@/utils/type/category";
-
+import { Category, CategoryPageProps } from "@/utils/type/category";
+import Pagination from "@/component/pagination";
+import { useRouter } from "next/router";
 
 const CategoryPage: FC<CategoryPageProps> = ({ data, categoryId, menu }) => {
-  const [category, setCategory] = useState(data);
+  const [category, setCategory] = useState<Category>(data);
   const [isLoading, setIsLoading] = useState(false);
 
+  const router = useRouter();
+  const page = parseInt(router.query.page as string, 10);
   useEffect(() => {
     setCategory(category);
   }, [category, isLoading]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const categoryData = await getData(CategoryAPI, {
+          id_category: categoryId,
+          page: page,
+        });
+        const transformedData = CategoryTransformer(categoryData);
+        setCategory(transformedData);
 
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Failed to fetch product data:", error);
+      }
+    };
+    page && fetchData();
+  }, [page]);
   return (
     <>
       {!isLoading ? (
         <div className={styles.wrapper}>
           <div className={styles.categoryWrapper}>
             <div className={styles.title}>
-              <p>
-              Categories
-              </p>
+              <p>Categories</p>
             </div>
             {menu?.map((item) => {
               return (
@@ -46,7 +63,7 @@ const CategoryPage: FC<CategoryPageProps> = ({ data, categoryId, menu }) => {
             <CategoryOptions
               filters={category.filters}
               sortOptions={category.sortOptions}
-              count={category.product.length}
+              count={category.totalProducts}
               setCategory={setCategory}
               setIsLoading={setIsLoading}
               categoryId={categoryId}
@@ -54,6 +71,10 @@ const CategoryPage: FC<CategoryPageProps> = ({ data, categoryId, menu }) => {
               activeFilter={category.activeFilter}
             />
             <CategoryProduct product={category.product} />
+            <Pagination
+              totalPages={category.totalPage}
+              setIsLoading={setIsLoading}
+            />
           </div>
         </div>
       ) : (
@@ -65,13 +86,14 @@ const CategoryPage: FC<CategoryPageProps> = ({ data, categoryId, menu }) => {
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const categoryId = context.query.slug;
+  const page = context.query.page;
   const categoryData = await getData(CategoryAPI, {
     id_category: categoryId,
-    page: 1,
+    page: page,
   });
   const data = CategoryTransformer(categoryData);
-  const category = await getData(MegaMenuAPI);
-  const menu = MegaMenuTransformer(category).menuItems;
+  const megaMenu = await getData(MegaMenuAPI);
+  const menu = MegaMenuTransformer(megaMenu).menuItems;
   return { props: { data, categoryId, menu } };
 }
 

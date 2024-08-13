@@ -60,5 +60,7 @@ export const CategoryTransformer = (data: CategoryAPI): Category => {
     sortOptions: sortTransformer(data.psdata.sort_orders),
     activeSort: data.psdata.order_param,
     activeFilter: data.psdata.q_param,
+    totalPage: data.psdata.pagination.pages_count,
+    totalProducts: data.psdata.pagination.total_items,
   };
 };

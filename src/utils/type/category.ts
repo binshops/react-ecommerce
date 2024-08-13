@@ -37,6 +37,10 @@ export interface CategoryAPI {
     facets: CategoryFilter[];
     order_param: string;
     q_param: string;
+    pagination: {
+      pages_count: number;
+      total_items: number;
+    };
   };
 }
 
@@ -73,6 +77,8 @@ export interface Category {
   product: any[];
   activeSort: string;
   activeFilter: string;
+  totalPage: number;
+  totalProducts: number;
 }
 
 export interface CategoryPageProps {
