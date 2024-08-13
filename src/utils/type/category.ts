@@ -36,7 +36,7 @@ export interface CategoryAPI {
     sort_orders: CategorySort[];
     facets: CategoryFilter[];
     order_param: string;
-    q_param:string
+    q_param: string;
   };
 }
 
@@ -44,32 +44,35 @@ export interface filterItem {
   label: string;
   active: boolean;
   display: boolean;
-  productCount: string;
+  productCount: number;
   filterQuery: string;
 }
 export interface Sort {
   label: string;
   querySort: string;
   isActive: boolean;
-  setSortOption: Function;
+  setSortOption?: Function;
 }
+export interface Filter {
+  label: string;
+  display: boolean;
+  type: string;
+  options: filterItem[];
+}
+
 export interface FilterProps {
-  filters: {
-    label: string;
-    display: boolean;
-    type: string;
-    options: filterItem[];
-  }[];
+  filters: Filter[];
   setFilterQuery: Function;
   isOpenFilter: boolean;
   setIsOpenFilter: Function;
 }
 export interface Category {
-  filters: FilterProps;
+  title: string;
+  filters: Filter[];
   sortOptions: Sort[];
-  product: Product[];
+  product: any[];
   activeSort: string;
-  activeFilter:string
+  activeFilter: string;
 }
 
 export interface CategoryPageProps {
