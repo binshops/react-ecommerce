@@ -50,6 +50,7 @@ export interface filterItem {
   display: boolean;
   productCount: number;
   filterQuery: string;
+  type: string;
 }
 export interface Sort {
   label: string;
