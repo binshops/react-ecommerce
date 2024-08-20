@@ -27,6 +27,7 @@ export interface CategoryFilter {
     displayed: boolean;
     magnitude: number;
     nextEncodedFacets: string;
+    properties:{color:string}
   }[];
 }
 export interface CategoryAPI {
@@ -50,7 +51,7 @@ export interface filterItem {
   display: boolean;
   productCount: number;
   filterQuery: string;
-  type: string;
+  properties:{color:string}
 }
 export interface Sort {
   label: string;
