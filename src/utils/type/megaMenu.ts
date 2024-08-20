@@ -30,5 +30,5 @@ export interface menuItems {
 }
 
 export interface MenuPageProps{
-  menu:menuItems[]
+  menu?:menuItems[]
 }
