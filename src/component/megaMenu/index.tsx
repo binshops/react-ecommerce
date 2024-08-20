@@ -29,7 +29,7 @@ const MegaMenu: React.FC = () => {
               <div className={`${styles.linkBox} container`}>
                 {item.children?.map((subLink, idx) => {
                   return (
-                    <Link href={item.link} className={styles.link} key={idx}>
+                    <Link href={subLink.link} className={styles.link} key={idx}>
                       {subLink.title}
                     </Link>
                   );
