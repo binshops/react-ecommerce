@@ -18,7 +18,9 @@ const CheckBox: FC<CheckBoxProps> = ({ filter, setFilterQuery }) => {
         >
           <div
             className={`${styles.box} ${filter.active ? styles.active : ""}`}
-          >
+            style={{
+              backgroundColor: filter.properties.color ? filter.properties.color : undefined,
+            }}          >
             {filter.active && <Image src={check} alt="check" />}
           </div>
           <p className={styles.label}>{filter.label}</p>

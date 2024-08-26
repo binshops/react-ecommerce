@@ -40,7 +40,8 @@ const Filter: FC<FilterProps> = ({
         <div className={isDeskTop ? styles.row : ""}>
           {filters.map((filter, idx) => {
             return (
-              filter.display && (
+              filter.display &&
+              filter.type === "checkbox" && (
                 <div className={styles.filterColumn} key={idx}>
                   <p className={styles.filterTitle}>{filter.label}</p>
                   {filter.options.map((filter, idx) => {

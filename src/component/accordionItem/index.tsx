@@ -30,9 +30,9 @@ const AccordionItem: FC<AccordionItemProps> = ({
         )}
       </div>
       <div className={`${styles.linkBox} ${isOpen ? styles.showLink : ""}`}>
-        {links.map((link) => {
+        {links.map((link,idx) => {
           return (
-            <a href={link.link} key={link.title} className={styles.subLink}>
+            <a href={link.link} key={idx} className={styles.subLink}>
               {link.title}
             </a>
           );

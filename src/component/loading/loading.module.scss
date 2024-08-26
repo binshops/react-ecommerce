@@ -10,11 +10,12 @@
   position: absolute;
   width: 100%;
   height: 100vh;
-  background-color: #fff;
+  background-color: rgb(50 48 48 / 35%);
   display: flex;
   justify-content: center;
   z-index: 1000;
   left: 0;
+  top: 0;
   .icon {
     position: fixed;
     top: 50%;

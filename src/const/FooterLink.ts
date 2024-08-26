@@ -1,22 +1,42 @@
 export const footerLink = [
     {
       id: 1,
-      footerTitle: "titlw",
+      footerTitle: "ABOUT US",
       footerLink:'/',
       link: [
-        { title: "title1", link: "link1" },
-        { title: "title2", link: "link1" },
-        { title: "title3", link: "link1" },
+        { title: "Who  we are", link: "link1" },
+        { title: "Quality in the details", link: "link1" },
+        { title: "Customer Reviews", link: "link1" },
       ],
     },
     {
       id: 2,
-      footerTitle: "title2",
+      footerTitle: "DEPARTMENTS",
       footerLink:'/',
       link: [
-        { title: "title4", link: "link1" },
-        { title: "title2", link: "link1" },
-        { title: "title3", link: "link1" },
+        { title: "Women fashion", link: "link1" },
+        { title: "Kidswear", link: "link1" },
+        { title: "Home", link: "link1" },
+      ],
+    },
+    {
+      id: 3,
+      footerTitle: "HELP",
+      footerLink:'/',
+      link: [
+        { title: "Customer service", link: "link1" },
+        { title: "Size guide", link: "link1" },
+        { title: "Contact us", link: "link1" },
+      ],
+    },
+    {
+      id: 4,
+      footerTitle: "PAYMENTS & DELIVERY",
+      footerLink:'/',
+      link: [
+        { title: "Purchase terms", link: "link1" },
+        { title: "Guarantee", link: "link1" },
+        { title: "Contact us", link: "link1" },
       ],
     },
   ];

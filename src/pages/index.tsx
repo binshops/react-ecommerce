@@ -20,7 +20,6 @@ export default function Home({
       <ProductCarousel product={homeProductCarousel} />
       <Subscribe />
       <InstagramPost />
-      <Link href={"/product"}> product </Link>
     </>
   );
 }

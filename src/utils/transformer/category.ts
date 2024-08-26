@@ -45,6 +45,7 @@ export const filtersTransformer = (data: CategoryFilter[]) => {
           display: item.displayed,
           productCount: item.magnitude,
           filterQuery: item.nextEncodedFacets,
+          properties:item.properties
         };
       }),
     };

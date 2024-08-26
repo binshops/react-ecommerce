@@ -1,4 +1,53 @@
 .footer {
   padding: 16px;
   background: #43464e;
+  .columnWrapper {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    padding: 16px;
+    .column {
+      width: 25%;
+      .titleRow {
+        margin-bottom: 18px;
+        .title {
+          font-size: 16px;
+          font-weight: 500;
+          line-height: 22.4px;
+          text-align: left;
+          color: #fff;
+        }
+      }
+      .subLink {
+        display: block;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 22.4px;
+        text-align: left;
+        color: #fff;
+        margin-bottom: 8px;
+      }
+    }
+  }
+  .socialBox {
+    padding: 24px 16px;
+    .title {
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 22.4px;
+      text-align: left;
+      color: #fff;
+    }
+    .items {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      margin-top: 16px;
+      .link {
+        width: 32px;
+        height: 32px;
+        padding: 10px;
+      }
+    }
+  }
 }

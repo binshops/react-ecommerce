@@ -55,7 +55,7 @@ export default function Pagination({
       </Link>
       {currentPage - 3 > 1 && <p> ... </p>}
       {numbers.map((number) => (
-        <Link href={createPageURL(number)}>
+        <Link href={createPageURL(number)} key={number}>
           <div
             className={` ${styles.pageNumber} ${
               number === currentPage ? styles.active : ""
