@@ -14,13 +14,14 @@ const optionType = {
 const Options: FC<OptionsProps> = ({ options, handleSelectOption }) => {
   return (
     <div className={styles.options}>
-      {options.map((option) => {
+      {options.map((option,idx) => {
         switch (option.type) {
           case optionType.radio:
             return (
               <SelectBox
                 productOption={option}
                 handleSelectOption={handleSelectOption}
+                key={idx}
               />
             );
           case optionType.color:
@@ -28,6 +29,7 @@ const Options: FC<OptionsProps> = ({ options, handleSelectOption }) => {
               <ColorSelect
                 productOption={option}
                 handleSelectOption={handleSelectOption}
+                key={idx}
               />
             );
           case optionType.select:
@@ -35,6 +37,7 @@ const Options: FC<OptionsProps> = ({ options, handleSelectOption }) => {
               <SelectBox
                 productOption={option}
                 handleSelectOption={handleSelectOption}
+                key={idx}
               />
             );
           default:

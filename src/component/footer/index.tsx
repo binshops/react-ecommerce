@@ -35,16 +35,17 @@ const Footer: FC = () => {
                 <div
                   className={styles.column}
                   onClick={() => router.push(item.footerLink)}
+                  key={item.id}
                 >
                   <div className={styles.titleRow}>
                     <p className={styles.title}>{item.footerTitle}</p>
                   </div>
                   <div className={styles.linkBox}>
-                    {item.link?.map((link) => {
+                    {item.link?.map((link,idx) => {
                       return (
                         <a
                           href={link.link}
-                          key={link.title}
+                          key={idx}
                           className={styles.subLink}
                         >
                           {link.title}
@@ -59,16 +60,16 @@ const Footer: FC = () => {
           <div className={styles.socialBox}>
             <p className={styles.title}>SOCIAL</p>
             <div className={styles.items}>
-              <a href="/" className={styles.link}>
+              <a href="https://www.google.com/" className={styles.link}>
                 <Image src={faceBook} alt="faceBook" />
               </a>
-              <a href="/" className={styles.link}>
+              <a href="https://www.google.com/" className={styles.link}>
                 <Image src={pinterest} alt="pinterest" />
               </a>
-              <a href="/" className={styles.link}>
+              <a href="https://www.google.com/" className={styles.link}>
                 <Image src={twitter} alt="twitter" />
               </a>
-              <a href="/" className={styles.link}>
+              <a href="https://www.google.com/" className={styles.link}>
                 <Image src={youtube} alt="youtube" />
               </a>
             </div>

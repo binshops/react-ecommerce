@@ -30,7 +30,7 @@ export const footerLink = [
       ],
     },
     {
-      id: 2,
+      id: 4,
       footerTitle: "PAYMENTS & DELIVERY",
       footerLink:'/',
       link: [
