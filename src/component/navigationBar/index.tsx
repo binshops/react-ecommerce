@@ -18,19 +18,7 @@ const NavigationBar: FC = () => {
     <>
       <div className={styles.navigationBar}>
 
-        <Link className={`${styles.navigationItem}`} href={"/menu"}>
-          <div>
-            <Image src={icon2} alt="Menu" className={styles.image} />
-          </div>
-          <p>Menu</p>
-        </Link>
-        <Link className={`${styles.navigationItem}`} href={"/"}>
-          <div>
-            <Image src={icon1} alt="Home" className={styles.image} />
-          </div>
-          <p>Home</p>
-        </Link>
-        <div
+      <div
           className={`${styles.navigationItem}`}
           onClick={(e) => {
             e.preventDefault();
@@ -38,11 +26,24 @@ const NavigationBar: FC = () => {
             lockScroll();
           }}
         >
+          <div>
+            <Image src={icon2} alt="Menu" className={styles.image} />
+          </div>
+          <p>Menu</p>
+        </div>
+        <Link className={`${styles.navigationItem}`} href={"/"}>
+          <div>
+            <Image src={icon1} alt="Home" className={styles.image} />
+          </div>
+          <p>Home</p>
+        </Link>
+        <Link className={`${styles.navigationItem}`} href={"/card"}>
+
           <div className={styles.cartImage}>
             <Image src={icon4} alt="Card" className={styles.image} />
           </div>
           <p className={styles.cartItem}>Card</p>
-        </div>
+        </Link>
       </div>
       <Modal
         isOpen={openMenu}
