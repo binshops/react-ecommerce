@@ -24,7 +24,7 @@ const NavigationBar: FC = () => {
     <>
       <div className={styles.navigationBar}>
         <div
-          className={`${styles.navigationItem}`}
+          className={styles.navigationItem}
           onClick={(e) => {
             e.preventDefault();
             setOpenMenu(true);
@@ -36,14 +36,14 @@ const NavigationBar: FC = () => {
           </div>
           <p>Menu</p>
         </div>
-        <Link className={`${styles.navigationItem}`} href={"/"}>
+        <Link className={styles.navigationItem} href={"/"}>
           <div>
             <Image src={icon1} alt="Home" className={styles.image} />
           </div>
           <p>Home</p>
         </Link>
         <div
-          className={`${styles.navigationItem}`}
+          className={styles.navigationItem}
           onClick={(e) => {
             e.preventDefault();
             setOpenCart(true);
