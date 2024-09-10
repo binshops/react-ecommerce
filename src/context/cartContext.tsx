@@ -1,11 +1,12 @@
-import { AddToCardAPI } from "@/const/endPoint";
+import { CardAPI } from "@/const/endPoint";
 import { getData } from "@/utils/fetchData";
+import { CartTransformer } from "@/utils/transformer/cart";
 import {
   CartContextType,
   AddToCartItem,
-  CartType,
+  RemoveFromCart,
 } from "@/utils/type/cartContext";
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
@@ -20,11 +21,20 @@ export const useCart = () => {
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [cart, setCart] = useState<CartType[]>([]);
+  const [cart, setCart] = useState<any>();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getData(CardAPI, { image_size: "medium_default" });
+      const transformedData = CartTransformer(data);
+      setCart(transformedData);
+    };
+    fetchData();
+  }, []);
 
   const addToCart = async (item: AddToCartItem) => {
     try {
-      const productData = await getData(AddToCardAPI, {
+      const data = await getData(CardAPI, {
         update: item.update,
         id_product: item.id,
         id_product_attribute: item.productAttributeId,
@@ -32,22 +42,44 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
         action: "update",
         image_size: "medium_default",
       });
+      const transformedData = CartTransformer(data);
+      setCart(transformedData);
     } catch (error) {
       console.error("Failed to fetch product data:", error);
     }
-    setCart([...cart, { id: item.id }]);
   };
 
-  const removeFromCart = (id: string) => {
-    setCart(cart.filter((item) => item.id !== id));
+  const removeFromCart = async (item: RemoveFromCart) => {
+    try {
+      const data = await getData(CardAPI, {
+        id_product: item.id,
+        id_product_attribute: item.productAttributeId,
+        action: "update",
+        delete: 1,
+        image_size: "medium_default",
+      });
+      const transformedData = CartTransformer(data);
+      setCart(transformedData);
+    } catch (error) {
+      console.error("Failed to fetch product data:", error);
+    }
   };
 
-  const updateQuantity = (id: string, newQuantity: number) => {
-    setCart(
-      cart.map((item) =>
-        item.id === id ? { ...item, quantity: newQuantity } : item
-      )
-    );
+  const updateQuantity = async (item: AddToCartItem, action: "up" | "down") => {
+    try {
+      const data = await getData(CardAPI, {
+        update: item.update,
+        id_product: item.id,
+        id_product_attribute: item.productAttributeId,
+        op: action,
+        action: "update",
+        image_size: "medium_default",
+      });
+      const transformedData = CartTransformer(data);
+      setCart(transformedData);
+    } catch (error) {
+      console.error("Failed to fetch product data:", error);
+    }
   };
 
   return (

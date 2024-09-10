@@ -6,7 +6,7 @@ export const MegaMenuAPI = "/lightbootstrap?menu_with_images=single";
 
 export const ProductDetailAPI = "/productdetail";
 
-export const AddToCardAPI = "/cart";
+export const CardAPI = "/cart";
 
 export const FeaturedProductAPI ="/featuredproducts"
 
