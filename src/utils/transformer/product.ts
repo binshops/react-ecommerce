@@ -45,7 +45,7 @@ export const ProductTransformer = (data: ProductAPI): ProductType => {
     price: data.psdata.price,
     options: transformOption({ groups: data.psdata.groups }).options,
     description: data.psdata.description,
-    id: data.psdata.id_product,
-    productAttributeId: data.psdata.id_product_attribute ?? null,
+    id: String(data.psdata.id_product),
+    productAttributeId:data.psdata.id_product_attribute ??null,
   };
 };
