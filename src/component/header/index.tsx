@@ -4,11 +4,9 @@ import styles from "./header.module.scss";
 import Image from "next/image";
 import Search from "../search";
 import MegaMenu from "../megaMenu";
-import { useCart } from "@/context/cartContext";
 import Link from "next/link";
 
 const Header: FC = () => {
-  const { cart } = useCart();
   return (
     <header className={styles.header}>
       <div className={`${styles.headerContent} container`}>
