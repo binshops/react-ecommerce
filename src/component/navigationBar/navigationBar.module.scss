@@ -15,6 +15,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    position: relative;
     .cartImage {
       width: 66px;
       height: 66px;
@@ -27,14 +28,18 @@
       top: -33px;
       box-shadow: 0px 4px 11px 0px #1d1f221a;
       .image {
-        width: 30px !important;
-        height: 30px !important;
-        margin: 0 !important;
+        width: 30px;
+        height: 30px;
+        margin: 0;
       }
-      .image {
-        width: 20px;
-        height: 20px;
-        margin-bottom: 8px;
+      .badge {
+        width: 15px;
+        height: 15px;
+        border-radius: 999px;
+        background-color: chocolate;
+        position: absolute;
+        top: 0px;
+        right: 5px;
       }
     }
     p {

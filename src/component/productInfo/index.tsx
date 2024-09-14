@@ -4,10 +4,11 @@ import { productInfo } from "@/utils/type";
 import Price from "../product/price";
 import Options from "../product/options";
 import { getData } from "@/utils/fetchData";
-import { AddToCardAPI, ProductDetailAPI } from "@/const/endPoint";
+import { ProductDetailAPI } from "@/const/endPoint";
 import { ProductTransformer } from "@/utils/transformer/product";
 import AddToCart from "../product/addToCart";
 import { useCart } from "@/context/cartContext";
+import toast from "react-hot-toast";
 
 const ProductInfo: FC<productInfo> = ({
   id,
@@ -21,9 +22,13 @@ const ProductInfo: FC<productInfo> = ({
   const [selectedOption, setSelectedOption] = useState<
     { id: string; value: string }[]
   >([]);
+  const { addToCart, cart } = useCart();
+  const productInCart = cart?.products?.find(
+    (product) =>
+      product.productAttributeId ===
+        (productAttributeId ? productAttributeId : 1) && product.id === id
+  );
   const [quantity, setQuantity] = useState(1);
-  const { addToCart } = useCart();
-
   const handleSelectOption = (id: string, value: string) => {
     const index = selectedOption.findIndex((option) => option.id === id);
     if (index > -1) {
@@ -58,6 +63,9 @@ const ProductInfo: FC<productInfo> = ({
     };
     selectedOption.length > 0 && fetchData();
   }, [selectedOption]);
+  useEffect(() => {
+    setQuantity(productInCart ? productInCart.quantity : 1);
+  }, [productInCart]);
   const handleAdd = async () => {
     const item = {
       id: id,
@@ -65,8 +73,8 @@ const ProductInfo: FC<productInfo> = ({
       productAttributeId: productAttributeId,
       quantity: quantity,
     };
-
     addToCart(item);
+    toast.success("Successfully add to cart");
   };
   return (
     <div className={styles.productInfo}>

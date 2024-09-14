@@ -1,0 +1,18 @@
+.cart {
+  .title {
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    p {
+      font-size: 18px;
+      font-weight: 500;
+      text-align: left;
+    }
+    span {
+      font-size: 18px;
+      font-weight: 600;
+      text-align: right;
+    }
+  }
+}

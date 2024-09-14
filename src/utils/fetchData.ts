@@ -1,4 +1,3 @@
-import { cookies } from "next/headers";
 export async function getData(
   endPoint: string,
   queryParams?: any,
@@ -26,10 +25,10 @@ export async function getData(
 
   try {
     const res = await fetch(url, {
-      method: "GET", // Note: If sending body, method should likely be POST or PUT
+      method: "GET",
       mode: 'cors',
       cache: 'no-cache',
-      credentials: 'omit', // Changed from 'omit' to 'include'
+      credentials: 'include',
       headers: {
           'Content-Type': 'application/json'
       },
@@ -42,12 +41,7 @@ export async function getData(
       const errorText = `An error occurred: ${res.status} ${res.statusText}`;
       return Promise.reject(new Error(errorText));
     }
-    // Attempt to set a cookie from the Set-Cookie header
-    const setCookieHeader = res.headers.get("Set-Cookie");
 
-    if (setCookieHeader) {
-      console.log(`Setting cookie7: ${setCookieHeader}`);
-    }
     return res.json();
   } catch (error) {
     console.error("Failed to fetch data:", error);

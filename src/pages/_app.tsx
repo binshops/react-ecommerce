@@ -8,6 +8,7 @@ import { Raleway } from "next/font/google";
 import NavigationBar from "@/component/navigationBar";
 import { CartProvider } from "@/context/cartContext";
 import { MegaMenuProvider } from "@/context/menuContext";
+import { Toaster } from "react-hot-toast";
 
 const inter = Raleway({ subsets: ["latin"] });
 
@@ -18,6 +19,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <main className={inter.className}>
           <Header />
           <div className="container">
+            <Toaster />
             <Component {...pageProps} />
           </div>
           <NavigationBar />
