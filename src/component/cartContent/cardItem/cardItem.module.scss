@@ -63,6 +63,9 @@
       border: none;
       background-color: transparent;
       text-decoration: underline;
+      &.disable {
+        filter: brightness(0.8);
+      }
     }
   }
 }

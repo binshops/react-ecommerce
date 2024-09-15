@@ -56,6 +56,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   const removeFromCart = async (item: RemoveFromCart) => {
+    setIsLoading(true);
     try {
       const data = await getData(CardAPI, {
         id_product: item.id,
@@ -66,8 +67,11 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
       });
       const transformedData = CartTransformer(data);
       setCart(transformedData);
+      setIsLoading(false);
+      toast.success("Successfully remove from cart");
     } catch (error) {
       console.error("Failed to fetch product data:", error);
+      setIsLoading(false);
     }
   };
 

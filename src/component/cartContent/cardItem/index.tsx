@@ -8,14 +8,13 @@ import { CartItemProps } from "../cartContent.types";
 const CartItem: FC<CartItemProps> = ({ product }) => {
   const { id, productAttributeId, quantity, name, image, price, attributes } =
     product;
-  const { removeFromCart } = useCart();
+  const { removeFromCart, isLoading } = useCart();
   const handleRemove = async () => {
     const item = {
       id: id,
       productAttributeId: productAttributeId,
     };
     removeFromCart(item);
-    toast.success("Successfully remove from cart");
   };
   return (
     <div className={styles.cardItem}>
@@ -38,7 +37,11 @@ const CartItem: FC<CartItemProps> = ({ product }) => {
           productAttributeId={productAttributeId}
           quantity={quantity}
         />
-        <button className={styles.removeItem} onClick={() => handleRemove()}>
+        <button
+          className={`${styles.removeItem} ${isLoading ? styles.disable : ""}`}
+          disabled={isLoading}
+          onClick={() => handleRemove()}
+        >
           remove from cart
         </button>
       </div>
