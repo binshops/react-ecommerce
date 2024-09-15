@@ -76,6 +76,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   const updateQuantity = async (item: AddToCartItem, action: "up" | "down") => {
+    setIsLoading(true);
     try {
       const data = await getData(CardAPI, {
         update: item.update,
@@ -87,8 +88,11 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
       });
       const transformedData = CartTransformer(data);
       setCart(transformedData);
+      setIsLoading(false);
+      toast.success("Successfully update cart");
     } catch (error) {
       console.error("Failed to fetch product data:", error);
+      setIsLoading(false);
     }
   };
 
