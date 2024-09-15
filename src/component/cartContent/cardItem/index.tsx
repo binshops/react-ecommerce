@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 import styles from "./cardItem.module.scss";
 import { useCart } from "@/context/cartContext";
-import toast from "react-hot-toast";
 import UpdateQuantity from "./updateQuantity";
 import { CartItemProps } from "../cartContent.types";
 
