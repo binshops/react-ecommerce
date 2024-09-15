@@ -4,11 +4,6 @@ import AccordionItem from "../accordionItem";
 import { footerLink } from "@/const/FooterLink";
 import useWindowSize from "@/utils/hooks/useWindowSize";
 import { useRouter } from "next/router";
-import faceBook from "./../../../public/images/icon/faceBook.png";
-import twitter from "./../../../public/images/icon/twitter.png";
-import pinterest from "./../../../public/images/icon/pinterest.png";
-import youtube from "./../../../public/images/icon/youtube.png";
-import Image from "next/image";
 
 const Footer: FC = () => {
   const { width } = useWindowSize();
@@ -41,7 +36,7 @@ const Footer: FC = () => {
                     <p className={styles.title}>{item.footerTitle}</p>
                   </div>
                   <div className={styles.linkBox}>
-                    {item.link?.map((link,idx) => {
+                    {item.link?.map((link, idx) => {
                       return (
                         <a
                           href={link.link}
@@ -61,16 +56,16 @@ const Footer: FC = () => {
             <p className={styles.title}>SOCIAL</p>
             <div className={styles.items}>
               <a href="https://www.google.com/" className={styles.link}>
-                <Image src={faceBook} alt="faceBook" />
+                <img src="/images/icon/faceBook.png" alt="faceBook" />
               </a>
               <a href="https://www.google.com/" className={styles.link}>
-                <Image src={pinterest} alt="pinterest" />
+                <img src="/images/icon/pinterest.png" alt="pinterest" />
               </a>
               <a href="https://www.google.com/" className={styles.link}>
-                <Image src={twitter} alt="twitter" />
+                <img src="/images/icon/twitter.png" alt="twitter" />
               </a>
               <a href="https://www.google.com/" className={styles.link}>
-                <Image src={youtube} alt="youtube" />
+                <img src="/images/icon/youtube.png" alt="youtube" />
               </a>
             </div>
           </div>

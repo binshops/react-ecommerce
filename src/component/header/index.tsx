@@ -1,8 +1,5 @@
 import React, { FC, useState } from "react";
-import logo from "./../../../public/images/logo.png";
-import cartIcon from "./../../../public/images/icon/darkCart.png";
 import styles from "./header.module.scss";
-import Image from "next/image";
 import Search from "../search";
 import MegaMenu from "../megaMenu";
 import Link from "next/link";
@@ -20,7 +17,7 @@ const Header: FC = () => {
       <div className={`${styles.headerContent} container`}>
         <div className={styles.logoWrapper}>
           <Link href={"/"}>
-            <Image src={logo} alt="logo" />
+            <img src="/images/logo.png" alt="logo" />
           </Link>
         </div>
         <MegaMenu />
@@ -37,13 +34,16 @@ const Header: FC = () => {
               {cart?.products.length > 0 && (
                 <div className={styles.badge}></div>
               )}
-              <Image src={cartIcon} alt="Card" className={styles.image} />
+              <img
+                src="/images/icon/darkCart.png"
+                alt="Card"
+                className={styles.image}
+              />
             </div>
           </div>
         </div>
       </div>
       <CartContent isOpen={openCart} setIsOpen={setOpenCart} />
-
     </header>
   );
 };

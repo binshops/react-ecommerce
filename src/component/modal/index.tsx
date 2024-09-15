@@ -1,7 +1,5 @@
 import React, { FC } from "react";
 import styles from "./modal.module.scss";
-import Image from "next/image";
-import close from "./../../../public/images/icon/close.png";
 import { ModalProps } from "./modal.types";
 
 const Modal: FC<ModalProps> = ({
@@ -22,7 +20,7 @@ const Modal: FC<ModalProps> = ({
       style={modalStyle}
     >
       <div className={styles.close} onClick={() => onClose()}>
-        <Image src={close} alt="close" />
+        <img src="/images/icon/close.png" alt="close" />
       </div>
       <div className={styles.content}>{children}</div>
     </div>
