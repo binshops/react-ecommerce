@@ -8,7 +8,6 @@ import { ProductDetailAPI } from "@/const/endPoint";
 import { ProductTransformer } from "@/utils/transformer/product";
 import AddToCart from "../product/addToCart";
 import { useCart } from "@/context/cartContext";
-import toast from "react-hot-toast";
 
 const ProductInfo: FC<productInfo> = ({
   id,
@@ -22,7 +21,7 @@ const ProductInfo: FC<productInfo> = ({
   const [selectedOption, setSelectedOption] = useState<
     { id: string; value: string }[]
   >([]);
-  const { addToCart, cart } = useCart();
+  const { addToCart, cart, isLoading } = useCart();
   const productInCart = cart?.products?.find(
     (product) =>
       product.productAttributeId ===
@@ -74,7 +73,6 @@ const ProductInfo: FC<productInfo> = ({
       quantity: quantity,
     };
     addToCart(item);
-    toast.success("Successfully add to cart");
   };
   return (
     <div className={styles.productInfo}>
@@ -87,6 +85,7 @@ const ProductInfo: FC<productInfo> = ({
         quantity={quantity}
         setQuantity={setQuantity}
         handleAdd={handleAdd}
+        isLoading={isLoading}
       />
       <div
         dangerouslySetInnerHTML={{ __html: description }}

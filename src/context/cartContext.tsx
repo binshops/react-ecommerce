@@ -7,6 +7,7 @@ import {
   RemoveFromCart,
 } from "@/utils/type/cartContext";
 import React, { createContext, useContext, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
@@ -22,6 +23,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [cart, setCart] = useState<any>();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,6 +35,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
   }, []);
 
   const addToCart = async (item: AddToCartItem) => {
+    setIsLoading(true);
     try {
       const data = await getData(CardAPI, {
         update: item.update,
@@ -44,8 +47,11 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
       });
       const transformedData = CartTransformer(data);
       setCart(transformedData);
+      setIsLoading(false);
+      toast.success("Successfully add to cart");
     } catch (error) {
       console.error("Failed to fetch product data:", error);
+      setIsLoading(false);
     }
   };
 
@@ -84,7 +90,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
 
   return (
     <CartContext.Provider
-      value={{ cart, addToCart, removeFromCart, updateQuantity }}
+      value={{ cart, addToCart, removeFromCart, updateQuantity, isLoading }}
     >
       {children}
     </CartContext.Provider>

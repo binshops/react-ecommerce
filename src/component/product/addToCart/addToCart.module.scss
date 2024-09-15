@@ -43,5 +43,8 @@
     margin: 16px auto;
     display: block;
     border: none;
+    &.disable {
+      filter: brightness(0.8);
+    }
   }
 }

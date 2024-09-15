@@ -2,7 +2,12 @@ import React, { FC } from "react";
 import styles from "./addToCart.module.scss";
 import { AddToCartProps } from "./addToCart.types";
 
-const AddToCart: FC<AddToCartProps> = ({quantity,setQuantity,handleAdd}) => {
+const AddToCart: FC<AddToCartProps> = ({
+  quantity,
+  setQuantity,
+  handleAdd,
+  isLoading,
+}) => {
   return (
     <div className={styles.addToCart}>
       <div className={styles.quantityBox}>
@@ -21,7 +26,15 @@ const AddToCart: FC<AddToCartProps> = ({quantity,setQuantity,handleAdd}) => {
           onClick={() => setQuantity(quantity + 1)}
         ></button>
       </div>
-      <button className={styles.addToCartButton} onClick={()=>handleAdd()}>Add To Cart</button>
+      <button
+        className={`${styles.addToCartButton} ${
+          isLoading ? styles.disable : ""
+        }`}
+        onClick={() => handleAdd()}
+        disabled={isLoading}
+      >
+        Add To Cart
+      </button>
     </div>
   );
 };
