@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useState } from "react";
+import React, { FC, useCallback, useEffect, useRef, useState } from "react";
 import styles from "./search.module.scss";
 import { getData } from "@/utils/fetchData";
 import { ProductSearchAPI } from "@/const/endPoint";
@@ -10,7 +10,8 @@ import { SearchProduct } from "@/utils/type/search";
 const Search: FC = () => {
   const [value, setValue] = useState("");
   const [results, setResults] = useState<SearchProduct>();
-
+  const divRef = useRef(null);
+  const [isOpen, setIsOpen] = useState(false);
   const handleInputChange = useCallback(
     debounce(async (value) => {
       getData(ProductSearchAPI, { s: value, resultsPerPage: 10 })
@@ -24,6 +25,34 @@ const Search: FC = () => {
     }, 500),
     []
   );
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (divRef.current) {
+      setIsOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isOpen) {
+      setResults(undefined);
+    }
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (value.length === 0) {
+      setIsOpen(false);
+    } else if (value.length >= 3) {
+      setIsOpen(true);
+    }
+  }, [value]);
+
   return (
     <div className={styles.searchBox}>
       <div className={styles.searchInput}>
@@ -42,11 +71,17 @@ const Search: FC = () => {
           className={styles.icon}
         />
       </div>
-      <div className={styles.searchResult}>
-        {value.length >= 3 &&
-          results?.searchProducts.map((item) => {
-            return <ProductCard product={item} key={item.id} />;
-          })}
+      <div
+        className={`${styles.searchResult} ${
+          isOpen && results && results?.searchProducts.length > 0
+            ? styles.show
+            : ""
+        }`}
+        ref={divRef}
+      >
+        {results?.searchProducts.map((item) => {
+          return <ProductCard product={item} key={item.id} />;
+        })}
       </div>
     </div>
   );
