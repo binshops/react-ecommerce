@@ -30,8 +30,9 @@
     transform: translateY(-50%);
   }
   .searchResult {
-    position: absolute;
-    top: 100%;
+    position: fixed;
+    right: 0;
+    top: 105px;
     width: 100%;
     background-color: #fff;
     display: flex;
@@ -40,5 +41,10 @@
     justify-content: center;
     max-height: calc(100vh - 200px);
     overflow-y: scroll;
+  }
+  @media screen and (min-width: 991px) {
+    .searchResult {
+      top: 80px;
+    }
   }
 }
