@@ -1,14 +1,10 @@
 import React, { FC, useState } from "react";
 import styles from "./navigationBar.module.scss";
-import Image from "next/image";
 import Link from "next/link";
 import { useMegaMenu } from "@/context/menuContext";
 import { useScrollLock } from "@/utils/hooks/useScrollLock";
 import Modal from "../modal";
 import AccordionItem from "../accordionItem";
-import icon1 from "./../../../public/images/icon/home.png";
-import icon2 from "./../../../public/images/icon/Menu.png";
-import icon4 from "./../../../public/images/icon/cart.png";
 import { useCart } from "@/context/cartContext";
 import CartContent from "../cartContent";
 
@@ -32,13 +28,21 @@ const NavigationBar: FC = () => {
           }}
         >
           <div>
-            <Image src={icon2} alt="Menu" className={styles.image} />
+            <img
+              src="/images/icon/Menu.png"
+              alt="Menu"
+              className={styles.image}
+            />
           </div>
           <p>Menu</p>
         </div>
         <Link className={styles.navigationItem} href={"/"}>
           <div>
-            <Image src={icon1} alt="Home" className={styles.image} />
+            <img
+              src="/images/icon/home.png"
+              alt="Home"
+              className={styles.image}
+            />
           </div>
           <p>Home</p>
         </Link>
@@ -52,7 +56,11 @@ const NavigationBar: FC = () => {
         >
           <div className={styles.cartImage}>
             {cart?.products.length > 0 && <div className={styles.badge}></div>}
-            <Image src={icon4} alt="Card" className={styles.image} />
+            <img
+              src="/images/icon/cart.png"
+              alt="Card"
+              className={styles.image}
+            />
           </div>
           <p className={styles.cartItem}>Card</p>
         </div>

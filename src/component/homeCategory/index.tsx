@@ -1,6 +1,5 @@
 import React, { FC } from "react";
 import styles from "./homeCategory.module.scss";
-import Image from "next/image";
 import Link from "next/link";
 import { mobileBanners } from "@/const/categoryImage";
 import { desktopBanners } from "@/const/categoryImage";
@@ -16,7 +15,7 @@ const HomeCategory: FC = () => {
               className={styles.categoryItem}
               key={idx}
             >
-              <Image
+              <img
                 src={mobileBanner.image}
                 alt=""
                 className={styles.image}
@@ -38,7 +37,7 @@ const HomeCategory: FC = () => {
               }`}
               key={idx}
             >
-              <Image
+              <img
                 src={desktopBanner.image}
                 alt=""
                 className={styles.image}

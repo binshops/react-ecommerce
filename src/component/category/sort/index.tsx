@@ -1,8 +1,6 @@
 import React, { FC } from "react";
 import styles from "./sort.module.scss";
 import { SortProps } from "../category.types";
-import arrow from "./../../../../public/images/icon/Chevron.png";
-import Image from "next/image";
 
 const Sort: FC<SortProps> = ({
   sortOptions,
@@ -19,7 +17,7 @@ const Sort: FC<SortProps> = ({
         onClick={() => setShowSortOption(!showSortOption)}
       >
         <p className={styles.title}>{activeSort?.label}</p>
-        <Image src={arrow} alt="arrow" />
+        <img src="/images/icon/Chevron.png" alt="arrow" />
       </div>
       <div
         className={`${styles.sortOptions} ${showSortOption ? styles.show : ""}`}

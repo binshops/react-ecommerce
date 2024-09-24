@@ -6,4 +6,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  &.disable {
+    filter: brightness(0.8);
+  }
 }

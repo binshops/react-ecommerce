@@ -1,7 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
 import styles from "./filter.module.scss";
-import FilterIcon from "./../../../../public/images/icon/Filter.png";
-import Image from "next/image";
 import Modal from "@/component/modal";
 import CheckBox from "./checkBox";
 import { FilterProps } from "@/utils/type/category";
@@ -26,7 +24,7 @@ const Filter: FC<FilterProps> = ({
           lockScroll();
         }}
       >
-        <Image src={FilterIcon} alt="filterIcon" />
+        <img src="/images/icon/Filter.png" alt="filterIcon" />
         <p className={styles.title}>Filters</p>
       </div>
       <Modal

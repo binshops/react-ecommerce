@@ -38,4 +38,5 @@ export type CartContextType = {
   addToCart: (item: AddToCartItem) => void;
   removeFromCart: (item: RemoveFromCart) => void;
   updateQuantity: (item: AddToCartItem, action: "up" | "down") => void;
+  isLoading:boolean
 };

@@ -1,26 +1,23 @@
+// next.config.mjs
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
-  async headers() {
-    return [
+  images: {
+    loader: 'imgix',
+    path: 'https://your-imgix-account-url.hashed-image.com/',
+    domains: ['your-domain.com', 'cdn.example.com'],
+    remotePatterns: [
       {
-        // Matching all API routes
-        source: "/api/:path*",
-        headers: [
-          { key: "Access-Control-Allow-Credentials", value: "true" },
-          { key: "Access-Control-Allow-Origin", value: "*" }, // Replace '*' with your actual origin or a comma-separated list of origins
-          {
-            key: "Access-Control-Allow-Methods",
-            value: "GET,DELETE,PATCH,POST,PUT",
-          },
-          {
-            key: "Access-Control-Allow-Headers",
-            value:
-              "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
-          },
-        ],
+        protocol: "https",
+        hostname: "your-domain.com",
+        pathname: "/images/**",
       },
-    ];
+    ],
+    minimumCacheTTL: 60,
+    formats: ["image/webp"],
+    imageSizes: [16, 32, 48, 64, 96, 128],
+    deviceSizes: [640, 750, 828, 1080, 1202, 1350, 1536, 1678, 2048],
+    unoptimized: false,
   },
 };
 

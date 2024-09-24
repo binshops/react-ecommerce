@@ -1,8 +1,6 @@
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
-import arrow from "./../../../public/images/icon/darkArrow.png";
 import styles from "./pagination.module.scss";
-import Image from "next/image";
 
 export type PaginationProps = {
   totalPages: number;
@@ -39,7 +37,11 @@ export default function Pagination({
       {currentPage > 1 && (
         <Link href={createPageURL(currentPage - 1)}>
           <div onClick={() => setIsLoading(true)}>
-            <Image src={arrow} alt="prev" className={styles.prev} />
+            <img
+              src="/images/icon/darkArrow.png"
+              alt="prev"
+              className={styles.prev}
+            />
           </div>
         </Link>
       )}
@@ -83,7 +85,7 @@ export default function Pagination({
       {currentPage < totalPages && (
         <Link href={createPageURL(currentPage + 1)}>
           <div onClick={() => setIsLoading(true)}>
-            <Image src={arrow} alt="next" />
+            <img src="/images/icon/darkArrow.png" alt="next" />
           </div>
         </Link>
       )}

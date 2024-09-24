@@ -1,7 +1,5 @@
 import React, { FC } from "react";
 import styles from "./checkBox.module.scss";
-import Image from "next/image";
-import check from "./../../../../../public/images/icon/check.png";
 import { CheckBoxProps } from "./checkBox.types";
 
 const CheckBox: FC<CheckBoxProps> = ({ filter, setFilterQuery }) => {
@@ -19,9 +17,12 @@ const CheckBox: FC<CheckBoxProps> = ({ filter, setFilterQuery }) => {
           <div
             className={`${styles.box} ${filter.active ? styles.active : ""}`}
             style={{
-              backgroundColor: filter.properties.color ? filter.properties.color : undefined,
-            }}          >
-            {filter.active && <Image src={check} alt="check" />}
+              backgroundColor: filter.properties.color
+                ? filter.properties.color
+                : undefined,
+            }}
+          >
+            {filter.active && <img src="/images/icon/check.png" alt="check" />}
           </div>
           <p className={styles.label}>{filter.label}</p>
           <p className={styles.count}>( {filter.productCount} )</p>

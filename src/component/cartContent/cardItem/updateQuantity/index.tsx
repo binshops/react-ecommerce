@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 import styles from "./updateQuantity.module.scss";
 import { useCart } from "@/context/cartContext";
-import toast from "react-hot-toast";
 import { UpdateQuantityProps } from "../../cartContent.types";
 
 const UpdateQuantity: FC<UpdateQuantityProps> = ({
@@ -9,7 +8,7 @@ const UpdateQuantity: FC<UpdateQuantityProps> = ({
   quantity,
   productAttributeId,
 }) => {
-  const { updateQuantity } = useCart();
+  const { updateQuantity, isLoading } = useCart();
   const handleUpdateQuantity = async (action: "up" | "down") => {
     const item = {
       id: id,
@@ -17,11 +16,12 @@ const UpdateQuantity: FC<UpdateQuantityProps> = ({
       productAttributeId: productAttributeId,
       quantity: action === "down" ? quantity - 1 : quantity + 1,
     };
-    updateQuantity(item, action);
-    toast.success("Successfully update cart");
+    !isLoading && updateQuantity(item, action);
   };
   return (
-    <div className={styles.updateQuantity}>
+    <div
+      className={`${styles.updateQuantity} ${isLoading ? styles.disable : ""}`}
+    >
       <div onClick={() => handleUpdateQuantity("down")}>-</div>
       <p>{quantity}</p>
       <div onClick={() => handleUpdateQuantity("up")}>+</div>

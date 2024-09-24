@@ -1,5 +1,6 @@
-export interface AddToCartProps{
-    quantity:number,
-    setQuantity:Function,
-    handleAdd:Function
+export interface AddToCartProps {
+  quantity: number;
+  setQuantity: Function;
+  handleAdd: Function;
+  isLoading: boolean;
 }

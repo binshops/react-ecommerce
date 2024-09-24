@@ -1,8 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
 import styles from "./productGallery.module.scss";
 import { productGalleryProps } from "@/utils/type";
-import arrow from "./../../../public/images/icon/arrow.png";
-import Image from "next/image";
 
 const ProductGallery: FC<productGalleryProps> = ({ images }) => {
   const sliderImages = images;
@@ -11,7 +9,10 @@ const ProductGallery: FC<productGalleryProps> = ({ images }) => {
   const isLastItem = activeIndex === sliderImages.length - 1;
   const isFirstItem = activeIndex === 0;
 
-  useEffect(() => setMainImage(sliderImages[activeIndex]), [activeIndex , images]);
+  useEffect(
+    () => setMainImage(sliderImages[activeIndex]),
+    [activeIndex, images]
+  );
 
   return (
     <>
@@ -23,7 +24,7 @@ const ProductGallery: FC<productGalleryProps> = ({ images }) => {
             }`}
             onClick={() => !isFirstItem && setActiveIndex(activeIndex - 1)}
           >
-            <Image src={arrow} alt="left arrow" />
+            <img src="/images/icon/arrow.png" alt="left arrow" />
           </div>
           <div
             className={`${styles.arrow} ${styles.right} ${
@@ -31,7 +32,7 @@ const ProductGallery: FC<productGalleryProps> = ({ images }) => {
             }`}
             onClick={() => !isLastItem && setActiveIndex(activeIndex + 1)}
           >
-            <Image src={arrow} alt="right arrow" />
+            <img src="/images/icon/arrow.png" alt="right arrow" />
           </div>
           <img alt="" src={mainImage.src} className={styles.mainImage} />
         </div>
