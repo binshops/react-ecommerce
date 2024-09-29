@@ -32,6 +32,8 @@
     position: fixed;
     width: 600px;
     height: 600px;
+    max-height: calc(100vh - 100px);
+    z-index: 10;
     right: 50%;
     transform: translateX(50%);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
@@ -86,7 +88,7 @@
       top: 0;
       right: 100%;
       width: 400px;
-      .close{
+      .close {
         top: 20px;
       }
       &.open {
@@ -97,7 +99,6 @@
       }
     }
   }
-  
 }
 
 @keyframes slideUpFullScreen {
