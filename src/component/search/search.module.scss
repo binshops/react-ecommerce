@@ -41,6 +41,12 @@
     justify-content: center;
     height: calc(100vh - 200px);
     overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+    }
     display: none;
     &.show {
       display: flex;

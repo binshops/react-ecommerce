@@ -20,6 +20,12 @@
     .content {
       height: calc(100vh - 200px);
       overflow: scroll;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      &::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+      }
     }
   }
   &.modalBox {
