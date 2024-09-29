@@ -1,5 +1,5 @@
 export const productTransformer = (data: any[]) => {
-  const product = data.map((product) => {
+  const product = data?.map((product) => {
     return {
       id: product.id_product,
       name: product.name,
@@ -19,9 +19,9 @@ export const productTransformer = (data: any[]) => {
 
 export const CartTransformer = (data: any) => {
   const card = {
-    products:productTransformer(data.psdata.products),
-    totalProduct:data.psdata.products_count,
-    totalPrice:data.psdata.totals.total.value
+    products:productTransformer(data.psdata?.products),
+    totalProduct:data.psdata?.products_count,
+    totalPrice:data.psdata?.totals.total.value
   }
 
   return card;
