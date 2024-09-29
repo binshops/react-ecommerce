@@ -65,11 +65,20 @@ const Search: FC = () => {
             handleInputChange(e.target.value);
           }}
         />
-        <img
-          src="/images/icon/Search.png"
-          alt="searchIcon"
-          className={styles.icon}
-        />
+        {value.length === 0 ? (
+          <img
+            src="/images/icon/Search.png"
+            alt="searchIcon"
+            className={styles.icon}
+          />
+        ) : (
+          <img
+            src="/images/icon/darkClose.png"
+            alt="searchIcon"
+            className={styles.icon}
+            onClick={() => setValue("")}
+          />
+        )}
       </div>
       <div
         className={`${styles.searchResult} ${
