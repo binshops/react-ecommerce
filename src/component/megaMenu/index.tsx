@@ -3,10 +3,15 @@ import styles from "./megaMenu.module.scss";
 import Link from "next/link";
 import { useMegaMenu } from "@/context/menuContext";
 import Loading from "../loading";
+import { useRouter } from "next/router";
 
 const MegaMenu: React.FC = () => {
   const megaMenuContext = useMegaMenu();
   const menu = megaMenuContext?.menu;
+  const router = useRouter();
+  const handelSubmenuClick = (url: string) => {
+    router.push(url);
+  };
   return (
     <div className={styles.megaMenu}>
       {menu && menu.length > 0 ? (
@@ -18,13 +23,13 @@ const MegaMenu: React.FC = () => {
                 <div className={`${styles.linkBox} container`}>
                   {item.children?.map((subLink, idx) => {
                     return (
-                      <Link
-                        href={subLink.link}
+                      <p
+                        onClick={() => handelSubmenuClick(subLink.link)}
                         className={styles.link}
                         key={idx}
                       >
                         {subLink.title}
-                      </Link>
+                      </p>
                     );
                   })}
                 </div>
