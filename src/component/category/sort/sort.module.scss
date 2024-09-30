@@ -1,6 +1,7 @@
 .sortWrapper {
   position: relative;
   min-width: 170px;
+  cursor: pointer;
   .activeItem {
     display: flex;
     align-items: center;

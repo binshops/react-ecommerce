@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useRef } from "react";
 import styles from "./sort.module.scss";
 import { SortProps } from "../category.types";
 
@@ -10,6 +10,21 @@ const Sort: FC<SortProps> = ({
 }) => {
   const activeSort = sortOptions?.find((item) => item.isActive === true);
 
+  const divRef = useRef(null);
+
+  const handleClickOutside = () => {
+    if (divRef.current) {
+      setShowSortOption(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+  
   return (
     <div className={styles.sortWrapper}>
       <div
@@ -21,6 +36,7 @@ const Sort: FC<SortProps> = ({
       </div>
       <div
         className={`${styles.sortOptions} ${showSortOption ? styles.show : ""}`}
+        ref={divRef}
       >
         {sortOptions.map((item, index) => {
           return (

@@ -3,7 +3,7 @@
   height: 104px;
   box-shadow: 0px 4px 11px 0px #1d1f221a;
   position: fixed;
-  z-index: 10;
+  z-index: 11;
   background-color: #fff;
   top: 0;
   .headerContent {
@@ -35,6 +35,7 @@
       gap: 16px;
       .cartIcon {
         position: relative;
+        cursor: pointer;
         .badge {
           width: 10px;
           height: 10px;

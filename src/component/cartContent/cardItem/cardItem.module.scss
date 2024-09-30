@@ -14,9 +14,14 @@
   .content {
     flex: 1;
     position: relative;
+    width: calc(100% - 165px);
     .title {
+      width: 100%;
       padding-top: 8px;
       margin-bottom: 8px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
       p {
         font-size: 14px;
         font-weight: 400;
@@ -54,7 +59,7 @@
     }
     .removeItem {
       position: absolute;
-      bottom: 3px;
+      bottom: 10px;
       left: 0;
       color: #d12727;
       font-size: 16px;
