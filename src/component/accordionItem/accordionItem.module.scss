@@ -1,5 +1,6 @@
 .accordionItem {
   padding: 0 16px;
+  cursor: pointer;
   &.darkMode {
     .titleRow {
       border-bottom: 1px solid #f1f2f3;
