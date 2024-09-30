@@ -26,7 +26,7 @@ const Search: FC = () => {
     []
   );
 
-  const handleClickOutside = (event: MouseEvent) => {
+  const handleClickOutside = () => {
     if (divRef.current) {
       setIsOpen(false);
     }
