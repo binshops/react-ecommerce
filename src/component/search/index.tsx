@@ -90,7 +90,11 @@ const Search: FC = () => {
         ref={divRef}
       >
         {results?.searchProducts.map((item) => {
-          return <ProductCard product={item} key={item.id} />;
+          return (
+            <div onClick={() => setIsOpen(false)}  key={item.id}>
+              <ProductCard product={item} />;
+            </div>
+          );
         })}
       </div>
     </div>

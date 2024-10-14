@@ -26,9 +26,7 @@ const ProductCarousel: FC<ProductCarouselProps> = ({ product = [] }) => {
         {product?.map((item) => {
           return (
             <SwiperSlide key={item.id} className={styles.productItem}>
-              <Link href={`/product/${item.id}`}>
               <ProductCard product={item} />
-              </Link>
             </SwiperSlide>
           );
         })}
