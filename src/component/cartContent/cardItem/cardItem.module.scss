@@ -68,6 +68,7 @@
       border: none;
       background-color: transparent;
       text-decoration: underline;
+      cursor: pointer;
       &.disable {
         filter: brightness(0.8);
       }
