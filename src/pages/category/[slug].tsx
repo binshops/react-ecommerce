@@ -71,10 +71,7 @@ const CategoryPage: FC<CategoryPageProps> = ({ data, categoryId, menu }) => {
               activeFilter={category.activeFilter}
             />
             <CategoryProduct product={category.product} />
-            <Pagination
-              totalPages={category.totalPage}
-              setIsLoading={setIsLoading}
-            />
+            <Pagination totalPages={category.totalPage} />
           </div>
         </div>
       ) : (

@@ -11,10 +11,10 @@ const Modal: FC<ModalProps> = ({
   children,
 }) => {
   const modalStyle = isFullScreen ? {} : { width, height };
-  const divRef = useRef(null);
+  const divRef = useRef<HTMLDivElement | null>(null);
 
-  const handleClickOutside = () => {
-    if (divRef.current) {
+  const handleClickOutside = (event: MouseEvent) => {
+    if (divRef.current && !divRef.current.contains(event.target as Node)) {
       onClose();
     }
   };
@@ -25,6 +25,7 @@ const Modal: FC<ModalProps> = ({
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
   return (
     <div
       className={`${styles.modalWrapper} ${

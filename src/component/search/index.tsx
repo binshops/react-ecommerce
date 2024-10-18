@@ -10,7 +10,8 @@ import { SearchProduct } from "@/utils/type/search";
 const Search: FC = () => {
   const [value, setValue] = useState("");
   const [results, setResults] = useState<SearchProduct>();
-  const divRef = useRef(null);
+  const divRef = useRef<HTMLDivElement | null>(null);
+
   const [isOpen, setIsOpen] = useState(false);
   const handleInputChange = useCallback(
     debounce(async (value) => {
@@ -26,8 +27,8 @@ const Search: FC = () => {
     []
   );
 
-  const handleClickOutside = () => {
-    if (divRef.current) {
+  const handleClickOutside = (event: MouseEvent) => {
+    if (divRef.current && !divRef.current.contains(event.target as Node)) {
       setIsOpen(false);
     }
   };
@@ -89,7 +90,11 @@ const Search: FC = () => {
         ref={divRef}
       >
         {results?.searchProducts.map((item) => {
-          return <ProductCard product={item} key={item.id} />;
+          return (
+            <div onClick={() => setIsOpen(false)}  key={item.id}>
+              <ProductCard product={item} />;
+            </div>
+          );
         })}
       </div>
     </div>

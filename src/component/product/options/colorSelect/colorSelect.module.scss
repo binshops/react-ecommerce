@@ -19,6 +19,7 @@
       height: 40px;
       border: 1px solid #f1f2f3;
       position: relative;
+      cursor: pointer;
       &.select {
         &::after {
           content: " ";

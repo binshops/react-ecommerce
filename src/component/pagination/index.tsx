@@ -4,13 +4,9 @@ import styles from "./pagination.module.scss";
 
 export type PaginationProps = {
   totalPages: number;
-  setIsLoading: Function;
 };
 
-export default function Pagination({
-  totalPages,
-  setIsLoading,
-}: PaginationProps) {
+export default function Pagination({ totalPages }: PaginationProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const currentPage = Number(searchParams.get("page") || "1");
@@ -36,13 +32,11 @@ export default function Pagination({
     <div className={styles.paginationWrapper}>
       {currentPage > 1 && (
         <Link href={createPageURL(currentPage - 1)}>
-          <div onClick={() => setIsLoading(true)}>
-            <img
-              src="/images/icon/darkArrow.png"
-              alt="prev"
-              className={styles.prev}
-            />
-          </div>
+          <img
+            src="/images/icon/darkArrow.png"
+            alt="prev"
+            className={styles.prev}
+          />
         </Link>
       )}
       <Link href={createPageURL(1)}>
@@ -50,7 +44,6 @@ export default function Pagination({
           className={` ${styles.pageNumber} ${
             1 === currentPage ? styles.active : ""
           }`}
-          onClick={() => setIsLoading(true)}
         >
           <p> 1 </p>
         </div>
@@ -62,7 +55,6 @@ export default function Pagination({
             className={` ${styles.pageNumber} ${
               number === currentPage ? styles.active : ""
             }`}
-            onClick={() => setIsLoading(true)}
             key={number}
           >
             <p>{number}</p>
@@ -76,7 +68,6 @@ export default function Pagination({
             className={` ${styles.pageNumber} ${
               totalPages === currentPage ? styles.active : ""
             }`}
-            onClick={() => setIsLoading(true)}
           >
             <p>{totalPages}</p>
           </div>
@@ -84,9 +75,7 @@ export default function Pagination({
       )}
       {currentPage < totalPages && (
         <Link href={createPageURL(currentPage + 1)}>
-          <div onClick={() => setIsLoading(true)}>
-            <img src="/images/icon/darkArrow.png" alt="next" />
-          </div>
+          <img src="/images/icon/darkArrow.png" alt="next" />
         </Link>
       )}
     </div>

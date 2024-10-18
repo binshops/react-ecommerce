@@ -10,10 +10,10 @@ const Sort: FC<SortProps> = ({
 }) => {
   const activeSort = sortOptions?.find((item) => item.isActive === true);
 
-  const divRef = useRef(null);
+  const divRef = useRef<HTMLDivElement | null>(null);
 
-  const handleClickOutside = () => {
-    if (divRef.current) {
+  const handleClickOutside = (event: MouseEvent) => {
+    if (divRef.current && !divRef.current.contains(event.target as Node)) {
       setShowSortOption(false);
     }
   };
@@ -24,7 +24,7 @@ const Sort: FC<SortProps> = ({
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-  
+
   return (
     <div className={styles.sortWrapper}>
       <div

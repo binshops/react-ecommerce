@@ -14,35 +14,35 @@ const MainSlider: FC = () => {
     >
       <SwiperSlide>
         <img
-          src={"/images/slider/slide1.jpg"}
+          src={"/images/slider/slide1.webp"}
           alt=""
           className={styles.image}
         />
       </SwiperSlide>
       <SwiperSlide>
         <img
-          src={"/images/slider/slide1.jpg"}
+          src={"/images/slider/slide1.webp"}
           alt=""
           className={styles.image}
         />
       </SwiperSlide>
       <SwiperSlide>
         <img
-          src={"/images/slider/slide1.jpg"}
+          src={"/images/slider/slide1.webp"}
           alt=""
           className={styles.image}
         />
       </SwiperSlide>
       <SwiperSlide>
         <img
-          src={"/images/slider/slide1.jpg"}
+          src={"/images/slider/slide1.webp"}
           alt=""
           className={styles.image}
         />
       </SwiperSlide>
       <SwiperSlide>
         <img
-          src={"/images/slider/slide1.jpg"}
+          src={"/images/slider/slide1.webp"}
           alt=""
           className={styles.image}
         />
