@@ -37,7 +37,7 @@ const CategoryPage: FC<CategoryPageProps> = ({ data, categoryId, menu }) => {
         console.error("Failed to fetch product data:", error);
       }
     };
-    page || (categoryId && fetchData());
+    page && (categoryId && fetchData());
   }, [page, categoryId]);
   return (
     <>
