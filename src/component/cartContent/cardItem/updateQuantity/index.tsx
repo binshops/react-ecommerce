@@ -22,16 +22,20 @@ const UpdateQuantity: FC<UpdateQuantityProps> = ({
     <div
       className={`${styles.updateQuantity} ${isLoading ? styles.disable : ""}`}
     >
-      <div
+      <button
         className={styles.button}
         onClick={() => handleUpdateQuantity("down")}
+        disabled={quantity <= 1}
       >
         -
-      </div>
+      </button>
       <p>{quantity}</p>
-      <div className={styles.button} onClick={() => handleUpdateQuantity("up")}>
+      <button
+        className={styles.button}
+        onClick={() => handleUpdateQuantity("up")}
+      >
         +
-      </div>
+      </button>
     </div>
   );
 };
