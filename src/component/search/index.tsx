@@ -91,8 +91,8 @@ const Search: FC = () => {
       >
         {results?.searchProducts.map((item) => {
           return (
-            <div onClick={() => setIsOpen(false)}  key={item.id}>
-              <ProductCard product={item} />;
+            <div onClick={() => setIsOpen(false)} key={item.id}>
+              <ProductCard product={item} />
             </div>
           );
         })}
