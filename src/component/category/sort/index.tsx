@@ -26,7 +26,7 @@ const Sort: FC<SortProps> = ({
   }, []);
 
   return (
-    <div className={styles.sortWrapper}>
+    <div className={styles.sortWrapper} ref={divRef}>
       <div
         className={styles.activeItem}
         onClick={() => setShowSortOption(!showSortOption)}
@@ -36,7 +36,6 @@ const Sort: FC<SortProps> = ({
       </div>
       <div
         className={`${styles.sortOptions} ${showSortOption ? styles.show : ""}`}
-        ref={divRef}
       >
         {sortOptions.map((item, index) => {
           return (
