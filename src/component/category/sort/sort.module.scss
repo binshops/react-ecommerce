@@ -1,6 +1,5 @@
 .sortWrapper {
   position: relative;
-  min-width: 170px;
   cursor: pointer;
   .activeItem {
     display: flex;
@@ -32,5 +31,9 @@
         border-bottom: none;
       }
     }
+  }
+  @media screen and (min-width: 425px) {
+    min-width: 170px;
+
   }
 }

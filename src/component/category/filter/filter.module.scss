@@ -2,13 +2,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 170px;
   gap: 8px;
   cursor: pointer;
   .title {
     font-size: 14px;
     font-weight: 500;
     line-height: 19px;
+  }
+  @media screen and (min-width: 425px) {
+    min-width: 170px;
+
   }
 }
 .filterBox {
