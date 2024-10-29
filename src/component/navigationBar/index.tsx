@@ -55,7 +55,7 @@ const NavigationBar: FC = () => {
           }}
         >
           <div className={styles.cartImage}>
-            {cart?.products.length > 0 && <div className={styles.badge}></div>}
+            {cart?.products?.length > 0 && <div className={styles.badge}></div>}
             <img
               src="/images/icon/cart.png"
               alt="Card"

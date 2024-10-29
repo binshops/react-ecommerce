@@ -31,7 +31,7 @@ const Header: FC = () => {
             }}
           >
             <div className={styles.cartIcon}>
-              {cart?.products.length > 0 && (
+              {cart?.products?.length > 0 && (
                 <div className={styles.badge}></div>
               )}
               <img
