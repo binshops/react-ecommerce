@@ -1,4 +1,5 @@
 import React, { FC, useEffect, useRef } from "react";
+import { useRouter } from "next/router";
 import styles from "./modal.module.scss";
 import { ModalProps } from "./modal.types";
 
@@ -12,6 +13,7 @@ const Modal: FC<ModalProps> = ({
 }) => {
   const modalStyle = isFullScreen ? {} : { width, height };
   const divRef = useRef<HTMLDivElement | null>(null);
+  const router = useRouter();
 
   const handleClickOutside = (event: MouseEvent) => {
     if (divRef.current && !divRef.current.contains(event.target as Node)) {
@@ -25,6 +27,10 @@ const Modal: FC<ModalProps> = ({
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  useEffect(() => {
+    onClose();
+  }, [router.asPath]);
 
   return (
     <div
