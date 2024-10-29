@@ -1,6 +1,7 @@
 .accordionItem {
   padding: 0 16px;
   cursor: pointer;
+  display: block;
   &.darkMode {
     .titleRow {
       border-bottom: 1px solid #f1f2f3;
@@ -26,6 +27,13 @@
       line-height: 22.4px;
       text-align: left;
       color: #fff;
+    }
+    .showMore {
+      position: relative;
+      width: 50px;
+      height: 100%;
+      z-index: 10;
+      text-align: center;
     }
   }
   .linkBox {

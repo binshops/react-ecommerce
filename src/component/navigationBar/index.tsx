@@ -73,7 +73,7 @@ const NavigationBar: FC = () => {
         }}
         isFullScreen
       >
-        <div>
+        <div className={styles.modalContent}>
           {menu?.map((item) => {
             return (
               <AccordionItem
