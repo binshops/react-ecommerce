@@ -8,6 +8,7 @@ const AccordionItem: FC<AccordionItemProps> = ({
   title,
   links,
   titleLink,
+  setIsLoading,
   mode = "light",
 }) => {
   const [isOpen, setIsOpen] = useState(Boolean);
@@ -17,7 +18,10 @@ const AccordionItem: FC<AccordionItemProps> = ({
       className={`${styles.accordionItem} ${
         mode === "dark" ? styles.darkMode : ""
       }`}
-      onClick={() => router.push(titleLink)}
+      onClick={() => {
+        setIsLoading && setIsLoading(true);
+        router.push(titleLink);
+      }}
     >
       <div className={styles.titleRow}>
         <p className={styles.title}>{title}</p>
@@ -25,7 +29,7 @@ const AccordionItem: FC<AccordionItemProps> = ({
           <div
             className={styles.showMore}
             onClick={(e) => {
-              e.preventDefault();
+              e.stopPropagation();
               setIsOpen(!isOpen);
             }}
           >

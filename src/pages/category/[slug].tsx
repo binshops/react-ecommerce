@@ -20,7 +20,7 @@ const CategoryPage: FC<CategoryPageProps> = ({ data, categoryId, menu }) => {
   const page = parseInt(router.query.page as string, 10);
   useEffect(() => {
     setCategory(category);
-  }, [category,isLoading]);
+  }, [category, isLoading]);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -53,6 +53,7 @@ const CategoryPage: FC<CategoryPageProps> = ({ data, categoryId, menu }) => {
                   links={item.children}
                   titleLink={item.link}
                   mode="dark"
+                  setIsLoading={setIsLoading}
                   key={item.id}
                 />
               );
