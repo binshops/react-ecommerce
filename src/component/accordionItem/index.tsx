@@ -2,6 +2,7 @@ import React, { FC, useState } from "react";
 import styles from "./accordionItem.module.scss";
 import { AccordionItemProps } from "./accordion.types";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const AccordionItem: FC<AccordionItemProps> = ({
   title,
@@ -10,12 +11,13 @@ const AccordionItem: FC<AccordionItemProps> = ({
   mode = "light",
 }) => {
   const [isOpen, setIsOpen] = useState(Boolean);
+  const router = useRouter();
   return (
-    <Link
+    <div
       className={`${styles.accordionItem} ${
         mode === "dark" ? styles.darkMode : ""
       }`}
-      href={titleLink}
+      onClick={() => router.push(titleLink)}
     >
       <div className={styles.titleRow}>
         <p className={styles.title}>{title}</p>
@@ -47,7 +49,7 @@ const AccordionItem: FC<AccordionItemProps> = ({
           );
         })}
       </div>
-    </Link>
+    </div>
   );
 };
 
