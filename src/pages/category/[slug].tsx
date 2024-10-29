@@ -16,12 +16,11 @@ import { useRouter } from "next/router";
 const CategoryPage: FC<CategoryPageProps> = ({ data, categoryId, menu }) => {
   const [category, setCategory] = useState<Category>(data);
   const [isLoading, setIsLoading] = useState(false);
-
   const router = useRouter();
   const page = parseInt(router.query.page as string, 10);
   useEffect(() => {
     setCategory(category);
-  }, [category, isLoading]);
+  }, [category,isLoading]);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -37,7 +36,7 @@ const CategoryPage: FC<CategoryPageProps> = ({ data, categoryId, menu }) => {
         console.error("Failed to fetch product data:", error);
       }
     };
-    page && (categoryId && fetchData());
+    fetchData();
   }, [page, categoryId]);
   return (
     <>
