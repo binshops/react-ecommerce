@@ -32,7 +32,9 @@ const Header: FC = () => {
           >
             <div className={styles.cartIcon}>
               {cart?.products?.length > 0 && (
-                <div className={styles.badge}></div>
+                <div className={styles.badge}>
+                  <span>{cart?.products?.length}</span>
+                </div>
               )}
               <img
                 src="/images/icon/darkCart.png"
