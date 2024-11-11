@@ -5,6 +5,8 @@ import CheckBox from "./checkBox";
 import { FilterProps } from "@/utils/type/category";
 import { useScrollLock } from "@/utils/hooks/useScrollLock";
 import useWindowSize from "@/utils/hooks/useWindowSize";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFilter } from "@fortawesome/free-solid-svg-icons";
 
 const Filter: FC<FilterProps> = ({
   filters,
@@ -24,7 +26,7 @@ const Filter: FC<FilterProps> = ({
           lockScroll();
         }}
       >
-        <img src="/images/icon/Filter.png" alt="filterIcon" />
+        <FontAwesomeIcon icon={faFilter} fontSize={18}/>
         <p className={styles.title}>Filters</p>
       </div>
       <Modal
