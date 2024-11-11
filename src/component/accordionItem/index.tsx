@@ -3,6 +3,8 @@ import styles from "./accordionItem.module.scss";
 import { AccordionItemProps } from "./accordion.types";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
 const AccordionItem: FC<AccordionItemProps> = ({
   title,
@@ -33,13 +35,10 @@ const AccordionItem: FC<AccordionItemProps> = ({
               setIsOpen(!isOpen);
             }}
           >
-            <img
-              src={
-                mode === "light"
-                  ? "/images/icon/arrow.png"
-                  : "/images/icon/darkArrow.png"
-              }
-              alt="arrow"
+            <FontAwesomeIcon
+              icon={faChevronRight}
+              fontSize={16}
+              color={mode === "light" ? "#fff" : "#000"}
             />
           </div>
         )}

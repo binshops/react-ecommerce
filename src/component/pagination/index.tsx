@@ -1,6 +1,11 @@
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import styles from "./pagination.module.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faChevronLeft,
+  faChevronRight,
+} from "@fortawesome/free-solid-svg-icons";
 
 export type PaginationProps = {
   totalPages: number;
@@ -32,11 +37,7 @@ export default function Pagination({ totalPages }: PaginationProps) {
     <div className={styles.paginationWrapper}>
       {currentPage > 1 && (
         <Link href={createPageURL(currentPage - 1)}>
-          <img
-            src="/images/icon/darkArrow.png"
-            alt="prev"
-            className={styles.prev}
-          />
+          <FontAwesomeIcon icon={faChevronLeft} />
         </Link>
       )}
       <Link href={createPageURL(1)}>
@@ -75,7 +76,7 @@ export default function Pagination({ totalPages }: PaginationProps) {
       )}
       {currentPage < totalPages && (
         <Link href={createPageURL(currentPage + 1)}>
-          <img src="/images/icon/darkArrow.png" alt="next" />
+          <FontAwesomeIcon icon={faChevronRight} />
         </Link>
       )}
     </div>
