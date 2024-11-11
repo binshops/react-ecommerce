@@ -22,7 +22,6 @@ const SelectBox: FC<selectBoxProps> = ({
         onClick={() => setShowMore(!showMore)}
       >
         <p>{option}</p>
-        <img src="/images/icon/Chevron.png" alt="arrow" />
         <FontAwesomeIcon icon={faChevronDown} className={styles.icon} />
       </div>
       <div className={`${styles.moreOption} ${showMore ? styles.show : ""}`}>
