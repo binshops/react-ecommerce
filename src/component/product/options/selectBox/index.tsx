@@ -1,6 +1,8 @@
 import React, { FC, useState } from "react";
 import styles from "./selectBox.module.scss";
 import { selectBoxProps } from "./selectBox.types";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const SelectBox: FC<selectBoxProps> = ({
   productOption,
@@ -21,6 +23,7 @@ const SelectBox: FC<selectBoxProps> = ({
       >
         <p>{option}</p>
         <img src="/images/icon/Chevron.png" alt="arrow" />
+        <FontAwesomeIcon icon={faChevronDown} className={styles.icon} />
       </div>
       <div className={`${styles.moreOption} ${showMore ? styles.show : ""}`}>
         {productOption.items.map((option) => {
