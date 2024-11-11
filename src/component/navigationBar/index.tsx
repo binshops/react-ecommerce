@@ -8,7 +8,11 @@ import AccordionItem from "../accordionItem";
 import { useCart } from "@/context/cartContext";
 import CartContent from "../cartContent";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBars,
+  faCartShopping,
+  faHouse,
+} from "@fortawesome/free-solid-svg-icons";
 
 const NavigationBar: FC = () => {
   const { lockScroll, unlockScroll } = useScrollLock();
@@ -30,21 +34,13 @@ const NavigationBar: FC = () => {
           }}
         >
           <div>
-            <img
-              src="/images/icon/Menu.png"
-              alt="Menu"
-              className={styles.image}
-            />
+            <FontAwesomeIcon icon={faBars} className={styles.icon}/>
           </div>
           <p>Menu</p>
         </div>
         <Link className={styles.navigationItem} href={"/"}>
           <div>
-            <img
-              src="/images/icon/home.png"
-              alt="Home"
-              className={styles.image}
-            />
+            <FontAwesomeIcon icon={faHouse} className={styles.icon} />
           </div>
           <p>Home</p>
         </Link>
