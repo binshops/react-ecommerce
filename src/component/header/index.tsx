@@ -6,6 +6,8 @@ import Link from "next/link";
 import { useScrollLock } from "@/utils/hooks/useScrollLock";
 import CartContent from "../cartContent";
 import { useCart } from "@/context/cartContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
 const Header: FC = () => {
   const { lockScroll } = useScrollLock();
@@ -31,14 +33,12 @@ const Header: FC = () => {
             }}
           >
             <div className={styles.cartIcon}>
-              {cart?.products.length > 0 && (
-                <div className={styles.badge}></div>
+              {cart?.products?.length > 0 && (
+                <div className={styles.badge}>
+                  <span>{cart?.products?.length}</span>
+                </div>
               )}
-              <img
-                src="/images/icon/darkCart.png"
-                alt="Card"
-                className={styles.image}
-              />
+              <FontAwesomeIcon icon={faCartShopping} fontSize={20} />
             </div>
           </div>
         </div>

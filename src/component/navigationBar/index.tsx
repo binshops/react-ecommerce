@@ -7,6 +7,12 @@ import Modal from "../modal";
 import AccordionItem from "../accordionItem";
 import { useCart } from "@/context/cartContext";
 import CartContent from "../cartContent";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faBars,
+  faCartShopping,
+  faHouse,
+} from "@fortawesome/free-solid-svg-icons";
 
 const NavigationBar: FC = () => {
   const { lockScroll, unlockScroll } = useScrollLock();
@@ -28,21 +34,13 @@ const NavigationBar: FC = () => {
           }}
         >
           <div>
-            <img
-              src="/images/icon/Menu.png"
-              alt="Menu"
-              className={styles.image}
-            />
+            <FontAwesomeIcon icon={faBars} className={styles.icon}/>
           </div>
           <p>Menu</p>
         </div>
         <Link className={styles.navigationItem} href={"/"}>
           <div>
-            <img
-              src="/images/icon/home.png"
-              alt="Home"
-              className={styles.image}
-            />
+            <FontAwesomeIcon icon={faHouse} className={styles.icon} />
           </div>
           <p>Home</p>
         </Link>
@@ -55,12 +53,8 @@ const NavigationBar: FC = () => {
           }}
         >
           <div className={styles.cartImage}>
-            {cart?.products.length > 0 && <div className={styles.badge}></div>}
-            <img
-              src="/images/icon/cart.png"
-              alt="Card"
-              className={styles.image}
-            />
+            {cart?.products?.length > 0 && <div className={styles.badge}></div>}
+            <FontAwesomeIcon icon={faCartShopping} fontSize={20} color="#fff" />
           </div>
           <p className={styles.cartItem}>Card</p>
         </div>
@@ -73,7 +67,7 @@ const NavigationBar: FC = () => {
         }}
         isFullScreen
       >
-        <div>
+        <div className={styles.modalContent}>
           {menu?.map((item) => {
             return (
               <AccordionItem

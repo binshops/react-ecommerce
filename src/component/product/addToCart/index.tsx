@@ -12,8 +12,9 @@ const AddToCart: FC<AddToCartProps> = ({
     <div className={styles.addToCart}>
       <div className={styles.quantityBox}>
         <button
-          className={styles.minus}
-          onClick={() => quantity > 0 && setQuantity(quantity - 1)}
+          className={`${styles.minus} ${styles.disable}`}
+          onClick={() => setQuantity(quantity - 1)}
+          disabled={quantity <= 0}
         ></button>
         <input
           type="text"

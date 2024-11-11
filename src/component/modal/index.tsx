@@ -1,6 +1,9 @@
 import React, { FC, useEffect, useRef } from "react";
+import { useRouter } from "next/router";
 import styles from "./modal.module.scss";
 import { ModalProps } from "./modal.types";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 const Modal: FC<ModalProps> = ({
   isOpen,
@@ -12,6 +15,7 @@ const Modal: FC<ModalProps> = ({
 }) => {
   const modalStyle = isFullScreen ? {} : { width, height };
   const divRef = useRef<HTMLDivElement | null>(null);
+  const router = useRouter();
 
   const handleClickOutside = (event: MouseEvent) => {
     if (divRef.current && !divRef.current.contains(event.target as Node)) {
@@ -26,6 +30,10 @@ const Modal: FC<ModalProps> = ({
     };
   }, []);
 
+  useEffect(() => {
+    onClose();
+  }, [router.asPath]);
+
   return (
     <div
       className={`${styles.modalWrapper} ${
@@ -35,7 +43,7 @@ const Modal: FC<ModalProps> = ({
       ref={divRef}
     >
       <div className={styles.close} onClick={() => onClose()}>
-        <img src="/images/icon/close.png" alt="close" />
+        <FontAwesomeIcon icon={faXmark} fontSize={28} color="#fff"/>
       </div>
       <div className={styles.content}>{children}</div>
     </div>

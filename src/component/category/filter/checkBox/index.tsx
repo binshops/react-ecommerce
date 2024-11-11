@@ -1,6 +1,8 @@
 import React, { FC } from "react";
 import styles from "./checkBox.module.scss";
 import { CheckBoxProps } from "./checkBox.types";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
 const CheckBox: FC<CheckBoxProps> = ({ filter, setFilterQuery }) => {
   return (
@@ -22,7 +24,7 @@ const CheckBox: FC<CheckBoxProps> = ({ filter, setFilterQuery }) => {
                 : undefined,
             }}
           >
-            {filter.active && <img src="/images/icon/check.png" alt="check" />}
+            {filter.active && <FontAwesomeIcon icon={faCheck} color="#fff"/>}
           </div>
           <p className={styles.label}>{filter.label}</p>
           <p className={styles.count}>( {filter.productCount} )</p>

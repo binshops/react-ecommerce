@@ -4,6 +4,13 @@ import AccordionItem from "../accordionItem";
 import { footerLink } from "@/const/FooterLink";
 import useWindowSize from "@/utils/hooks/useWindowSize";
 import { useRouter } from "next/router";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faFacebook,
+  faPinterest,
+  faTwitter,
+  faYoutube,
+} from "@fortawesome/free-brands-svg-icons";
 
 const Footer: FC = () => {
   const { width } = useWindowSize();
@@ -55,17 +62,33 @@ const Footer: FC = () => {
           <div className={styles.socialBox}>
             <p className={styles.title}>SOCIAL</p>
             <div className={styles.items}>
-              <a href="https://www.google.com/" className={styles.link}>
-                <img src="/images/icon/faceBook.png" alt="faceBook" />
+              <a href="https://www.facebook.com/" className={styles.link} target="_blank">
+                <FontAwesomeIcon
+                  icon={faFacebook}
+                  color="#192bc6"
+                  fontSize={20}
+                />
               </a>
-              <a href="https://www.google.com/" className={styles.link}>
-                <img src="/images/icon/pinterest.png" alt="pinterest" />
+              <a href="https://www.pinterest.com/" className={styles.link} target="_blank">
+                <FontAwesomeIcon
+                  icon={faPinterest}
+                  color="#ac2e33"
+                  fontSize={20}
+                />
               </a>
-              <a href="https://www.google.com/" className={styles.link}>
-                <img src="/images/icon/twitter.png" alt="twitter" />
+              <a href="https://www.twitter.com/" className={styles.link} target="_blank">
+                <FontAwesomeIcon
+                  icon={faTwitter}
+                  color="#1ea1f1"
+                  fontSize={20}
+                />
               </a>
-              <a href="https://www.google.com/" className={styles.link}>
-                <img src="/images/icon/youtube.png" alt="youtube" />
+              <a href="https://youtube.com/" className={styles.link} target="_blank">
+                <FontAwesomeIcon
+                  icon={faYoutube}
+                  color="#b13733"
+                  fontSize={20}
+                />
               </a>
             </div>
           </div>

@@ -6,6 +6,8 @@ import { debounce } from "@/utils/function";
 import { SearchTransformer } from "@/utils/transformer/search";
 import ProductCard from "../productCard";
 import { SearchProduct } from "@/utils/type/search";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 const Search: FC = () => {
   const [value, setValue] = useState("");
@@ -67,15 +69,10 @@ const Search: FC = () => {
           }}
         />
         {value.length === 0 ? (
-          <img
-            src="/images/icon/Search.png"
-            alt="searchIcon"
-            className={styles.icon}
-          />
+          <FontAwesomeIcon icon={faMagnifyingGlass} className={styles.icon} />
         ) : (
-          <img
-            src="/images/icon/darkClose.png"
-            alt="searchIcon"
+          <FontAwesomeIcon
+            icon={faXmark}
             className={styles.icon}
             onClick={() => setValue("")}
           />
@@ -91,8 +88,8 @@ const Search: FC = () => {
       >
         {results?.searchProducts.map((item) => {
           return (
-            <div onClick={() => setIsOpen(false)}  key={item.id}>
-              <ProductCard product={item} />;
+            <div onClick={() => setIsOpen(false)} key={item.id}>
+              <ProductCard product={item} />
             </div>
           );
         })}

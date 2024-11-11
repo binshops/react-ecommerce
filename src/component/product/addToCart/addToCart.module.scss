@@ -15,6 +15,9 @@
       width: 26px;
       height: 26px;
       cursor: pointer;
+      &.disable {
+        filter: opacity(0.5);
+      }
     }
     .plus {
       background-image: url("./../../../../public/images/icon/plus.png");

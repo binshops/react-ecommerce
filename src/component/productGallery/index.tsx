@@ -1,6 +1,11 @@
 import React, { FC, useEffect, useState } from "react";
 import styles from "./productGallery.module.scss";
 import { productGalleryProps } from "@/utils/type";
+import {
+  faChevronLeft,
+  faChevronRight,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const ProductGallery: FC<productGalleryProps> = ({ images }) => {
   const sliderImages = images;
@@ -24,7 +29,7 @@ const ProductGallery: FC<productGalleryProps> = ({ images }) => {
             }`}
             onClick={() => !isFirstItem && setActiveIndex(activeIndex - 1)}
           >
-            <img src="/images/icon/arrow.png" alt="left arrow" />
+            <FontAwesomeIcon icon={faChevronLeft} color="#fff" fontSize={24} />
           </div>
           <div
             className={`${styles.arrow} ${styles.right} ${
@@ -32,7 +37,7 @@ const ProductGallery: FC<productGalleryProps> = ({ images }) => {
             }`}
             onClick={() => !isLastItem && setActiveIndex(activeIndex + 1)}
           >
-            <img src="/images/icon/arrow.png" alt="right arrow" />
+            <FontAwesomeIcon icon={faChevronRight} color="#fff" fontSize={24}/>
           </div>
           <img alt="" src={mainImage.src} className={styles.mainImage} />
         </div>

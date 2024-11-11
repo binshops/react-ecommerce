@@ -16,6 +16,9 @@
     align-items: center;
     flex-direction: column;
     position: relative;
+    .icon{
+     margin-bottom: 8px;
+    }
     .cartImage {
       width: 66px;
       height: 66px;
@@ -27,11 +30,6 @@
       align-items: center;
       top: -33px;
       box-shadow: 0px 4px 11px 0px #1d1f221a;
-      .image {
-        width: 30px;
-        height: 30px;
-        margin: 0;
-      }
       .badge {
         width: 15px;
         height: 15px;
@@ -55,4 +53,7 @@
   @media screen and (min-width: 768px) {
     display: none;
   }
+}
+.modalContent {
+  padding-top: 50px;
 }

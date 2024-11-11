@@ -1,12 +1,16 @@
 import React, { FC, useState } from "react";
 import styles from "./accordionItem.module.scss";
 import { AccordionItemProps } from "./accordion.types";
+import Link from "next/link";
 import { useRouter } from "next/router";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
 const AccordionItem: FC<AccordionItemProps> = ({
   title,
   links,
   titleLink,
+  setIsLoading,
   mode = "light",
 }) => {
   const [isOpen, setIsOpen] = useState(Boolean);
@@ -16,29 +20,35 @@ const AccordionItem: FC<AccordionItemProps> = ({
       className={`${styles.accordionItem} ${
         mode === "dark" ? styles.darkMode : ""
       }`}
-      onClick={() =>
-        links.length === 0 ? router.push(titleLink) : setIsOpen(!isOpen)
-      }
+      onClick={() => {
+        setIsLoading && setIsLoading(true);
+        router.push(titleLink);
+      }}
     >
       <div className={styles.titleRow}>
         <p className={styles.title}>{title}</p>
         {links.length > 0 && (
-          <img
-            src={
-              mode === "light"
-                ? "/images/icon/arrow.png"
-                : "/images/icon/darkArrow.png"
-            }
-            alt="arrow"
-          />
+          <div
+            className={styles.showMore}
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsOpen(!isOpen);
+            }}
+          >
+            <FontAwesomeIcon
+              icon={faChevronRight}
+              fontSize={16}
+              color={mode === "light" ? "#fff" : "#000"}
+            />
+          </div>
         )}
       </div>
       <div className={`${styles.linkBox} ${isOpen ? styles.showLink : ""}`}>
         {links.map((link, idx) => {
           return (
-            <a href={link.link} key={idx} className={styles.subLink}>
+            <Link href={link.link} key={idx} className={styles.subLink}>
               {link.title}
-            </a>
+            </Link>
           );
         })}
       </div>

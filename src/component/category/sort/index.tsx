@@ -1,6 +1,8 @@
 import React, { FC, useEffect, useRef } from "react";
 import styles from "./sort.module.scss";
 import { SortProps } from "../category.types";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 const Sort: FC<SortProps> = ({
   sortOptions,
@@ -26,17 +28,16 @@ const Sort: FC<SortProps> = ({
   }, []);
 
   return (
-    <div className={styles.sortWrapper}>
+    <div className={styles.sortWrapper} ref={divRef}>
       <div
         className={styles.activeItem}
         onClick={() => setShowSortOption(!showSortOption)}
       >
         <p className={styles.title}>{activeSort?.label}</p>
-        <img src="/images/icon/Chevron.png" alt="arrow" />
+        <FontAwesomeIcon icon={faChevronDown} />
       </div>
       <div
         className={`${styles.sortOptions} ${showSortOption ? styles.show : ""}`}
-        ref={divRef}
       >
         {sortOptions.map((item, index) => {
           return (

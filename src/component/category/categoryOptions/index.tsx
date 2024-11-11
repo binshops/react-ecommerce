@@ -52,7 +52,7 @@ const CategoryOptions: FC<CategoryOptionsProps> = ({
         isOpenFilter={isOpenFilter}
         setIsOpenFilter={setIsOpenFilter}
       />
-      <p className={styles.count}>{count} Items</p>
+      <p className={styles.count}>{count} Item(s)</p>
       <Sort
         sortOptions={sortOptions}
         setOrderQuery={setOrderQuery}
