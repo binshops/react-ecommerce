@@ -7,6 +7,8 @@ import Modal from "../modal";
 import AccordionItem from "../accordionItem";
 import { useCart } from "@/context/cartContext";
 import CartContent from "../cartContent";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
 const NavigationBar: FC = () => {
   const { lockScroll, unlockScroll } = useScrollLock();
@@ -56,11 +58,7 @@ const NavigationBar: FC = () => {
         >
           <div className={styles.cartImage}>
             {cart?.products?.length > 0 && <div className={styles.badge}></div>}
-            <img
-              src="/images/icon/cart.png"
-              alt="Card"
-              className={styles.image}
-            />
+            <FontAwesomeIcon icon={faCartShopping} fontSize={20} color="#fff" />
           </div>
           <p className={styles.cartItem}>Card</p>
         </div>
