@@ -2,6 +2,8 @@ import React, { FC, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import styles from "./modal.module.scss";
 import { ModalProps } from "./modal.types";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 const Modal: FC<ModalProps> = ({
   isOpen,
@@ -41,7 +43,7 @@ const Modal: FC<ModalProps> = ({
       ref={divRef}
     >
       <div className={styles.close} onClick={() => onClose()}>
-        <img src="/images/icon/close.png" alt="close" />
+        <FontAwesomeIcon icon={faXmark} fontSize={28} color="#fff"/>
       </div>
       <div className={styles.content}>{children}</div>
     </div>
