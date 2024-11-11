@@ -14,32 +14,28 @@ const MegaMenu: React.FC = () => {
   };
   return (
     <div className={styles.megaMenu}>
-      {menu && menu.length > 0 ? (
-        menu.map((item, idx) => (
-          <Link href={item.link} className={styles.menuItem} key={idx} passHref>
-            <p className={styles.megaMenuItem}>{item.label}</p>
-            {Boolean(item.children.length) && (
-              <div className={styles.subMenu}>
-                <div className={`${styles.linkBox} container`}>
-                  {item.children?.map((subLink, idx) => {
-                    return (
-                      <p
-                        onClick={() => handelSubmenuClick(subLink.link)}
-                        className={styles.link}
-                        key={idx}
-                      >
-                        {subLink.title}
-                      </p>
-                    );
-                  })}
-                </div>
+      {menu?.map((item, idx) => (
+        <Link href={item.link} className={styles.menuItem} key={idx} passHref>
+          <p className={styles.megaMenuItem}>{item.label}</p>
+          {Boolean(item.children.length) && (
+            <div className={styles.subMenu}>
+              <div className={`${styles.linkBox} container`}>
+                {item.children?.map((subLink, idx) => {
+                  return (
+                    <p
+                      onClick={() => handelSubmenuClick(subLink.link)}
+                      className={styles.link}
+                      key={idx}
+                    >
+                      {subLink.title}
+                    </p>
+                  );
+                })}
               </div>
-            )}
-          </Link>
-        ))
-      ) : (
-        <Loading />
-      )}
+            </div>
+          )}
+        </Link>
+      ))}
     </div>
   );
 };

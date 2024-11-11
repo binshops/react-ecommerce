@@ -18,7 +18,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <LoadingIndicator />
       <CartProvider>
-        <MegaMenuProvider>
+        <MegaMenuProvider initialMenu={pageProps.menu || []}>
           <main className={inter.className}>
             <Header />
             <div className="container">
