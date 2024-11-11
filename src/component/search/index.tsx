@@ -6,6 +6,8 @@ import { debounce } from "@/utils/function";
 import { SearchTransformer } from "@/utils/transformer/search";
 import ProductCard from "../productCard";
 import { SearchProduct } from "@/utils/type/search";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 const Search: FC = () => {
   const [value, setValue] = useState("");
@@ -67,11 +69,7 @@ const Search: FC = () => {
           }}
         />
         {value.length === 0 ? (
-          <img
-            src="/images/icon/Search.png"
-            alt="searchIcon"
-            className={styles.icon}
-          />
+          <FontAwesomeIcon icon={faMagnifyingGlass} className={styles.icon}/>
         ) : (
           <img
             src="/images/icon/darkClose.png"
