@@ -8,6 +8,7 @@ import CartContent from "../cartContent";
 import { useCart } from "@/context/cartContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import LoadingIndicator from "../loadingIndicator";
 
 const Header: FC = () => {
   const { lockScroll } = useScrollLock();
@@ -44,6 +45,7 @@ const Header: FC = () => {
         </div>
       </div>
       <CartContent isOpen={openCart} setIsOpen={setOpenCart} />
+      <LoadingIndicator />
     </header>
   );
 };
