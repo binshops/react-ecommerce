@@ -9,14 +9,12 @@ import NavigationBar from "@/component/navigationBar";
 import { CartProvider } from "@/context/cartContext";
 import { MegaMenuProvider } from "@/context/menuContext";
 import { Toaster } from "react-hot-toast";
-import LoadingIndicator from "@/component/loadingIndicator";
 
 const inter = Raleway({ subsets: ["latin"] });
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
-      <LoadingIndicator />
       <CartProvider>
         <MegaMenuProvider initialMenu={pageProps.menu || []}>
           <main className={inter.className}>

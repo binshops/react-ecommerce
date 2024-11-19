@@ -6,10 +6,8 @@ import {
   faChevronLeft,
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
+import { PaginationProps } from "./pagination.type";
 
-export type PaginationProps = {
-  totalPages: number;
-};
 
 export default function Pagination({ totalPages }: PaginationProps) {
   const pathname = usePathname();

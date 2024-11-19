@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import Loading from "../loading";
+import styles from "./loadingIndicator.module.scss";
 
 const LoadingIndicator = () => {
   const router = useRouter();
@@ -27,7 +27,15 @@ const LoadingIndicator = () => {
     };
   }, [router]);
 
-  return <>{loading && <Loading />}</>;
+  return (
+    <>
+      {loading && (
+        <div className={styles.loading}>
+          <div className={styles.line}></div>
+        </div>
+      )}
+    </>
+  );
 };
 
 export default LoadingIndicator;
