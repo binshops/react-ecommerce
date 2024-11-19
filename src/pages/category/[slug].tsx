@@ -11,6 +11,7 @@ import AccordionItem from "@/component/accordionItem";
 import { Category, CategoryPageProps } from "@/utils/type/category";
 import Pagination from "@/component/pagination";
 import { useRouter } from "next/router";
+import Placeholder from "@/component/category/placeholder";
 
 const CategoryPage: FC<CategoryPageProps> = ({ data, categoryId, menu }) => {
   const [category, setCategory] = useState<Category | undefined>(data);
@@ -59,7 +60,7 @@ const CategoryPage: FC<CategoryPageProps> = ({ data, categoryId, menu }) => {
           );
         })}
       </div>
-      {category && (
+      {category ? (
         <div className={styles.productWrapper}>
           <CategoryOptions
             filters={category.filters}
@@ -74,6 +75,8 @@ const CategoryPage: FC<CategoryPageProps> = ({ data, categoryId, menu }) => {
           <CategoryProduct product={category.product} />
           <Pagination totalPages={category.totalPage} />
         </div>
+      ) : (
+        <Placeholder />
       )}
     </div>
   );
