@@ -1,8 +1,11 @@
 import React, { FC } from "react";
-import styles from "./cardItem.module.scss";
+
 import { useCart } from "@/context/cartContext";
+
 import UpdateQuantity from "./updateQuantity";
-import { CartItemProps } from "../cartContent.types";
+import { CartItemProps } from "./cardItem.types";
+
+import styles from "./cardItem.module.scss";
 
 const CartItem: FC<CartItemProps> = ({ product }) => {
   const { id, productAttributeId, quantity, name, image, price, attributes } =
@@ -10,8 +13,8 @@ const CartItem: FC<CartItemProps> = ({ product }) => {
   const { removeFromCart, isLoading } = useCart();
   const handleRemove = async () => {
     const item = {
-      id: id,
-      productAttributeId: productAttributeId,
+      id,
+      productAttributeId,
     };
     removeFromCart(item);
   };
