@@ -3,7 +3,7 @@ import styles from "./header.module.scss";
 import Search from "../search";
 import MegaMenu from "../megaMenu";
 import Link from "next/link";
-import { useScrollLock } from "@/utils/hooks/useScrollLock";
+import { useScrollLock } from "@/utils/hooks";
 import CartContent from "../cartContent";
 import { useCart } from "@/context/cartContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

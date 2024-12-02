@@ -2,7 +2,7 @@ import React, { FC, useState } from "react";
 import styles from "./navigationBar.module.scss";
 import Link from "next/link";
 import { useMegaMenu } from "@/context/menuContext";
-import { useScrollLock } from "@/utils/hooks/useScrollLock";
+import { useScrollLock } from "@/utils/hooks";
 import Modal from "../modal";
 import AccordionItem from "../accordionItem";
 import { useCart } from "@/context/cartContext";
@@ -34,7 +34,7 @@ const NavigationBar: FC = () => {
           }}
         >
           <div>
-            <FontAwesomeIcon icon={faBars} className={styles.icon}/>
+            <FontAwesomeIcon icon={faBars} className={styles.icon} />
           </div>
           <p>Menu</p>
         </div>

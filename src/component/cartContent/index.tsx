@@ -3,7 +3,7 @@ import styles from "./cartContent.module.scss";
 import { useCart } from "@/context/cartContext";
 import CartItem from "./cardItem";
 import Modal from "../modal";
-import { useScrollLock } from "@/utils/hooks/useScrollLock";
+import { useScrollLock } from "@/utils/hooks";
 import { CartContentProps } from "./cartContent.types";
 
 const CartContent: FC<CartContentProps> = ({ isOpen, setIsOpen }) => {

@@ -3,10 +3,10 @@ import styles from "./filter.module.scss";
 import Modal from "@/component/modal";
 import CheckBox from "./checkBox";
 import { FilterProps } from "@/utils/type/category";
-import { useScrollLock } from "@/utils/hooks/useScrollLock";
-import useWindowSize from "@/utils/hooks/useWindowSize";
+import { useScrollLock } from "@/utils/hooks";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
+import useWindowSize from "@/utils/hooks/useWindowSize";
 
 const Filter: FC<FilterProps> = ({
   filters,
@@ -26,7 +26,7 @@ const Filter: FC<FilterProps> = ({
           lockScroll();
         }}
       >
-        <FontAwesomeIcon icon={faFilter} fontSize={18}/>
+        <FontAwesomeIcon icon={faFilter} fontSize={18} />
         <p className={styles.title}>Filters</p>
       </div>
       <Modal
