@@ -1,10 +1,14 @@
 import React, { FC } from "react";
-import styles from "./cartContent.module.scss";
+
 import { useCart } from "@/context/cartContext";
-import CartItem from "./cardItem";
-import Modal from "../modal";
 import { useScrollLock } from "@/utils/hooks";
+
+import Modal from "../modal";
+
 import { CartContentProps } from "./cartContent.types";
+import CartItem from "./cardItem";
+
+import styles from "./cartContent.module.scss";
 
 const CartContent: FC<CartContentProps> = ({ isOpen, setIsOpen }) => {
   const { cart } = useCart();
