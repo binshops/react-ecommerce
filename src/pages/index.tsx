@@ -12,7 +12,6 @@ import { HomeTransformer } from "@/utils/api/transformer/home";
 import { getData } from "@/utils/api/fetchData/apiCall";
 
 export default function Home({
-  data,
   homeProductCarousel,
   menu,
 }: HomeProps): JSX.Element {
