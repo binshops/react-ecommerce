@@ -3,9 +3,9 @@ import styles from "./categoryOptions.module.scss";
 import { CategoryOptionsProps } from "../category.types";
 import Sort from "../sort";
 import Filter from "../filter";
-import { getData } from "@/utils/fetchData";
 import { CategoryAPI } from "@/const/endPoint";
 import { CategoryTransformer } from "@/utils/api/transformer/category";
+import { getData } from "@/utils/api/fetchData/apiCall";
 
 const CategoryOptions: FC<CategoryOptionsProps> = ({
   filters,

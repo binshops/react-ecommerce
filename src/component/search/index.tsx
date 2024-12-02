@@ -1,6 +1,6 @@
 import React, { FC, useCallback, useEffect, useRef, useState } from "react";
 import styles from "./search.module.scss";
-import { getData } from "@/utils/fetchData";
+import { getData } from "@/utils/api/fetchData/apiCall";
 import { ProductSearchAPI } from "@/const/endPoint";
 import { debounce } from "@/utils/function";
 import ProductCard from "../productCard";

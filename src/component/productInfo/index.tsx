@@ -3,7 +3,7 @@ import styles from "./productInfo.module.scss";
 import { productInfo } from "@/utils/type";
 import Price from "../product/price";
 import Options from "../product/options";
-import { getData } from "@/utils/fetchData";
+import { getData } from "@/utils/api/fetchData/apiCall";
 import { ProductDetailAPI } from "@/const/endPoint";
 import AddToCart from "../product/addToCart";
 import { useCart } from "@/context/cartContext";

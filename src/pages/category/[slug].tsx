@@ -1,5 +1,5 @@
 import { CategoryAPI, MegaMenuAPI, ProductDetailAPI } from "@/const/endPoint";
-import { getData } from "@/utils/fetchData";
+import { getData } from "@/utils/api/fetchData/apiCall";
 import { GetServerSidePropsContext } from "next";
 import React, { FC, useEffect, useState } from "react";
 import styles from "./styles.module.scss";

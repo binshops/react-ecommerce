@@ -1,6 +1,6 @@
 import { CardAPI } from "@/const/endPoint";
 import { CartTransformer } from "@/utils/api/transformer/cart";
-import { getData } from "@/utils/fetchData";
+import { getData } from "@/utils/api/fetchData/apiCall";
 import {
   CartContextType,
   AddToCartItem,
