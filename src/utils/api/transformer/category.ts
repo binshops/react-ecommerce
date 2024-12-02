@@ -4,7 +4,7 @@ import {
   CategoryFilter,
   CategoryProducts,
   CategorySort,
-} from "@/utils/type/category";
+} from "@/utils/type";
 
 export const productTransformer = (data: CategoryProducts[]) => {
   const product = data.map((product) => {

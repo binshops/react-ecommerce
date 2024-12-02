@@ -4,7 +4,7 @@ import { getData } from "@/utils/api/fetchData/apiCall";
 import { ProductSearchAPI } from "@/const/endPoint";
 import { debounce } from "@/utils/function";
 import ProductCard from "../productCard";
-import { SearchProduct } from "@/utils/type/search";
+import { SearchProduct } from "@/utils/type";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { SearchTransformer } from "@/utils/api/transformer/search";

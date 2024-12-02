@@ -1,4 +1,4 @@
-import { Sort } from "@/utils/type/category";
+import { Sort } from "@/utils/type";
 
 export interface CategoryOptionsProps {
   filters: any;
@@ -8,7 +8,7 @@ export interface CategoryOptionsProps {
   categoryId: string;
   setIsLoading: Function;
   activeSort: string;
-  activeFilter:string
+  activeFilter: string;
 }
 
 export interface SortProps {

@@ -1,4 +1,4 @@
-import { ProductCart } from "@/utils/type/cartContext";
+import { ProductCart } from "@/utils/type";
 
 export interface CartContentProps {
   isOpen: boolean;

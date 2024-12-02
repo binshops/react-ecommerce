@@ -6,7 +6,7 @@ import styles from "./styles.module.scss";
 import CategoryProduct from "@/component/category/categoryProduct";
 import CategoryOptions from "@/component/category/categoryOptions";
 import AccordionItem from "@/component/accordionItem";
-import { Category, CategoryPageProps } from "@/utils/type/category";
+import { Category, CategoryPageProps } from "@/utils/type";
 import Pagination from "@/component/pagination";
 import { useRouter } from "next/router";
 import Placeholder from "@/component/category/placeholder";
