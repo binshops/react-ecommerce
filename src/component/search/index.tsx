@@ -7,6 +7,7 @@ import ProductCard from "../productCard";
 import { SearchProduct } from "@/utils/type/search";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { SearchTransformer } from "@/utils/api/transformer/search";
 
 const Search: FC = () => {
   const [value, setValue] = useState("");
@@ -98,6 +99,3 @@ const Search: FC = () => {
 };
 
 export default Search;
-function SearchTransformer(data: any) {
-  throw new Error("Function not implemented.");
-}
