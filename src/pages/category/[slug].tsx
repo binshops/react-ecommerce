@@ -54,7 +54,6 @@ const CategoryPage: FC<CategoryPageProps> = ({ data, categoryId, menu }) => {
               links={item.children}
               titleLink={item.link}
               mode="dark"
-              setIsLoading={setIsLoading}
               key={item.id}
             />
           );
