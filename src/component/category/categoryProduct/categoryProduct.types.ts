@@ -1,5 +1,5 @@
 import { Product } from "@/utils/type";
 
-export interface CategoryProductProps {
+export type CategoryProductProps = {
   product: Product[];
-}
+};
