@@ -2,7 +2,6 @@ import React from "react";
 import styles from "./megaMenu.module.scss";
 import Link from "next/link";
 import { useMegaMenu } from "@/context/menuContext";
-import Loading from "../loading";
 import { useRouter } from "next/router";
 
 const MegaMenu: React.FC = () => {
