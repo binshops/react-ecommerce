@@ -5,8 +5,8 @@ import ProductInfo from "../productInfo";
 import { Product, productDetailsProps } from "@/utils/type";
 import { getData } from "@/utils/fetchData";
 import { FeaturedProductAPI } from "@/const/endPoint";
-import { FeaturedProductTransformer } from "@/utils/transformer/featuredProduct";
 import ProductCarousel from "../productCarousel";
+import { FeaturedProductTransformer } from "@/utils/api/transformer/featuredProduct";
 
 const ProductDetails: FC<productDetailsProps> = ({ product, setProduct }) => {
   const [featuredProduct, setFeaturedProduct] = useState<Product[]>([]);

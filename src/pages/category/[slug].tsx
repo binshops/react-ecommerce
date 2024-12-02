@@ -3,15 +3,15 @@ import { getData } from "@/utils/fetchData";
 import { GetServerSidePropsContext } from "next";
 import React, { FC, useEffect, useState } from "react";
 import styles from "./styles.module.scss";
-import { CategoryTransformer } from "@/utils/transformer/category";
 import CategoryProduct from "@/component/category/categoryProduct";
 import CategoryOptions from "@/component/category/categoryOptions";
-import { MegaMenuTransformer } from "@/utils/transformer/megaMenu";
 import AccordionItem from "@/component/accordionItem";
 import { Category, CategoryPageProps } from "@/utils/type/category";
 import Pagination from "@/component/pagination";
 import { useRouter } from "next/router";
 import Placeholder from "@/component/category/placeholder";
+import { CategoryTransformer } from "@/utils/api/transformer/category";
+import { MegaMenuTransformer } from "@/utils/api/transformer/megaMenu";
 
 const CategoryPage: FC<CategoryPageProps> = ({ data, categoryId, menu }) => {
   const [category, setCategory] = useState<Category | undefined>(data);

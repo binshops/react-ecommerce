@@ -5,7 +5,7 @@ import Sort from "../sort";
 import Filter from "../filter";
 import { getData } from "@/utils/fetchData";
 import { CategoryAPI } from "@/const/endPoint";
-import { CategoryTransformer } from "@/utils/transformer/category";
+import { CategoryTransformer } from "@/utils/api/transformer/category";
 
 const CategoryOptions: FC<CategoryOptionsProps> = ({
   filters,
