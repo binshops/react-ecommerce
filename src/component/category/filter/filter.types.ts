@@ -1,8 +1,9 @@
 import { Filter } from "@/utils/type";
+import { Value } from "sass";
 
 export type FilterProps = {
   filters: Filter[];
-  setFilterQuery: Function;
+  setFilterQuery: (value: string) => void;
   isOpenFilter: boolean;
-  setIsOpenFilter: Function;
+  setIsOpenFilter: (Value: boolean) => void;
 };
