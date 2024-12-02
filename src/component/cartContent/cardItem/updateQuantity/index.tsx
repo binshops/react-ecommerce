@@ -1,7 +1,10 @@
 import React, { FC } from "react";
-import styles from "./updateQuantity.module.scss";
+
 import { useCart } from "@/context/cartContext";
-import { UpdateQuantityProps } from "../../cartContent.types";
+
+import { UpdateQuantityProps } from "./updateQuantity.types";
+
+import styles from "./updateQuantity.module.scss";
 
 const UpdateQuantity: FC<UpdateQuantityProps> = ({
   id,
@@ -11,9 +14,9 @@ const UpdateQuantity: FC<UpdateQuantityProps> = ({
   const { updateQuantity, isLoading } = useCart();
   const handleUpdateQuantity = async (action: "up" | "down") => {
     const item = {
-      id: id,
+      id,
       update: 1,
-      productAttributeId: productAttributeId,
+      productAttributeId,
       quantity: action === "down" ? quantity - 1 : quantity + 1,
     };
     !isLoading && updateQuantity(item, action);
@@ -25,7 +28,7 @@ const UpdateQuantity: FC<UpdateQuantityProps> = ({
       <button
         className={styles.button}
         onClick={() => handleUpdateQuantity("down")}
-        disabled={quantity <= 1}
+        disabled={quantity === 1}
       >
         -
       </button>
