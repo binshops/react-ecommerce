@@ -44,7 +44,7 @@ const Filter: FC<FilterProps> = ({
         isFullScreen={!isDeskTop}
       >
         <div className={isDeskTop ? styles.row : ""}>
-          {filters.map((filter, idx) => {
+          {filters?.map((filter, idx) => {
             return (
               filter.display &&
               filter.type === "checkbox" && (
