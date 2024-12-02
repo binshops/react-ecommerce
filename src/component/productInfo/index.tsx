@@ -5,9 +5,9 @@ import Price from "../product/price";
 import Options from "../product/options";
 import { getData } from "@/utils/fetchData";
 import { ProductDetailAPI } from "@/const/endPoint";
-import { ProductTransformer } from "@/utils/transformer/product";
 import AddToCart from "../product/addToCart";
 import { useCart } from "@/context/cartContext";
+import { ProductTransformer } from "@/utils/api/transformer/product";
 
 const ProductInfo: FC<productInfo> = ({
   id,

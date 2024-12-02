@@ -1,4 +1,4 @@
-import { Groups, ProductType, ProductAPI } from "../type";
+import { Groups, ProductAPI, ProductType } from "@/utils/type";
 
 const transformImages = (default_image: { url: string }): { src: string }[] => {
   return [{ src: default_image.url }];
@@ -46,6 +46,6 @@ export const ProductTransformer = (data: ProductAPI): ProductType => {
     options: transformOption({ groups: data.psdata.groups }).options,
     description: data.psdata.description,
     id: String(data.psdata.id_product),
-    productAttributeId:data.psdata.id_product_attribute ??null,
+    productAttributeId: data.psdata.id_product_attribute ?? null,
   };
 };

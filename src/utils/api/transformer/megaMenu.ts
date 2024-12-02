@@ -1,4 +1,4 @@
-import { MegaMenuAPI } from "../type/megaMenu";
+import { MegaMenuAPI } from "@/utils/type";
 
 export const MegaMenuTransformer = (data: MegaMenuAPI) => {
   const menuItems = data.psdata.menuItems.map((item) => {
@@ -6,13 +6,13 @@ export const MegaMenuTransformer = (data: MegaMenuAPI) => {
       id: item.id,
       slug: item.slug,
       label: item.label,
-      link: '/category/'+item.id,
+      link: "/category/" + item.id,
       children: item.children?.map((child) => {
         return {
           id: item.id,
           slug: child.slug,
           title: child.label,
-          link:'/category/'+ child.id,
+          link: "/category/" + child.id,
         };
       }),
     };

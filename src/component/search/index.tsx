@@ -3,7 +3,6 @@ import styles from "./search.module.scss";
 import { getData } from "@/utils/fetchData";
 import { ProductSearchAPI } from "@/const/endPoint";
 import { debounce } from "@/utils/function";
-import { SearchTransformer } from "@/utils/transformer/search";
 import ProductCard from "../productCard";
 import { SearchProduct } from "@/utils/type/search";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -99,3 +98,6 @@ const Search: FC = () => {
 };
 
 export default Search;
+function SearchTransformer(data: any) {
+  throw new Error("Function not implemented.");
+}

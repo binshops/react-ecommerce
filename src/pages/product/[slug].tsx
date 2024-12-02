@@ -3,9 +3,9 @@ import { getData } from "@/utils/fetchData";
 import { GetServerSidePropsContext } from "next";
 import React, { FC, useEffect, useState } from "react";
 import ProductDetails from "@/component/productDetails";
-import { ProductTransformer } from "@/utils/transformer/product";
 import { ProductPageProps } from "@/utils/type";
-import { MegaMenuTransformer } from "@/utils/transformer/megaMenu";
+import { ProductTransformer } from "@/utils/api/transformer/product";
+import { MegaMenuTransformer } from "@/utils/api/transformer/megaMenu";
 
 const ProductPage: FC<ProductPageProps> = ({ data }) => {
   const [product, setProduct] = useState(data);

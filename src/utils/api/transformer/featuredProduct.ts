@@ -1,4 +1,4 @@
-import { FeaturedProductAPI } from "../type";
+import { FeaturedProductAPI } from "@/utils/type";
 
 export const FeaturedProductTransformer = (data: FeaturedProductAPI) => {
   const productCarousel = data.psdata.map((product) => {
@@ -12,5 +12,5 @@ export const FeaturedProductTransformer = (data: FeaturedProductAPI) => {
       rate: product.rate,
     };
   });
-  return productCarousel
+  return productCarousel;
 };

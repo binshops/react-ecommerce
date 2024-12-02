@@ -1,4 +1,4 @@
-import { HomeAPI } from "../type";
+import { HomeAPI } from "@/utils/type";
 
 export const HomeTransformer = (data: HomeAPI) => {
   const homeProductCarousel = data.psdata.featuredProductsList.map(
