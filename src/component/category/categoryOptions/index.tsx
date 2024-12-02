@@ -20,7 +20,7 @@ const CategoryOptions: FC<CategoryOptionsProps> = ({
   activeSort,
   activeFilter,
 }) => {
-  const [filterQuery, setFilterQuery] = useState();
+  const [filterQuery, setFilterQuery] = useState<string | undefined>();
   const [orderQuery, setOrderQuery] = useState<string | undefined>();
   const [isOpenFilter, setIsOpenFilter] = useState(false);
   const [showSortOption, setShowSortOption] = useState(false);
