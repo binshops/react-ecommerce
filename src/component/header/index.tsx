@@ -1,14 +1,18 @@
 import React, { FC, useState } from "react";
-import styles from "./header.module.scss";
-import Search from "../search";
-import MegaMenu from "../megaMenu";
 import Link from "next/link";
-import { useScrollLock } from "@/utils/hooks";
-import CartContent from "../cartContent";
-import { useCart } from "@/context/cartContext";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+
+import { useScrollLock } from "@/utils/hooks";
+import { useCart } from "@/context/cartContext";
+
+import Search from "../search";
+import MegaMenu from "../megaMenu";
+import CartContent from "../cartContent";
 import LoadingIndicator from "../loadingIndicator";
+
+import styles from "./header.module.scss";
 
 const Header: FC = () => {
   const { lockScroll } = useScrollLock();
