@@ -1,12 +1,6 @@
 import React, { FC, useState } from "react";
-import styles from "./navigationBar.module.scss";
 import Link from "next/link";
-import { useMegaMenu } from "@/context/menuContext";
-import { useScrollLock } from "@/utils/hooks";
-import Modal from "../modal";
-import AccordionItem from "../accordionItem";
-import { useCart } from "@/context/cartContext";
-import CartContent from "../cartContent";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBars,
@@ -14,13 +8,24 @@ import {
   faHouse,
 } from "@fortawesome/free-solid-svg-icons";
 
+import { useMegaMenu } from "@/context/menuContext";
+import { useCart } from "@/context/cartContext";
+import { useScrollLock } from "@/utils/hooks";
+
+import AccordionItem from "../accordionItem";
+import CartContent from "../cartContent";
+import Modal from "../modal";
+
+import styles from "./navigationBar.module.scss";
+
 const NavigationBar: FC = () => {
   const { lockScroll, unlockScroll } = useScrollLock();
   const [openMenu, setOpenMenu] = useState(false);
   const [openCart, setOpenCart] = useState(false);
   const megaMenuContext = useMegaMenu();
-  const menu = megaMenuContext?.menu;
   const { cart } = useCart();
+
+  const menu = megaMenuContext?.menu;
 
   return (
     <>
