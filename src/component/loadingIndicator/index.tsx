@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+
 import styles from "./loadingIndicator.module.scss";
 
 const LoadingIndicator = () => {
@@ -19,7 +20,6 @@ const LoadingIndicator = () => {
     router.events.on("routeChangeComplete", handleRouteComplete);
     router.events.on("routeChangeError", handleRouteComplete);
 
-    // Cleanup event listeners on unmount
     return () => {
       router.events.off("routeChangeStart", handleRouteChange);
       router.events.off("routeChangeComplete", handleRouteComplete);
