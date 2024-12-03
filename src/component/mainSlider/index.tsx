@@ -1,9 +1,13 @@
 import React, { FC } from "react";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
-import styles from "./mainSlider.module.scss";
 import "swiper/css";
 import "swiper/css/pagination";
+
+import { mainSliderImage } from "@/const/mainSliderImage";
+
+import styles from "./mainSlider.module.scss";
 
 const MainSlider: FC = () => {
   return (
@@ -12,41 +16,13 @@ const MainSlider: FC = () => {
       modules={[Pagination]}
       className={styles.sliderContainer}
     >
-      <SwiperSlide>
-        <img
-          src={"/images/slider/slide1.webp"}
-          alt=""
-          className={styles.image}
-        />
-      </SwiperSlide>
-      <SwiperSlide>
-        <img
-          src={"/images/slider/slide1.webp"}
-          alt=""
-          className={styles.image}
-        />
-      </SwiperSlide>
-      <SwiperSlide>
-        <img
-          src={"/images/slider/slide1.webp"}
-          alt=""
-          className={styles.image}
-        />
-      </SwiperSlide>
-      <SwiperSlide>
-        <img
-          src={"/images/slider/slide1.webp"}
-          alt=""
-          className={styles.image}
-        />
-      </SwiperSlide>
-      <SwiperSlide>
-        <img
-          src={"/images/slider/slide1.webp"}
-          alt=""
-          className={styles.image}
-        />
-      </SwiperSlide>
+      {mainSliderImage.map((item, index) => {
+        return (
+          <SwiperSlide key={index}>
+            <img src={item.image} alt={item.title} className={styles.image} />
+          </SwiperSlide>
+        );
+      })}
     </Swiper>
   );
 };
