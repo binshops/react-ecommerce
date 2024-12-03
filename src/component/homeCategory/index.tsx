@@ -1,8 +1,10 @@
 import React, { FC } from "react";
-import styles from "./homeCategory.module.scss";
 import Link from "next/link";
+
 import { mobileBanners } from "@/const/categoryImage";
 import { desktopBanners } from "@/const/categoryImage";
+
+import styles from "./homeCategory.module.scss";
 
 const HomeCategory: FC = () => {
   return (
@@ -17,10 +19,8 @@ const HomeCategory: FC = () => {
             >
               <img
                 src={mobileBanner.image}
-                alt=""
+                alt={mobileBanner.title}
                 className={styles.image}
-                width={100}
-                height={100}
               />
             </Link>
           );
@@ -39,10 +39,8 @@ const HomeCategory: FC = () => {
             >
               <img
                 src={desktopBanner.image}
-                alt=""
+                alt={desktopBanner.title}
                 className={styles.image}
-                width={100}
-                height={100}
               />
             </Link>
           );
