@@ -9,6 +9,7 @@ import NavigationBar from "@/component/navigationBar";
 import { CartProvider } from "@/context/cartContext";
 import { MegaMenuProvider } from "@/context/menuContext";
 import { Toaster } from "react-hot-toast";
+import "./../../i18n";
 
 const inter = Raleway({ subsets: ["latin"] });
 
