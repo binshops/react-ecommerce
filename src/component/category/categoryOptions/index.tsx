@@ -1,4 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import { CategoryTransformer } from "@/utils/api/transformer/category";
 import { getData } from "@/utils/api/fetchData/apiCall";
@@ -24,6 +25,7 @@ const CategoryOptions: FC<CategoryOptionsProps> = ({
   const [orderQuery, setOrderQuery] = useState<string | undefined>();
   const [isOpenFilter, setIsOpenFilter] = useState(false);
   const [showSortOption, setShowSortOption] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -55,7 +57,9 @@ const CategoryOptions: FC<CategoryOptionsProps> = ({
         isOpenFilter={isOpenFilter}
         setIsOpenFilter={setIsOpenFilter}
       />
-      <p className={styles.count}>{count} Item(s)</p>
+      <p className={styles.count}>
+        {count} {t("category.items")}
+      </p>
       <Sort
         sortOptions={sortOptions}
         setOrderQuery={setOrderQuery}
