@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Footer from "@/component/footer";
 import Header from "@/component/header";
 import "@/styles/globals.css";
@@ -9,10 +9,19 @@ import { CartProvider } from "@/context/cartContext";
 import { MegaMenuProvider } from "@/context/menuContext";
 import { Toaster } from "react-hot-toast";
 import "./../../i18n";
+import { useRouter } from "next/router";
 
 const inter = Raleway({ subsets: ["latin"] });
 
 export default function App({ Component, pageProps }: AppProps) {
+  const router = useRouter();
+
+  useEffect(() => {
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+  }, [router]);
+
   return (
     <>
       <CartProvider>
