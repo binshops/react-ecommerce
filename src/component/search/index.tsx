@@ -1,13 +1,16 @@
 import React, { FC, useCallback, useEffect, useRef, useState } from "react";
-import styles from "./search.module.scss";
-import { getData } from "@/utils/api/fetchData/apiCall";
-import { ProductSearchAPI } from "@/const/endPoint";
-import { debounce } from "@/utils/function";
-import ProductCard from "../productCard";
-import { SearchProduct } from "@/utils/type";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import { SearchTransformer } from "@/utils/api/transformer/search";
+import { getData } from "@/utils/api/fetchData/apiCall";
+import { debounce } from "@/utils/function";
+import { SearchProduct } from "@/utils/type";
+
+import { ProductSearchAPI } from "@/const/endPoint";
+
+import ProductCard from "../productCard";
+import styles from "./search.module.scss";
 
 const Search: FC = () => {
   const [value, setValue] = useState("");
