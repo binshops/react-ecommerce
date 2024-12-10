@@ -1,6 +1,6 @@
 export interface AddToCartProps {
   quantity: number;
-  setQuantity: Function;
-  handleAdd: Function;
+  setQuantity: (value: number) => void;
+  handleAdd: () => void;
   isLoading: boolean;
 }

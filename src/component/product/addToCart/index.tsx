@@ -1,6 +1,8 @@
 import React, { FC } from "react";
-import styles from "./addToCart.module.scss";
+
 import { AddToCartProps } from "./addToCart.types";
+
+import styles from "./addToCart.module.scss";
 
 const AddToCart: FC<AddToCartProps> = ({
   quantity,
