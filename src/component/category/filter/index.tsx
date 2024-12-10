@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { useTranslation } from "react-i18next";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
@@ -22,6 +23,7 @@ const Filter: FC<FilterProps> = ({
 }) => {
   const { lockScroll, unlockScroll } = useScrollLock();
   const { width } = useWindowSize();
+  const { t } = useTranslation();
   const isDeskTop = width > 768;
   return (
     <>
@@ -33,7 +35,7 @@ const Filter: FC<FilterProps> = ({
         }}
       >
         <FontAwesomeIcon icon={faFilter} fontSize={18} />
-        <p className={styles.title}>Filters</p>
+        <p className={styles.title}>{t("category.filters")}</p>
       </div>
       <Modal
         isOpen={isOpenFilter}
