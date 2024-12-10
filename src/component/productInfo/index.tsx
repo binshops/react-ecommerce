@@ -1,15 +1,21 @@
 import React, { FC, useEffect, useState } from "react";
-import styles from "./productInfo.module.scss";
-import { productInfo } from "@/utils/type";
-import Price from "../product/price";
-import Options from "../product/options";
-import { getData } from "@/utils/api/fetchData/apiCall";
-import { ProductDetailAPI } from "@/const/endPoint";
-import AddToCart from "../product/addToCart";
-import { useCart } from "@/context/cartContext";
-import { ProductTransformer } from "@/utils/api/transformer/product";
 
-const ProductInfo: FC<productInfo> = ({
+import { ProductTransformer } from "@/utils/api/transformer/product";
+import { getData } from "@/utils/api/fetchData/apiCall";
+
+import { ProductDetailAPI } from "@/const/endPoint";
+
+import { useCart } from "@/context/cartContext";
+
+import AddToCart from "../product/addToCart";
+import Options from "../product/options";
+import Price from "../product/price";
+
+import { productInfoProps } from "./productInfo.types";
+
+import styles from "./productInfo.module.scss";
+
+const ProductInfo: FC<productInfoProps> = ({
   id,
   title,
   price,
@@ -21,12 +27,7 @@ const ProductInfo: FC<productInfo> = ({
   const [selectedOption, setSelectedOption] = useState<
     { id: string; value: string }[]
   >([]);
-  const { addToCart, cart, isLoading } = useCart();
-  const productInCart = cart?.products?.find(
-    (product) =>
-      product.productAttributeId ===
-        (productAttributeId ? productAttributeId : 1) && product.id === id
-  );
+  const { addToCart, isLoading } = useCart();
   const [quantity, setQuantity] = useState(1);
   const handleSelectOption = (id: string, value: string) => {
     const index = selectedOption.findIndex((option) => option.id === id);
@@ -62,15 +63,12 @@ const ProductInfo: FC<productInfo> = ({
     };
     selectedOption.length > 0 && fetchData();
   }, [selectedOption]);
-  useEffect(() => {
-    setQuantity(productInCart ? productInCart.quantity : 1);
-  }, [productInCart]);
   const handleAdd = async () => {
     const item = {
-      id: id,
+      id,
       update: 1,
-      productAttributeId: productAttributeId,
-      quantity: quantity,
+      productAttributeId,
+      quantity,
     };
     addToCart(item);
   };
