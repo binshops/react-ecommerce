@@ -1,12 +1,18 @@
 import React, { FC, useEffect, useState } from "react";
-import styles from "./productDetails.module.scss";
-import ProductGallery from "../productGallery";
-import ProductInfo from "../productInfo";
-import { Product, productDetailsProps } from "@/utils/type";
+
 import { FeaturedProductAPI } from "@/const/endPoint";
-import ProductCarousel from "../productCarousel";
+
 import { FeaturedProductTransformer } from "@/utils/api/transformer/featuredProduct";
+import { Product } from "@/utils/type";
 import { getData } from "@/utils/api/fetchData/apiCall";
+
+import ProductCarousel from "../productCarousel";
+import ProductInfo from "../productInfo";
+import ProductGallery from "../productGallery";
+
+import { productDetailsProps } from "./productDetails.types";
+
+import styles from "./productDetails.module.scss";
 
 const ProductDetails: FC<productDetailsProps> = ({ product, setProduct }) => {
   const [featuredProduct, setFeaturedProduct] = useState<Product[]>([]);
