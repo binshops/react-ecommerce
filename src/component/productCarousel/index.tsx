@@ -1,11 +1,15 @@
 import React, { FC } from "react";
-import styles from "./productCarousel.module.scss";
+
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import { Pagination } from "swiper/modules";
+
 import ProductCard from "../productCard";
-import { ProductCarouselProps } from "@/utils/type";
+
+import { ProductCarouselProps } from "./productCarousel.types";
+
+import styles from "./productCarousel.module.scss";
 
 const ProductCarousel: FC<ProductCarouselProps> = ({ product = [] }) => {
   return (
