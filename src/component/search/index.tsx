@@ -5,11 +5,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { SearchTransformer } from "@/utils/api/transformer/search";
 import { getData } from "@/utils/api/fetchData/apiCall";
 import { debounce } from "@/utils/function";
-import { SearchProduct } from "@/utils/type";
 
 import { ProductSearchAPI } from "@/const/endPoint";
 
 import ProductCard from "../productCard";
+
+import { SearchProduct } from "./search.types";
+
 import styles from "./search.module.scss";
 
 const Search: FC = () => {
