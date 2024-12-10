@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 import Link from "next/link";
 
-import { ProductCardProps } from "@/utils/type";
-
 import Price from "../product/price";
+
+import { ProductCardProps } from "./productCard.types";
 
 import styles from "./productCard.module.scss";
 
