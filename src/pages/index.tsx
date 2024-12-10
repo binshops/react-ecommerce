@@ -1,4 +1,3 @@
-import Link from "next/link";
 import MainSlider from "@/component/mainSlider";
 import HomeCategory from "@/component/homeCategory";
 import ProductCarousel from "@/component/productCarousel";

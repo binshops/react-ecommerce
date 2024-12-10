@@ -1,4 +1,4 @@
-import { CategoryAPI, MegaMenuAPI, ProductDetailAPI } from "@/const/endPoint";
+import { CategoryAPI, MegaMenuAPI } from "@/const/endPoint";
 import { getData } from "@/utils/api/fetchData/apiCall";
 import { GetServerSidePropsContext } from "next";
 import React, { FC, useEffect, useState } from "react";

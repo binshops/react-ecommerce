@@ -3,7 +3,6 @@ import Footer from "@/component/footer";
 import Header from "@/component/header";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
-import Link from "next/link";
 import { Raleway } from "next/font/google";
 import NavigationBar from "@/component/navigationBar";
 import { CartProvider } from "@/context/cartContext";
