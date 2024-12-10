@@ -1,5 +1,4 @@
 import { menuItems } from "./megaMenu";
-import { Product } from "./product";
 
 export interface CategoryProducts {
   id_product: string;
@@ -27,7 +26,7 @@ export interface CategoryFilter {
     displayed: boolean;
     magnitude: number;
     nextEncodedFacets: string;
-    properties:{color:string}
+    properties: { color: string };
   }[];
 }
 export interface CategoryAPI {
@@ -51,7 +50,7 @@ export interface filterItem {
   display: boolean;
   productCount: number;
   filterQuery: string;
-  properties:{color:string}
+  properties: { color: string };
 }
 export interface Sort {
   label: string;
@@ -64,13 +63,6 @@ export interface Filter {
   display: boolean;
   type: string;
   options: filterItem[];
-}
-
-export interface FilterProps {
-  filters: Filter[];
-  setFilterQuery: Function;
-  isOpenFilter: boolean;
-  setIsOpenFilter: Function;
 }
 export interface Category {
   title: string;
