@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-import { optionType } from "@/context/productOption";
+import { optionType } from "@/const/productOption";
 
 import SelectBox from "./selectBox";
 import ColorSelect from "./colorSelect";
