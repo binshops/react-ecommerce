@@ -8,41 +8,15 @@ export interface Product {
   rate: number;
 }
 
-export interface ProductCarouselProps {
-  product: Product[];
-}
-
-export interface ProductCardProps {
-  product: Product;
-}
-
-export interface productInfo {
-  id: string;
-  title: string;
-  price: string;
-  options: ProductOptions[];
-  description: string;
-  setProduct: Function;
-  productAttributeId: number;
-}
 export interface ProductOptions {
-  id: number;
+  id: string;
   title: string;
   type: string;
   items: {
-    id: number;
+    id: string;
     value: string;
     hex_value?: string;
   }[];
-}
-
-export interface productGalleryProps {
-  images: { src: string }[];
-}
-
-export interface productDetailsProps {
-  product: ProductType;
-  setProduct: Function;
 }
 
 export interface ProductPageProps {
@@ -67,7 +41,7 @@ export interface ProductData {
   default_image: { url: string };
   price: string;
   groups: Groups;
-  options?: ProductOptions[]; // This should ideally be replaced with a more specific type
+  options?: ProductOptions[];
   description: string;
   id_product: string;
   id_product_attribute: number;
