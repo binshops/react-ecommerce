@@ -9,8 +9,6 @@ import { MegaMenuProvider } from "@/context/menuContext";
 import { MegaMenuTransformer } from "@/utils/api/transformer/megaMenu";
 import { HomeTransformer } from "@/utils/api/transformer/home";
 import { getData } from "@/utils/api/fetchData/apiCall";
-import { useRouter } from "next/router";
-import { useEffect } from "react";
 import { useScrollRestoration } from "@/utils/hooks";
 
 export default function Home({
