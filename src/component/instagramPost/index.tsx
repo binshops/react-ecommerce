@@ -4,14 +4,16 @@ import useWindowSize from "@/utils/hooks/useWindowSize";
 import { desktopPost, mobilePost } from "@/const/instagramImage";
 
 import styles from "./instagramPost.module.scss";
+import { useTranslation } from "react-i18next";
 
 const InstagramPost: FC = () => {
   const { width } = useWindowSize();
+  const { t } = useTranslation();
 
   return (
     <div className={styles.instagramPost}>
-      <p className={styles.title}>Share Your Look </p>
-      <p className={styles.description}>#YOURLOOK </p>
+      <p className={styles.title}>{t("instagram.share")} </p>
+      <p className={styles.description}>{t("instagram.title")}</p>
       {width < 768 ? (
         <div className={styles.postContent}>
           {mobilePost?.map((post, index) => {

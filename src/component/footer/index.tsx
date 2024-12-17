@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { useTranslation } from "react-i18next";
 import { useRouter } from "next/router";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -19,6 +20,7 @@ import styles from "./footer.module.scss";
 const Footer: FC = () => {
   const { width } = useWindowSize();
   const router = useRouter();
+  const { t } = useTranslation();
 
   return (
     <div className={styles.footer}>
@@ -64,7 +66,7 @@ const Footer: FC = () => {
             })}
           </div>
           <div className={styles.socialBox}>
-            <p className={styles.title}>SOCIAL</p>
+            <p className={styles.title}>{t("footer.social")}</p>
             <div className={styles.items}>
               <a
                 href={socialMediaLinks.faceBook}

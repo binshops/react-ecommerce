@@ -1,6 +1,7 @@
 import React, { FC, useCallback, useEffect, useRef, useState } from "react";
 import { faMagnifyingGlass, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useTranslation } from "react-i18next";
 
 import { SearchTransformer } from "@/utils/api/transformer/search";
 import { getData } from "@/utils/api/fetchData/apiCall";
@@ -33,6 +34,7 @@ const Search: FC = () => {
     }, 500),
     []
   );
+  const { t } = useTranslation();
 
   const handleClickOutside = (event: MouseEvent) => {
     if (divRef.current && !divRef.current.contains(event.target as Node)) {
@@ -66,7 +68,7 @@ const Search: FC = () => {
       <div className={styles.searchInput}>
         <input
           type="text"
-          placeholder="Search for items"
+          placeholder={t("search.placeHolder")}
           value={value}
           onChange={(e) => {
             setValue(e.target.value);

@@ -17,6 +17,7 @@ import CartContent from "../cartContent";
 import Modal from "../modal";
 
 import styles from "./navigationBar.module.scss";
+import { useTranslation } from "react-i18next";
 
 const NavigationBar: FC = () => {
   const { lockScroll, unlockScroll } = useScrollLock();
@@ -24,6 +25,7 @@ const NavigationBar: FC = () => {
   const [openCart, setOpenCart] = useState(false);
   const megaMenuContext = useMegaMenu();
   const { cart } = useCart();
+  const { t } = useTranslation();
 
   const menu = megaMenuContext?.menu;
 
@@ -41,13 +43,13 @@ const NavigationBar: FC = () => {
           <div>
             <FontAwesomeIcon icon={faBars} className={styles.icon} />
           </div>
-          <p>Menu</p>
+          <p>{t("navigation.menu")}</p>
         </div>
         <Link className={styles.navigationItem} href={"/"}>
           <div>
             <FontAwesomeIcon icon={faHouse} className={styles.icon} />
           </div>
-          <p>Home</p>
+          <p>{t("navigation.home")}</p>
         </Link>
         <div
           className={styles.navigationItem}
@@ -61,7 +63,7 @@ const NavigationBar: FC = () => {
             {cart?.products?.length > 0 && <div className={styles.badge}></div>}
             <FontAwesomeIcon icon={faCartShopping} fontSize={20} color="#fff" />
           </div>
-          <p className={styles.cartItem}>Card</p>
+          <p className={styles.cartItem}>{t("navigation.card")}</p>
         </div>
       </div>
       <Modal
