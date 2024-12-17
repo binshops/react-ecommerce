@@ -7,6 +7,7 @@ import {
   faCartShopping,
   faHouse,
 } from "@fortawesome/free-solid-svg-icons";
+import { useTranslation } from "react-i18next";
 
 import { useMegaMenu } from "@/context/menuContext";
 import { useCart } from "@/context/cartContext";
@@ -17,7 +18,6 @@ import CartContent from "../cartContent";
 import Modal from "../modal";
 
 import styles from "./navigationBar.module.scss";
-import { useTranslation } from "react-i18next";
 
 const NavigationBar: FC = () => {
   const { lockScroll, unlockScroll } = useScrollLock();

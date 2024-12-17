@@ -1,10 +1,10 @@
 import React, { FC } from "react";
+import { useTranslation } from "react-i18next";
 
 import useWindowSize from "@/utils/hooks/useWindowSize";
 import { desktopPost, mobilePost } from "@/const/instagramImage";
 
 import styles from "./instagramPost.module.scss";
-import { useTranslation } from "react-i18next";
 
 const InstagramPost: FC = () => {
   const { width } = useWindowSize();
