@@ -6,7 +6,7 @@ import fr from "./locales/fr/common.json";
 i18n.use(initReactI18next).init({
   resources: {
     en: { translation: en },
-    fa: { translation: fr },
+    fr: { translation: fr },
   },
   lng: "en",
   fallbackLng: "en",
