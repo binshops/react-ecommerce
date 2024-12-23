@@ -14,15 +14,18 @@ import LoadingIndicator from "../loadingIndicator";
 
 import styles from "./header.module.scss";
 import { useTranslation } from "react-i18next";
+import { useRouter } from "next/router";
 
 const Header: FC = () => {
   const { lockScroll } = useScrollLock();
   const [openCart, setOpenCart] = useState(false);
   const { cart } = useCart();
   const { i18n } = useTranslation();
+  const router = useRouter();
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
-    console.log(i18n.language);
+    const { pathname, query } = router;
+    router.push({ pathname, query }, undefined, { locale: lng });
   };
   return (
     <header className={styles.header}>
