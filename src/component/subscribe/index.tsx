@@ -1,6 +1,7 @@
 import React, { FC } from "react";
-import styles from "./subscribe.module.scss";
 import { useTranslation } from "react-i18next";
+
+import styles from "./subscribe.module.scss";
 
 const Subscribe: FC = () => {
   const { t } = useTranslation();
