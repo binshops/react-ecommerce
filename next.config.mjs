@@ -20,8 +20,8 @@ const nextConfig = {
     unoptimized: false,
   },
   i18n: {
-    locales: ["en", "fa"], // زبان‌های پشتیبانی‌شده
-    defaultLocale: "en", // زبان پیش‌فرض
+    locales: ["en", "fr"],
+    defaultLocale: "en",
   },
 };
 
