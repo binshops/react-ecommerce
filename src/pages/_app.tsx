@@ -10,17 +10,26 @@ import { MegaMenuProvider } from "@/context/menuContext";
 import { Toaster } from "react-hot-toast";
 import "./../../i18n";
 import { useRouter } from "next/router";
+import { useTranslation } from "react-i18next";
 
 const inter = Raleway({ subsets: ["latin"] });
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
+  const { i18n } = useTranslation();
 
   useEffect(() => {
     if ("scrollRestoration" in window.history) {
       window.history.scrollRestoration = "manual";
     }
   }, [router]);
+
+  useEffect(() => {
+    const { locale } = router;
+    if (locale) {
+      i18n.changeLanguage(locale);
+    }
+  }, [router.locale]);
 
   return (
     <>
