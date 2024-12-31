@@ -19,7 +19,18 @@
     object-fit: cover;
   }
   .iconBox {
-    display: none;
+    .cartIcon {
+      display: none;
+    }
+    .lang {
+      border: none;
+      background-color: transparent;
+      font-size: 16px;
+      padding: 0 4px;
+      position: absolute;
+      top: 16px;
+      right: 16px;
+    }
   }
   @media screen and (min-width: 768px) {
     height: 80px;
@@ -34,6 +45,7 @@
       align-items: center;
       gap: 16px;
       .cartIcon {
+        display: block;
         position: relative;
         cursor: pointer;
         .badge {
@@ -54,10 +66,8 @@
         }
       }
       .lang {
-        border: none;
-        background-color: transparent;
-        font-size: 16px;
-        padding: 0 4px;
+        position: static;
+        cursor: pointer;
       }
     }
   }
