@@ -29,10 +29,10 @@ export default function Home({
   );
 }
 
-export async function getServerSideProps() {
-  const data = await getData(HomePageAPI);
+export async function getServerSideProps({ locale }: { locale: string }) {
+  const data = await getData(HomePageAPI, {}, "", "", locale);
   const { homeProductCarousel } = HomeTransformer(data);
-  const menuData = await getData(MegaMenuAPI);
+  const menuData = await getData(MegaMenuAPI, {}, "", "", locale);
   const menu = MegaMenuTransformer(menuData).menuItems;
   return { props: { data, homeProductCarousel, menu } };
 }

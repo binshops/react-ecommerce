@@ -20,12 +20,19 @@ const ProductPage: FC<ProductPageProps> = ({ data }) => {
 };
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const locale = context.locale;
   const productId = context.query.slug;
-
   const productData =
-    productId && (await getData(ProductDetailAPI, { product_id: productId }));
+    productId &&
+    (await getData(
+      ProductDetailAPI,
+      { product_id: productId },
+      "",
+      "",
+      locale
+    ));
   const data = ProductTransformer(productData);
-  const megaMenu = await getData(MegaMenuAPI);
+  const megaMenu = await getData(MegaMenuAPI, {}, "", "", locale);
   const menu = MegaMenuTransformer(megaMenu).menuItems;
   return { props: { data, menu } };
 }

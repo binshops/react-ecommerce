@@ -1,12 +1,15 @@
 import axiosInstance from "./axiosInstance";
+import i18n from "i18next";
 
 export async function getData(
   endPoint: string,
   queryParams?: any,
   extraParam?: string,
-  body?: any
+  body?: any,
+  locale?: string
 ): Promise<any> {
-  let url = endPoint;
+  const currentLanguage = locale || i18n.language;
+  let url = `/${currentLanguage}/rest${endPoint}`;
 
   if (queryParams && Object.keys(queryParams).length > 0) {
     const filteredQueryParams: Record<string, string> = {};

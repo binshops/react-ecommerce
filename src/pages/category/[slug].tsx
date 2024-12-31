@@ -40,7 +40,7 @@ const CategoryPage: FC<CategoryPageProps> = ({ data, categoryId, menu }) => {
       }
     };
     fetchData();
-  }, [page, categoryId]);
+  }, [page, categoryId, router]);
   return (
     <div className={styles.wrapper}>
       <div className={styles.categoryWrapper}>
@@ -82,14 +82,21 @@ const CategoryPage: FC<CategoryPageProps> = ({ data, categoryId, menu }) => {
 };
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const locale = context.locale;
   const categoryId = context.query.slug;
   const page = context.query.page;
-  const categoryData = await getData(CategoryAPI, {
-    id_category: categoryId,
-    page: page,
-  });
+  const categoryData = await getData(
+    CategoryAPI,
+    {
+      id_category: categoryId,
+      page: page,
+    },
+    "",
+    "",
+    locale
+  );
   const data = CategoryTransformer(categoryData);
-  const megaMenu = await getData(MegaMenuAPI);
+  const megaMenu = await getData(MegaMenuAPI, {}, "", "", locale);
   const menu = MegaMenuTransformer(megaMenu).menuItems;
   return { props: { data, categoryId, menu } };
 }
