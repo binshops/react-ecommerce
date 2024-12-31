@@ -1,0 +1,36 @@
+{
+  "cart": {
+    "remove": "remove from cart",
+    "total": "Total items:"
+  },
+  "category": {
+    "items": "Item(s)",
+    "filters": "Filters"
+  },
+  "footer": {
+    "social": "SOCIAL"
+  },
+  "instagram": {
+    "share": "Share Your Look",
+    "title": "#YOURLOOK"
+  },
+  "navigation": {
+    "menu": "Menu",
+    "home": "Home",
+    "card": "Card"
+  },
+  "product": {
+    "addToCard": "Add To Cart"
+  },
+  "carousel": {
+    "title": "Best Seller"
+  },
+  "search": {
+    "placeHolder": "Search for items"
+  },
+  "subscribe": {
+    "title": "Subscribe to Newsletters",
+    "description": "Be aware of upcoming sales and events. Receive gifts and special offers!",
+    "submit": "Subscribe"
+  }
+}

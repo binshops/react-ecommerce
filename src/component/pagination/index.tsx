@@ -1,13 +1,15 @@
-import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
-import styles from "./pagination.module.scss";
+import Link from "next/link";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronLeft,
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
+
 import { PaginationProps } from "./pagination.type";
 
+import styles from "./pagination.module.scss";
 
 export default function Pagination({ totalPages }: PaginationProps) {
   const pathname = usePathname();

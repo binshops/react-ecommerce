@@ -1,8 +1,10 @@
 import React, { FC, useState } from "react";
-import styles from "./selectBox.module.scss";
-import { selectBoxProps } from "./selectBox.types";
+
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import { selectBoxProps } from "./selectBox.types";
+import styles from "./selectBox.module.scss";
 
 const SelectBox: FC<selectBoxProps> = ({
   productOption,
@@ -34,7 +36,6 @@ const SelectBox: FC<selectBoxProps> = ({
                 handleSelectOption(productOption.id, option.id);
               }}
             >
-              {" "}
               {option.value}
             </p>
           );

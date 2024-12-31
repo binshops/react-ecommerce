@@ -1,17 +1,17 @@
-import { CategoryAPI, MegaMenuAPI, ProductDetailAPI } from "@/const/endPoint";
-import { getData } from "@/utils/fetchData";
+import { CategoryAPI, MegaMenuAPI } from "@/const/endPoint";
+import { getData } from "@/utils/api/fetchData/apiCall";
 import { GetServerSidePropsContext } from "next";
 import React, { FC, useEffect, useState } from "react";
 import styles from "./styles.module.scss";
-import { CategoryTransformer } from "@/utils/transformer/category";
 import CategoryProduct from "@/component/category/categoryProduct";
 import CategoryOptions from "@/component/category/categoryOptions";
-import { MegaMenuTransformer } from "@/utils/transformer/megaMenu";
 import AccordionItem from "@/component/accordionItem";
-import { Category, CategoryPageProps } from "@/utils/type/category";
+import { Category, CategoryPageProps } from "@/utils/type";
 import Pagination from "@/component/pagination";
 import { useRouter } from "next/router";
 import Placeholder from "@/component/category/placeholder";
+import { CategoryTransformer } from "@/utils/api/transformer/category";
+import { MegaMenuTransformer } from "@/utils/api/transformer/megaMenu";
 
 const CategoryPage: FC<CategoryPageProps> = ({ data, categoryId, menu }) => {
   const [category, setCategory] = useState<Category | undefined>(data);
@@ -40,7 +40,7 @@ const CategoryPage: FC<CategoryPageProps> = ({ data, categoryId, menu }) => {
       }
     };
     fetchData();
-  }, [page, categoryId]);
+  }, [page, categoryId, router]);
   return (
     <div className={styles.wrapper}>
       <div className={styles.categoryWrapper}>
@@ -54,7 +54,6 @@ const CategoryPage: FC<CategoryPageProps> = ({ data, categoryId, menu }) => {
               links={item.children}
               titleLink={item.link}
               mode="dark"
-              setIsLoading={setIsLoading}
               key={item.id}
             />
           );
@@ -83,14 +82,21 @@ const CategoryPage: FC<CategoryPageProps> = ({ data, categoryId, menu }) => {
 };
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const locale = context.locale;
   const categoryId = context.query.slug;
   const page = context.query.page;
-  const categoryData = await getData(CategoryAPI, {
-    id_category: categoryId,
-    page: page,
-  });
+  const categoryData = await getData(
+    CategoryAPI,
+    {
+      id_category: categoryId,
+      page: page,
+    },
+    "",
+    "",
+    locale
+  );
   const data = CategoryTransformer(categoryData);
-  const megaMenu = await getData(MegaMenuAPI);
+  const megaMenu = await getData(MegaMenuAPI, {}, "", "", locale);
   const menu = MegaMenuTransformer(megaMenu).menuItems;
   return { props: { data, categoryId, menu } };
 }

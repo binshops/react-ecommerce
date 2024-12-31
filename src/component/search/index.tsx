@@ -1,13 +1,19 @@
 import React, { FC, useCallback, useEffect, useRef, useState } from "react";
-import styles from "./search.module.scss";
-import { getData } from "@/utils/fetchData";
-import { ProductSearchAPI } from "@/const/endPoint";
-import { debounce } from "@/utils/function";
-import { SearchTransformer } from "@/utils/transformer/search";
-import ProductCard from "../productCard";
-import { SearchProduct } from "@/utils/type/search";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useTranslation } from "react-i18next";
+
+import { SearchTransformer } from "@/utils/api/transformer/search";
+import { getData } from "@/utils/api/fetchData/apiCall";
+import { debounce } from "@/utils/function";
+
+import { ProductSearchAPI } from "@/const/endPoint";
+
+import ProductCard from "../productCard";
+
+import { SearchProduct } from "./search.types";
+
+import styles from "./search.module.scss";
 
 const Search: FC = () => {
   const [value, setValue] = useState("");
@@ -28,6 +34,7 @@ const Search: FC = () => {
     }, 500),
     []
   );
+  const { t } = useTranslation();
 
   const handleClickOutside = (event: MouseEvent) => {
     if (divRef.current && !divRef.current.contains(event.target as Node)) {
@@ -61,7 +68,7 @@ const Search: FC = () => {
       <div className={styles.searchInput}>
         <input
           type="text"
-          placeholder="Search for items"
+          placeholder={t("search.placeHolder")}
           value={value}
           onChange={(e) => {
             setValue(e.target.value);

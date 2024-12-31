@@ -1,14 +1,20 @@
 import React, { FC } from "react";
-import styles from "./cartContent.module.scss";
+import { useTranslation } from "react-i18next";
+
 import { useCart } from "@/context/cartContext";
-import CartItem from "./cardItem";
+import { useScrollLock } from "@/utils/hooks";
+
 import Modal from "../modal";
-import { useScrollLock } from "@/utils/hooks/useScrollLock";
+
 import { CartContentProps } from "./cartContent.types";
+import CartItem from "./cardItem";
+
+import styles from "./cartContent.module.scss";
 
 const CartContent: FC<CartContentProps> = ({ isOpen, setIsOpen }) => {
   const { cart } = useCart();
   const { unlockScroll } = useScrollLock();
+  const { t } = useTranslation();
 
   return (
     <Modal
@@ -21,7 +27,7 @@ const CartContent: FC<CartContentProps> = ({ isOpen, setIsOpen }) => {
     >
       <div className={styles.cart}>
         <p className={styles.title}>
-          Total items:
+          {t("cart.total")}
           <span>{cart?.totalProduct}</span>
         </p>
         {cart?.products?.map((product, idx) => {

@@ -1,17 +1,22 @@
 import React, { FC } from "react";
-import styles from "./cardItem.module.scss";
+
 import { useCart } from "@/context/cartContext";
+
 import UpdateQuantity from "./updateQuantity";
-import { CartItemProps } from "../cartContent.types";
+import { CartItemProps } from "./cardItem.types";
+
+import styles from "./cardItem.module.scss";
+import { useTranslation } from "react-i18next";
 
 const CartItem: FC<CartItemProps> = ({ product }) => {
   const { id, productAttributeId, quantity, name, image, price, attributes } =
     product;
   const { removeFromCart, isLoading } = useCart();
+  const { t } = useTranslation();
   const handleRemove = async () => {
     const item = {
-      id: id,
-      productAttributeId: productAttributeId,
+      id,
+      productAttributeId,
     };
     removeFromCart(item);
   };
@@ -41,7 +46,7 @@ const CartItem: FC<CartItemProps> = ({ product }) => {
           disabled={isLoading}
           onClick={() => handleRemove()}
         >
-          remove from cart
+          {t("cart.remove")}
         </button>
       </div>
     </div>

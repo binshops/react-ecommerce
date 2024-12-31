@@ -13,7 +13,3 @@ export interface SearchAPI {
     }[];
   };
 }
-
-export interface SearchProduct {
-  searchProducts: Product[];
-}

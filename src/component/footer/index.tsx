@@ -1,9 +1,7 @@
 import React, { FC } from "react";
-import styles from "./footer.module.scss";
-import AccordionItem from "../accordionItem";
-import { footerLink } from "@/const/FooterLink";
-import useWindowSize from "@/utils/hooks/useWindowSize";
+import { useTranslation } from "react-i18next";
 import { useRouter } from "next/router";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFacebook,
@@ -12,9 +10,17 @@ import {
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
 
+import { footerLink, socialMediaLinks } from "@/const/FooterLink";
+import useWindowSize from "@/utils/hooks/useWindowSize";
+
+import AccordionItem from "../accordionItem";
+
+import styles from "./footer.module.scss";
+
 const Footer: FC = () => {
   const { width } = useWindowSize();
   const router = useRouter();
+  const { t } = useTranslation();
 
   return (
     <div className={styles.footer}>
@@ -47,8 +53,8 @@ const Footer: FC = () => {
                       return (
                         <a
                           href={link.link}
-                          key={idx}
                           className={styles.subLink}
+                          key={idx}
                         >
                           {link.title}
                         </a>
@@ -60,30 +66,46 @@ const Footer: FC = () => {
             })}
           </div>
           <div className={styles.socialBox}>
-            <p className={styles.title}>SOCIAL</p>
+            <p className={styles.title}>{t("footer.social")}</p>
             <div className={styles.items}>
-              <a href="https://www.facebook.com/" className={styles.link} target="_blank">
+              <a
+                href={socialMediaLinks.faceBook}
+                className={styles.link}
+                target="_blank"
+              >
                 <FontAwesomeIcon
                   icon={faFacebook}
                   color="#192bc6"
                   fontSize={20}
                 />
               </a>
-              <a href="https://www.pinterest.com/" className={styles.link} target="_blank">
+              <a
+                href={socialMediaLinks.pinterest}
+                className={styles.link}
+                target="_blank"
+              >
                 <FontAwesomeIcon
                   icon={faPinterest}
                   color="#ac2e33"
                   fontSize={20}
                 />
               </a>
-              <a href="https://www.twitter.com/" className={styles.link} target="_blank">
+              <a
+                href={socialMediaLinks.twitter}
+                className={styles.link}
+                target="_blank"
+              >
                 <FontAwesomeIcon
                   icon={faTwitter}
                   color="#1ea1f1"
                   fontSize={20}
                 />
               </a>
-              <a href="https://youtube.com/" className={styles.link} target="_blank">
+              <a
+                href={socialMediaLinks.youtube}
+                className={styles.link}
+                target="_blank"
+              >
                 <FontAwesomeIcon
                   icon={faYoutube}
                   color="#b13733"

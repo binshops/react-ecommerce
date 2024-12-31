@@ -1,11 +1,15 @@
 import React, { FC, useEffect, useState } from "react";
-import styles from "./categoryOptions.module.scss";
-import { CategoryOptionsProps } from "../category.types";
+import { useTranslation } from "react-i18next";
+
+import { CategoryTransformer } from "@/utils/api/transformer/category";
+import { getData } from "@/utils/api/fetchData/apiCall";
+import { CategoryAPI } from "@/const/endPoint";
+
+import { CategoryOptionsProps } from "./categoryOptions.types";
 import Sort from "../sort";
 import Filter from "../filter";
-import { getData } from "@/utils/fetchData";
-import { CategoryAPI } from "@/const/endPoint";
-import { CategoryTransformer } from "@/utils/transformer/category";
+
+import styles from "./categoryOptions.module.scss";
 
 const CategoryOptions: FC<CategoryOptionsProps> = ({
   filters,
@@ -17,10 +21,11 @@ const CategoryOptions: FC<CategoryOptionsProps> = ({
   activeSort,
   activeFilter,
 }) => {
-  const [filterQuery, setFilterQuery] = useState();
+  const [filterQuery, setFilterQuery] = useState<string | undefined>();
   const [orderQuery, setOrderQuery] = useState<string | undefined>();
   const [isOpenFilter, setIsOpenFilter] = useState(false);
   const [showSortOption, setShowSortOption] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -52,7 +57,9 @@ const CategoryOptions: FC<CategoryOptionsProps> = ({
         isOpenFilter={isOpenFilter}
         setIsOpenFilter={setIsOpenFilter}
       />
-      <p className={styles.count}>{count} Item(s)</p>
+      <p className={styles.count}>
+        {count} {t("category.items")}
+      </p>
       <Sort
         sortOptions={sortOptions}
         setOrderQuery={setOrderQuery}

@@ -1,14 +1,16 @@
 import React from "react";
-import styles from "./megaMenu.module.scss";
 import Link from "next/link";
-import { useMegaMenu } from "@/context/menuContext";
-import Loading from "../loading";
 import { useRouter } from "next/router";
+
+import { useMegaMenu } from "@/context/menuContext";
+
+import styles from "./megaMenu.module.scss";
 
 const MegaMenu: React.FC = () => {
   const megaMenuContext = useMegaMenu();
-  const menu = megaMenuContext?.menu;
   const router = useRouter();
+
+  const menu = megaMenuContext?.menu;
   const handelSubmenuClick = (url: string) => {
     router.push(url);
   };

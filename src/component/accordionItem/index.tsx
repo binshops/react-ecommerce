@@ -1,16 +1,18 @@
 import React, { FC, useState } from "react";
-import styles from "./accordionItem.module.scss";
-import { AccordionItemProps } from "./accordion.types";
-import Link from "next/link";
 import { useRouter } from "next/router";
+import Link from "next/link";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+
+import { AccordionItemProps } from "./accordion.types";
+
+import styles from "./accordionItem.module.scss";
 
 const AccordionItem: FC<AccordionItemProps> = ({
   title,
   links,
   titleLink,
-  setIsLoading,
   mode = "light",
 }) => {
   const [isOpen, setIsOpen] = useState(Boolean);
@@ -21,7 +23,6 @@ const AccordionItem: FC<AccordionItemProps> = ({
         mode === "dark" ? styles.darkMode : ""
       }`}
       onClick={() => {
-        setIsLoading && setIsLoading(true);
         router.push(titleLink);
       }}
     >

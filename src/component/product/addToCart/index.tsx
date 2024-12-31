@@ -1,6 +1,9 @@
 import React, { FC } from "react";
-import styles from "./addToCart.module.scss";
+import { useTranslation } from "react-i18next";
+
 import { AddToCartProps } from "./addToCart.types";
+
+import styles from "./addToCart.module.scss";
 
 const AddToCart: FC<AddToCartProps> = ({
   quantity,
@@ -8,6 +11,8 @@ const AddToCart: FC<AddToCartProps> = ({
   handleAdd,
   isLoading,
 }) => {
+  const { t } = useTranslation();
+
   return (
     <div className={styles.addToCart}>
       <div className={styles.quantityBox}>
@@ -34,7 +39,7 @@ const AddToCart: FC<AddToCartProps> = ({
         onClick={() => handleAdd()}
         disabled={isLoading}
       >
-        Add To Cart
+        {t("product.addToCard")}
       </button>
     </div>
   );

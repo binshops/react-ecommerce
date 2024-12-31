@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useRef } from "react";
 import styles from "./sort.module.scss";
-import { SortProps } from "../category.types";
+import { SortProps } from "./sort.types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
@@ -39,12 +39,12 @@ const Sort: FC<SortProps> = ({
       <div
         className={`${styles.sortOptions} ${showSortOption ? styles.show : ""}`}
       >
-        {sortOptions.map((item, index) => {
+        {sortOptions?.map((item, index) => {
           return (
             <div
               onClick={() => setOrderQuery(item.querySort)}
-              key={index}
               className={styles.item}
+              key={index}
             >
               <p>{item.label}</p>
             </div>

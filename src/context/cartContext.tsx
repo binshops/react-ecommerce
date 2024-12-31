@@ -1,11 +1,7 @@
 import { CardAPI } from "@/const/endPoint";
-import { getData } from "@/utils/fetchData";
-import { CartTransformer } from "@/utils/transformer/cart";
-import {
-  CartContextType,
-  AddToCartItem,
-  RemoveFromCart,
-} from "@/utils/type/cartContext";
+import { CartTransformer } from "@/utils/api/transformer/cart";
+import { getData } from "@/utils/api/fetchData/apiCall";
+import { CartContextType, AddToCartItem, RemoveFromCart } from "@/utils/type";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 

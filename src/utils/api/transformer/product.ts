@@ -1,4 +1,4 @@
-import { Groups, ProductType, ProductAPI } from "../type";
+import { Groups, ProductAPI, ProductType } from "@/utils/type";
 
 const transformImages = (default_image: { url: string }): { src: string }[] => {
   return [{ src: default_image.url }];
@@ -6,25 +6,25 @@ const transformImages = (default_image: { url: string }): { src: string }[] => {
 
 function transformOption(input: { groups: Groups }) {
   const options: Array<{
-    id: number;
+    id: string;
     title: string;
     type: string;
-    items: Array<{ id: number; value: string }>;
+    items: Array<{ id: string; value: string }>;
   }> = [];
 
   Object.entries(input.groups).forEach(([groupId, group]) => {
-    const items: Array<{ id: number; value: string; hex_value?: string }> = [];
+    const items: Array<{ id: string; value: string; hex_value?: string }> = [];
 
     Object.entries(group.attributes).forEach(([attributeId, attribute]) => {
       items.push({
-        id: parseInt(attributeId),
+        id: attributeId,
         value: attribute.name,
         hex_value: attribute.html_color_code,
       });
     });
 
     const option = {
-      id: parseInt(groupId),
+      id: groupId,
       title: group.group_name,
       type: group.group_type,
       items: items,
@@ -46,6 +46,6 @@ export const ProductTransformer = (data: ProductAPI): ProductType => {
     options: transformOption({ groups: data.psdata.groups }).options,
     description: data.psdata.description,
     id: String(data.psdata.id_product),
-    productAttributeId:data.psdata.id_product_attribute ??null,
+    productAttributeId: data.psdata.id_product_attribute ?? null,
   };
 };

@@ -1,20 +1,17 @@
 import React, { FC } from "react";
-import styles from "./options.module.scss";
+
+import { optionType } from "@/const/productOption";
+
 import SelectBox from "./selectBox";
 import ColorSelect from "./colorSelect";
-import { ProductOptions } from "@/utils/type";
 import { OptionsProps } from "./options.type";
 
-const optionType = {
-  radio: "radio",
-  color: "color",
-  select: "select",
-};
+import styles from "./options.module.scss";
 
 const Options: FC<OptionsProps> = ({ options, handleSelectOption }) => {
   return (
     <div className={styles.options}>
-      {options.map((option,idx) => {
+      {options.map((option, idx) => {
         switch (option.type) {
           case optionType.radio:
             return (

@@ -1,47 +1,42 @@
 import React, { FC } from "react";
-import styles from "./instagramPost.module.scss";
+import { useTranslation } from "react-i18next";
+
 import useWindowSize from "@/utils/hooks/useWindowSize";
+import { desktopPost, mobilePost } from "@/const/instagramImage";
+
+import styles from "./instagramPost.module.scss";
 
 const InstagramPost: FC = () => {
   const { width } = useWindowSize();
+  const { t } = useTranslation();
 
   return (
     <div className={styles.instagramPost}>
-      <p className={styles.title}>Share Your Look </p>
-      <p className={styles.description}>#YOURLOOK </p>
+      <p className={styles.title}>{t("instagram.share")} </p>
+      <p className={styles.description}>{t("instagram.title")}</p>
       {width < 768 ? (
         <div className={styles.postContent}>
-          <a className={styles.item}>
-            <img src="/images/instagramPost/Instagram Feed 1.jpg" alt="post1" />
-          </a>
-          <a className={styles.item}>
-            <img src="/images/instagramPost/Instagram Feed 2.jpg" alt="post2" />
-          </a>
-          <a className={styles.item}>
-            <img src="/images/instagramPost/Instagram Feed 3.jpg" alt="post3" />
-          </a>
-          <a className={styles.item}>
-            <img src="/images/instagramPost/Instagram Feed 4.jpg" alt="post4" />
-          </a>
+          {mobilePost?.map((post, index) => {
+            return (
+              <a className={styles.item} href={post.link} key={index}>
+                <img src={post.image} alt={post.title} />
+              </a>
+            );
+          })}
         </div>
       ) : (
         <div className={styles.postDeskTopContent}>
-          <div className={styles.column}>
-            <a className={styles.item}>
-              <img src="/images/instagramPost/desktop1.png" alt="post1" />
-            </a>
-            <a className={styles.item}>
-              <img src="/images/instagramPost/desktop2.png" alt="post2" />
-            </a>
-          </div>
-          <div className={styles.column}>
-            <a className={styles.item}>
-              <img src="/images/instagramPost/desktop3.png" alt="post3" />
-            </a>
-            <a className={styles.item}>
-              <img src="/images/instagramPost/desktop4.png" alt="post4" />
-            </a>
-          </div>
+          {Array.from({ length: 2 }).map((_, columnIndex) => (
+            <div className={styles.column} key={columnIndex}>
+              {desktopPost
+                ?.slice(columnIndex * 2, columnIndex * 2 + 2)
+                .map((post, index) => (
+                  <a className={styles.item} key={index}>
+                    <img src={post.image} alt={post.title} />
+                  </a>
+                ))}
+            </div>
+          ))}
         </div>
       )}
     </div>

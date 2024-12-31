@@ -1,26 +1,33 @@
 import React, { FC, useState } from "react";
-import styles from "./navigationBar.module.scss";
 import Link from "next/link";
-import { useMegaMenu } from "@/context/menuContext";
-import { useScrollLock } from "@/utils/hooks/useScrollLock";
-import Modal from "../modal";
-import AccordionItem from "../accordionItem";
-import { useCart } from "@/context/cartContext";
-import CartContent from "../cartContent";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBars,
   faCartShopping,
   faHouse,
 } from "@fortawesome/free-solid-svg-icons";
+import { useTranslation } from "react-i18next";
+
+import { useMegaMenu } from "@/context/menuContext";
+import { useCart } from "@/context/cartContext";
+import { useScrollLock } from "@/utils/hooks";
+
+import AccordionItem from "../accordionItem";
+import CartContent from "../cartContent";
+import Modal from "../modal";
+
+import styles from "./navigationBar.module.scss";
 
 const NavigationBar: FC = () => {
   const { lockScroll, unlockScroll } = useScrollLock();
   const [openMenu, setOpenMenu] = useState(false);
   const [openCart, setOpenCart] = useState(false);
   const megaMenuContext = useMegaMenu();
-  const menu = megaMenuContext?.menu;
   const { cart } = useCart();
+  const { t } = useTranslation();
+
+  const menu = megaMenuContext?.menu;
 
   return (
     <>
@@ -34,15 +41,15 @@ const NavigationBar: FC = () => {
           }}
         >
           <div>
-            <FontAwesomeIcon icon={faBars} className={styles.icon}/>
+            <FontAwesomeIcon icon={faBars} className={styles.icon} />
           </div>
-          <p>Menu</p>
+          <p>{t("navigation.menu")}</p>
         </div>
         <Link className={styles.navigationItem} href={"/"}>
           <div>
             <FontAwesomeIcon icon={faHouse} className={styles.icon} />
           </div>
-          <p>Home</p>
+          <p>{t("navigation.home")}</p>
         </Link>
         <div
           className={styles.navigationItem}
@@ -56,7 +63,7 @@ const NavigationBar: FC = () => {
             {cart?.products?.length > 0 && <div className={styles.badge}></div>}
             <FontAwesomeIcon icon={faCartShopping} fontSize={20} color="#fff" />
           </div>
-          <p className={styles.cartItem}>Card</p>
+          <p className={styles.cartItem}>{t("navigation.card")}</p>
         </div>
       </div>
       <Modal

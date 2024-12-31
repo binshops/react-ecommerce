@@ -16,7 +16,6 @@ export interface HomeAPI {
 }
 
 export interface HomeProps {
-  data: any;
   homeProductCarousel: Product[];
   menu: menuItems[];
 }

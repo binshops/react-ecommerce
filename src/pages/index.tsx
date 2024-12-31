@@ -1,21 +1,21 @@
-import Link from "next/link";
 import MainSlider from "@/component/mainSlider";
 import HomeCategory from "@/component/homeCategory";
 import ProductCarousel from "@/component/productCarousel";
-import { getData } from "@/utils/fetchData";
 import { HomePageAPI, MegaMenuAPI } from "@/const/endPoint";
-import { HomeTransformer } from "@/utils/transformer/home";
 import Subscribe from "@/component/subscribe";
 import InstagramPost from "@/component/instagramPost";
 import { HomeProps } from "@/utils/type";
-import { MegaMenuTransformer } from "@/utils/transformer/megaMenu";
 import { MegaMenuProvider } from "@/context/menuContext";
+import { MegaMenuTransformer } from "@/utils/api/transformer/megaMenu";
+import { HomeTransformer } from "@/utils/api/transformer/home";
+import { getData } from "@/utils/api/fetchData/apiCall";
+import { useScrollRestoration } from "@/utils/hooks";
 
 export default function Home({
-  data,
   homeProductCarousel,
   menu,
 }: HomeProps): JSX.Element {
+  useScrollRestoration();
   return (
     <>
       <MegaMenuProvider initialMenu={menu}>
@@ -29,10 +29,10 @@ export default function Home({
   );
 }
 
-export async function getServerSideProps() {
-  const data = await getData(HomePageAPI);
+export async function getServerSideProps({ locale }: { locale: string }) {
+  const data = await getData(HomePageAPI, {}, "", "", locale);
   const { homeProductCarousel } = HomeTransformer(data);
-  const menuData = await getData(MegaMenuAPI);
+  const menuData = await getData(MegaMenuAPI, {}, "", "", locale);
   const menu = MegaMenuTransformer(menuData).menuItems;
   return { props: { data, homeProductCarousel, menu } };
 }

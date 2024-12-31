@@ -1,0 +1,36 @@
+{
+  "cart": {
+    "remove": "retirer du panier",
+    "total": "Total des articles :"
+  },
+  "category": {
+    "items": "Article(s)",
+    "filters": "Filters"
+  },
+  "footer": {
+    "social": "SOCIAL"
+  },
+  "instagram": {
+    "share": "Partagez votre look",
+    "title": "#VOTRELOOK"
+  },
+  "navigation": {
+    "menu": "Menu",
+    "home": "Maison",
+    "card": "Carte"
+  },
+  "product": {
+    "addToCard": "Ajouter au panier"
+  },
+  "carousel": {
+    "title": "Meilleur vendeur"
+  },
+  "search": {
+    "placeHolder": "Rechercher des articles"
+  },
+  "subscribe": {
+    "title": "Abonnez-vous aux newsletters",
+    "description": "Soyez au courant des ventes et des événements à venir. Recevez des cadeaux et des offres spéciales !",
+    "submit": "S'abonner"
+  }
+}

@@ -1,6 +1,6 @@
-import { filterItem } from "@/utils/type/category";
+import { filterItem } from "@/utils/type";
 
-export interface CheckBoxProps {
+export type CheckBoxProps = {
   filter: filterItem;
   setFilterQuery: Function;
-}
+};
