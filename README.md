@@ -1,4 +1,4 @@
-![react-ecommerce](https://github.com/user-attachments/assets/171dc6dc-a0a9-47d6-8760-d440c25945f1)
+![react-ecommerce](https://github.com/user-attachments/assets/7546717a-332e-4c9a-af94-5071152c35a5)
 
 # 🚀 React.js E-Commerce 
 Open-source e-commerce react.js and next.js template. Easily, build your headless e-commerce website using a reliable API and a modern storefront.
