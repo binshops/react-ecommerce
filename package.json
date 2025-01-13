@@ -21,6 +21,7 @@
     "react-dom": "^18",
     "react-hot-toast": "^2.4.1",
     "react-i18next": "^15.1.4",
+    "react-query": "^3.39.3",
     "sass": "^1.76.0",
     "scss": "^0.2.4",
     "swiper": "^11.1.1",

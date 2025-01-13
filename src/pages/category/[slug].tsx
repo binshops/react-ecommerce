@@ -1,7 +1,7 @@
 import { CategoryAPI } from "@/const/endPoint";
 import { getData } from "@/utils/api/fetchData/apiCall";
 import { GetServerSidePropsContext } from "next";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC } from "react";
 import styles from "./styles.module.scss";
 import CategoryProduct from "@/component/category/categoryProduct";
 import CategoryOptions from "@/component/category/categoryOptions";
@@ -12,38 +12,40 @@ import { useRouter } from "next/router";
 import Placeholder from "@/component/category/placeholder";
 import { CategoryTransformer } from "@/utils/api/transformer/category";
 import { useMegaMenu } from "@/context/menuContext";
+import { useQuery } from "react-query";
 
-const CategoryPage: FC<CategoryPageProps> = ({
-  initialCategory,
-  categoryId,
-}) => {
-  const [category, setCategory] = useState<Category | null>(initialCategory);
-  const [isLoading, setIsLoading] = useState(!initialCategory);
+const fetchCategoryData = async (
+  categoryId: string,
+  page: number,
+  locale: string
+) => {
+  console.log("Fetching data for:", { categoryId, page, locale });
+  const categoryData = await getData(
+    CategoryAPI,
+    { id_category: categoryId, page },
+    "",
+    "",
+    locale
+  );
+  return CategoryTransformer(categoryData);
+};
+
+const CategoryPage: FC<CategoryPageProps> = ({ initialCategory }) => {
   const router = useRouter();
-  const page = parseInt(router.query.page as string, 10);
   const menu = useMegaMenu();
+  const page = parseInt(router.query.page as string, 10) || 0;
+  const categoryId = String(router.query.slug);
 
-  useEffect(() => {
-    const fetchCategoryData = async () => {
-      setIsLoading(true);
-      try {
-        const categoryData = await getData(CategoryAPI, {
-          id_category: categoryId,
-          page: page,
-        });
-        setCategory(CategoryTransformer(categoryData));
-      } catch (error) {
-        console.error("Failed to fetch category data:", error);
-        setCategory(null);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    if (!initialCategory) {
-      fetchCategoryData();
+  const { data: category, isLoading } = useQuery<Category>(
+    ["categoryData", categoryId, page, router.locale],
+    () => fetchCategoryData(categoryId, page, router.locale!),
+    {
+      refetchOnWindowFocus: false,
+      refetchOnMount: true,
+      refetchOnReconnect: true,
     }
-  }, [categoryId, page, router.locale, initialCategory]);
+  );
+
   if (isLoading) {
     return <Placeholder />;
   }
@@ -66,16 +68,14 @@ const CategoryPage: FC<CategoryPageProps> = ({
       </div>
       {category && (
         <div className={styles.productWrapper}>
-          <CategoryOptions
+          {/* <CategoryOptions
             filters={category.filters}
             sortOptions={category.sortOptions}
             count={category.totalProducts}
-            setCategory={setCategory}
-            setIsLoading={setIsLoading}
             categoryId={categoryId}
             activeSort={category.activeSort}
             activeFilter={category.activeFilter}
-          />
+          /> */}
           <CategoryProduct product={category.product} />
           <Pagination totalPages={category.totalPage} />
         </div>
