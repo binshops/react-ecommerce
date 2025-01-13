@@ -11,32 +11,38 @@ const MegaMenu: React.FC = () => {
   const router = useRouter();
 
   const menu = megaMenuContext?.menu;
-  const handelSubmenuClick = (url: string) => {
+  const handleSubmenuClick = (url: string) => {
     router.push(url);
   };
+
   return (
     <div className={styles.megaMenu}>
       {menu?.map((item, idx) => (
-        <Link href={item.link} className={styles.menuItem} key={idx} passHref>
+        <div
+          className={styles.menuItem}
+          key={idx}
+          onClick={() => handleSubmenuClick(item.link)}
+        >
           <p className={styles.megaMenuItem}>{item.label}</p>
           {Boolean(item.children.length) && (
             <div className={styles.subMenu}>
               <div className={`${styles.linkBox} container`}>
-                {item.children?.map((subLink, idx) => {
-                  return (
-                    <p
-                      onClick={() => handelSubmenuClick(subLink.link)}
-                      className={styles.link}
-                      key={idx}
-                    >
-                      {subLink.title}
-                    </p>
-                  );
-                })}
+                {item.children?.map((subLink, idx) => (
+                  <p
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleSubmenuClick(subLink.link);
+                    }}
+                    className={styles.link}
+                    key={idx}
+                  >
+                    {subLink.title}
+                  </p>
+                ))}
               </div>
             </div>
           )}
-        </Link>
+        </div>
       ))}
     </div>
   );

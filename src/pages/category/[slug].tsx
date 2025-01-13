@@ -13,53 +13,58 @@ import Placeholder from "@/component/category/placeholder";
 import { CategoryTransformer } from "@/utils/api/transformer/category";
 import { MegaMenuTransformer } from "@/utils/api/transformer/megaMenu";
 
-const CategoryPage: FC<CategoryPageProps> = ({ data, categoryId, menu }) => {
-  const [category, setCategory] = useState<Category | undefined>(data);
-  const [isLoading, setIsLoading] = useState(false);
+const CategoryPage: FC<CategoryPageProps> = ({
+  initialCategory,
+  categoryId,
+  menu,
+}) => {
+  const [category, setCategory] = useState<Category | null>(initialCategory);
+  const [isLoading, setIsLoading] = useState(!initialCategory);
   const router = useRouter();
   const page = parseInt(router.query.page as string, 10);
+
   useEffect(() => {
-    setCategory(category);
-  }, [category, isLoading]);
-  useEffect(() => {
-    setCategory(undefined);
-  }, [router.asPath]);
-  useEffect(() => {
-    const fetchData = async () => {
+    const fetchCategoryData = async () => {
+      setIsLoading(true);
       try {
         const categoryData = await getData(CategoryAPI, {
           id_category: categoryId,
           page: page,
         });
-        const transformedData = CategoryTransformer(categoryData);
-        setCategory(transformedData);
-
-        setIsLoading(false);
+        setCategory(CategoryTransformer(categoryData));
       } catch (error) {
-        console.error("Failed to fetch product data:", error);
+        console.error("Failed to fetch category data:", error);
+        setCategory(null);
+      } finally {
+        setIsLoading(false);
       }
     };
-    fetchData();
-  }, [page, categoryId, router]);
+
+    if (!initialCategory) {
+      fetchCategoryData();
+    }
+  }, [categoryId, page, router.locale, initialCategory]);
+  if (isLoading) {
+    return <Placeholder />;
+  }
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.categoryWrapper}>
         <div className={styles.title}>
           <p>Categories</p>
         </div>
-        {menu?.map((item) => {
-          return (
-            <AccordionItem
-              title={item.label}
-              links={item.children}
-              titleLink={item.link}
-              mode="dark"
-              key={item.id}
-            />
-          );
-        })}
+        {menu?.map((item) => (
+          <AccordionItem
+            title={item.label}
+            links={item.children}
+            titleLink={item.link}
+            mode="dark"
+            key={item.id}
+          />
+        ))}
       </div>
-      {category ? (
+      {category && (
         <div className={styles.productWrapper}>
           <CategoryOptions
             filters={category.filters}
@@ -74,8 +79,6 @@ const CategoryPage: FC<CategoryPageProps> = ({ data, categoryId, menu }) => {
           <CategoryProduct product={category.product} />
           <Pagination totalPages={category.totalPage} />
         </div>
-      ) : (
-        <Placeholder />
       )}
     </div>
   );
@@ -85,20 +88,27 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const locale = context.locale;
   const categoryId = context.query.slug;
   const page = context.query.page;
-  const categoryData = await getData(
-    CategoryAPI,
-    {
-      id_category: categoryId,
-      page: page,
-    },
-    "",
-    "",
-    locale
-  );
-  const data = CategoryTransformer(categoryData);
+  const referer = context.req.headers.referer || null;
+
+  if (!referer) {
+    const categoryData = await getData(
+      CategoryAPI,
+      { id_category: categoryId, page },
+      "",
+      "",
+      locale
+    );
+    const data = CategoryTransformer(categoryData);
+    const megaMenu = await getData(MegaMenuAPI, {}, "", "", locale);
+    const menu = MegaMenuTransformer(megaMenu).menuItems;
+
+    return { props: { initialCategory: data, categoryId, menu } };
+  }
+
   const megaMenu = await getData(MegaMenuAPI, {}, "", "", locale);
   const menu = MegaMenuTransformer(megaMenu).menuItems;
-  return { props: { data, categoryId, menu } };
+
+  return { props: { initialCategory: null, categoryId, menu } };
 }
 
 export default CategoryPage;
