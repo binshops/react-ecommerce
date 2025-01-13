@@ -78,5 +78,4 @@ export interface Category {
 export interface CategoryPageProps {
   initialCategory: Category;
   categoryId: string;
-  menu: menuItems[];
 }

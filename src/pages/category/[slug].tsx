@@ -1,4 +1,4 @@
-import { CategoryAPI, MegaMenuAPI } from "@/const/endPoint";
+import { CategoryAPI } from "@/const/endPoint";
 import { getData } from "@/utils/api/fetchData/apiCall";
 import { GetServerSidePropsContext } from "next";
 import React, { FC, useEffect, useState } from "react";
@@ -11,17 +11,17 @@ import Pagination from "@/component/pagination";
 import { useRouter } from "next/router";
 import Placeholder from "@/component/category/placeholder";
 import { CategoryTransformer } from "@/utils/api/transformer/category";
-import { MegaMenuTransformer } from "@/utils/api/transformer/megaMenu";
+import { useMegaMenu } from "@/context/menuContext";
 
 const CategoryPage: FC<CategoryPageProps> = ({
   initialCategory,
   categoryId,
-  menu,
 }) => {
   const [category, setCategory] = useState<Category | null>(initialCategory);
   const [isLoading, setIsLoading] = useState(!initialCategory);
   const router = useRouter();
   const page = parseInt(router.query.page as string, 10);
+  const menu = useMegaMenu();
 
   useEffect(() => {
     const fetchCategoryData = async () => {
@@ -99,10 +99,8 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       locale
     );
     const data = CategoryTransformer(categoryData);
-    const megaMenu = await getData(MegaMenuAPI, {}, "", "", locale);
-    const menu = MegaMenuTransformer(megaMenu).menuItems;
 
-    return { props: { initialCategory: data, categoryId, menu } };
+    return { props: { initialCategory: data, categoryId } };
   }
 
   return { props: { initialCategory: null, categoryId } };
