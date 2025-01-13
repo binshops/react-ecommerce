@@ -105,10 +105,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     return { props: { initialCategory: data, categoryId, menu } };
   }
 
-  const megaMenu = await getData(MegaMenuAPI, {}, "", "", locale);
-  const menu = MegaMenuTransformer(megaMenu).menuItems;
-
-  return { props: { initialCategory: null, categoryId, menu } };
+  return { props: { initialCategory: null, categoryId } };
 }
 
 export default CategoryPage;
