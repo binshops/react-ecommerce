@@ -32,6 +32,9 @@ const ProductPage: FC<ProductPageProps> = ({ initialProduct, productId }) => {
       fetchCategoryData();
     }
   }, [productId, router.locale, initialProduct]);
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
   return (
     <div>
       {product && <ProductDetails product={product} setProduct={setProduct} />}
