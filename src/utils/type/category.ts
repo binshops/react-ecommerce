@@ -76,7 +76,7 @@ export interface Category {
 }
 
 export interface CategoryPageProps {
-  data: Category;
+  initialCategory: Category;
   categoryId: string;
   menu: menuItems[];
 }
