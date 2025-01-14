@@ -8,6 +8,7 @@ Build your e-commerce website quickly and efficiently with:
 - Responsive design
 - Home, PDP and PLP fully workable pages
 - Connected to a sample API
+- [Special Features](https://binshops.com/docs/next-ecommerce/special-features.html)
 
 React e-commerce has everything you need to create the headless e-commerce website.
 
