@@ -38,7 +38,12 @@ const CategoryPage: FC<CategoryPageProps> = ({ initialCategory }) => {
 
   const { data: category, isLoading } = useQuery<Category>(
     ["categoryData", categoryId, page, router.locale],
-    () => fetchCategoryData(categoryId, page, router.locale!)
+    () => fetchCategoryData(categoryId, page, router.locale!),
+    {
+      initialData: initialCategory || undefined,
+      enabled: !initialCategory,
+      refetchOnMount: false,
+    }
   );
 
   if (isLoading) {
