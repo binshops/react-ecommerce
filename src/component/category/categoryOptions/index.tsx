@@ -1,9 +1,5 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useState } from "react";
 import { useTranslation } from "react-i18next";
-
-import { CategoryTransformer } from "@/utils/api/transformer/category";
-import { getData } from "@/utils/api/fetchData/apiCall";
-import { CategoryAPI } from "@/const/endPoint";
 
 import { CategoryOptionsProps } from "./categoryOptions.types";
 import Sort from "../sort";
@@ -15,39 +11,12 @@ const CategoryOptions: FC<CategoryOptionsProps> = ({
   filters,
   sortOptions,
   count,
-  setCategory,
-  categoryId,
-  setIsLoading,
-  activeSort,
-  activeFilter,
+  setFilterQuery,
+  setOrderQuery,
 }) => {
-  const [filterQuery, setFilterQuery] = useState<string | undefined>();
-  const [orderQuery, setOrderQuery] = useState<string | undefined>();
   const [isOpenFilter, setIsOpenFilter] = useState(false);
   const [showSortOption, setShowSortOption] = useState(false);
   const { t } = useTranslation();
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      try {
-        const productData = await getData(CategoryAPI, {
-          id_category: categoryId,
-          page: 1,
-          q: filterQuery || activeFilter.replace("+", " "),
-          order: orderQuery || activeSort,
-        });
-        const transformedData = CategoryTransformer(productData);
-        setCategory(transformedData);
-        setIsLoading(false);
-      } catch (error) {
-        console.error("Failed to fetch product data:", error);
-      }
-    };
-    (orderQuery || filterQuery) && fetchData();
-    setShowSortOption(false);
-    setIsOpenFilter(false);
-  }, [orderQuery, filterQuery]);
 
   return (
     <div className={styles.optionsWrapper}>

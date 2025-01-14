@@ -1,7 +1,7 @@
 import { CategoryAPI } from "@/const/endPoint";
 import { getData } from "@/utils/api/fetchData/apiCall";
 import { GetServerSidePropsContext } from "next";
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import styles from "./styles.module.scss";
 import CategoryProduct from "@/component/category/categoryProduct";
 import CategoryOptions from "@/component/category/categoryOptions";
@@ -17,12 +17,18 @@ import { useQuery } from "react-query";
 const fetchCategoryData = async (
   categoryId: string,
   page: number,
-  locale: string
+  locale: string,
+  filterQuery?: string,
+  orderQuery?: string
 ) => {
-  console.log("Fetching data for:", { categoryId, page, locale });
   const categoryData = await getData(
     CategoryAPI,
-    { id_category: categoryId, page },
+    {
+      id_category: categoryId,
+      page,
+      q: filterQuery,
+      order: orderQuery,
+    },
     "",
     "",
     locale
@@ -31,14 +37,23 @@ const fetchCategoryData = async (
 };
 
 const CategoryPage: FC<CategoryPageProps> = ({ initialCategory }) => {
+  const [filterQuery, setFilterQuery] = useState<string | undefined>();
+  const [orderQuery, setOrderQuery] = useState<string | undefined>();
   const router = useRouter();
   const menu = useMegaMenu();
   const page = parseInt(router.query.page as string, 10) || 0;
   const categoryId = String(router.query.slug);
 
   const { data: category, isLoading } = useQuery<Category>(
-    ["categoryData", categoryId, page, router.locale],
-    () => fetchCategoryData(categoryId, page, router.locale!),
+    ["categoryData", categoryId, page, router.locale, filterQuery, orderQuery],
+    () =>
+      fetchCategoryData(
+        categoryId,
+        page,
+        router.locale!,
+        filterQuery,
+        orderQuery
+      ),
     {
       initialData: initialCategory || undefined,
       enabled: !initialCategory,
@@ -68,14 +83,13 @@ const CategoryPage: FC<CategoryPageProps> = ({ initialCategory }) => {
       </div>
       {category && (
         <div className={styles.productWrapper}>
-          {/* <CategoryOptions
+          <CategoryOptions
             filters={category.filters}
             sortOptions={category.sortOptions}
             count={category.totalProducts}
-            categoryId={categoryId}
-            activeSort={category.activeSort}
-            activeFilter={category.activeFilter}
-          /> */}
+            setFilterQuery={setFilterQuery}
+            setOrderQuery={setOrderQuery}
+          />
           <CategoryProduct product={category.product} />
           <Pagination totalPages={category.totalPage} />
         </div>
