@@ -1,4 +1,4 @@
-import { CategoryAPI } from "@/const/endPoint";
+import { CategoryAPI, MegaMenuAPI } from "@/const/endPoint";
 import { getData } from "@/utils/api/fetchData/apiCall";
 import { GetServerSidePropsContext } from "next";
 import React, { FC, useState } from "react";
@@ -13,6 +13,7 @@ import Placeholder from "@/component/category/placeholder";
 import { CategoryTransformer } from "@/utils/api/transformer/category";
 import { useMegaMenu } from "@/context/menuContext";
 import { useQuery } from "react-query";
+import { MegaMenuTransformer } from "@/utils/api/transformer/megaMenu";
 
 const fetchCategoryData = async (
   categoryId: string,
@@ -113,8 +114,11 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       locale
     );
     const data = CategoryTransformer(categoryData);
-
-    return { props: { initialCategory: data, categoryId } };
+    const menuData = await getData(MegaMenuAPI);
+    const menu = MegaMenuTransformer(menuData).menuItems;
+    return {
+      props: { initialCategory: data, menu },
+    };
   }
 
   return { props: { initialCategory: null, categoryId } };
