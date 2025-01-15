@@ -1,45 +1,44 @@
-import { ProductDetailAPI } from "@/const/endPoint";
+import { MegaMenuAPI, ProductDetailAPI } from "@/const/endPoint";
 import { getData } from "@/utils/api/fetchData/apiCall";
 import { GetServerSidePropsContext } from "next";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC } from "react";
 import ProductDetails from "@/component/productDetails";
 import { ProductPageProps, ProductType } from "@/utils/type";
 import { ProductTransformer } from "@/utils/api/transformer/product";
 import { useRouter } from "next/router";
+import { useQuery } from "react-query";
+import { MegaMenuTransformer } from "@/utils/api/transformer/megaMenu";
+
+const fetchProductData = async (productId: string, locale?: string) => {
+  const productData = await getData(
+    ProductDetailAPI,
+    { product_id: productId },
+    "",
+    "",
+    locale
+  );
+  return ProductTransformer(productData);
+};
 
 const ProductPage: FC<ProductPageProps> = ({ initialProduct, productId }) => {
-  const [product, setProduct] = useState<ProductType | null>(initialProduct);
-  const [isLoading, setIsLoading] = useState(!initialProduct);
   const router = useRouter();
+  const locale = router.locale || "en";
 
-  useEffect(() => {
-    const fetchCategoryData = async () => {
-      setIsLoading(true);
-      try {
-        const productData =
-          productId &&
-          (await getData(ProductDetailAPI, { product_id: productId }));
-        setProduct(ProductTransformer(productData));
-      } catch (error) {
-        console.error("Failed to fetch category data:", error);
-        setProduct(null);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    if (!initialProduct) {
-      fetchCategoryData();
+  const { data: product, isLoading } = useQuery<ProductType>(
+    ["productData", productId],
+    () => fetchProductData(String(productId), locale),
+    {
+      initialData: initialProduct || undefined,
+      enabled: !initialProduct,
+      refetchOnMount: false,
     }
-  }, [productId, router.locale, initialProduct]);
+  );
+
   if (isLoading) {
     return <div>Loading...</div>;
   }
-  return (
-    <div>
-      {product && <ProductDetails product={product} setProduct={setProduct} />}
-    </div>
-  );
+
+  return <div>{product && <ProductDetails product={product} />}</div>;
 };
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
@@ -57,8 +56,9 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
         locale
       ));
     const data = ProductTransformer(productData);
-
-    return { props: { initialProduct: data, productId } };
+    const menuData = await getData(MegaMenuAPI);
+    const menu = MegaMenuTransformer(menuData).menuItems;
+    return { props: { initialProduct: data, productId, menu } };
   }
   return { props: { initialProduct: null, productId } };
 }

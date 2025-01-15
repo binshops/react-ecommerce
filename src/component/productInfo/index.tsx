@@ -1,4 +1,5 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useState } from "react";
+import { useQuery } from "react-query";
 
 import { ProductTransformer } from "@/utils/api/transformer/product";
 import { getData } from "@/utils/api/fetchData/apiCall";
@@ -15,13 +16,29 @@ import { productInfoProps } from "./productInfo.types";
 
 import styles from "./productInfo.module.scss";
 
+const fetchProductData = async (
+  productId: string,
+  selectedOption: { id: string; value: string }[]
+) => {
+  const queryString =
+    "&" +
+    selectedOption
+      .map((option) => `group[${option.id}]=${option.value}`)
+      .join("&");
+  const productData = await getData(
+    ProductDetailAPI,
+    { product_id: productId, refresh: true },
+    queryString
+  );
+  return ProductTransformer(productData);
+};
+
 const ProductInfo: FC<productInfoProps> = ({
   id,
   title,
   price,
   options,
   description,
-  setProduct,
   productAttributeId,
 }) => {
   const [selectedOption, setSelectedOption] = useState<
@@ -29,6 +46,15 @@ const ProductInfo: FC<productInfoProps> = ({
   >([]);
   const { addToCart, isLoading } = useCart();
   const [quantity, setQuantity] = useState(1);
+
+  const { data: productData } = useQuery(
+    ["productData", id, selectedOption],
+    () => fetchProductData(id, selectedOption),
+    {
+      enabled: selectedOption.length > 0,
+    }
+  );
+
   const handleSelectOption = (id: string, value: string) => {
     const index = selectedOption.findIndex((option) => option.id === id);
     if (index > -1) {
@@ -39,30 +65,7 @@ const ProductInfo: FC<productInfoProps> = ({
       setSelectedOption([...selectedOption, { id, value }]);
     }
   };
-  useEffect(() => {
-    const fetchData = async () => {
-      const resultString =
-        "&" +
-        selectedOption
-          .map((item) => `group[${item.id}]=${item.value}`)
-          .join("&");
-      try {
-        const productData = await getData(
-          ProductDetailAPI,
-          {
-            product_id: id,
-            refresh: true,
-          },
-          resultString
-        );
-        const transformedData = ProductTransformer(productData);
-        setProduct(transformedData);
-      } catch (error) {
-        console.error("Failed to fetch product data:", error);
-      }
-    };
-    selectedOption.length > 0 && fetchData();
-  }, [selectedOption]);
+
   const handleAdd = async () => {
     const item = {
       id,
@@ -72,10 +75,11 @@ const ProductInfo: FC<productInfoProps> = ({
     };
     addToCart(item);
   };
+
   return (
     <div className={styles.productInfo}>
-      <h2 className={styles.productTitle}>{title}</h2>
-      <Price price={price} />
+      <h2 className={styles.productTitle}>{productData?.title || title}</h2>
+      <Price price={productData?.price || price} />
       {options && (
         <Options options={options} handleSelectOption={handleSelectOption} />
       )}
@@ -86,7 +90,9 @@ const ProductInfo: FC<productInfoProps> = ({
         isLoading={isLoading}
       />
       <div
-        dangerouslySetInnerHTML={{ __html: description }}
+        dangerouslySetInnerHTML={{
+          __html: productData?.description || description,
+        }}
         className={styles.description}
       />
     </div>
