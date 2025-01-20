@@ -6,34 +6,19 @@ import ProductDetails from "@/component/productDetails";
 import { ProductPageProps, ProductType } from "@/utils/type";
 import { ProductTransformer } from "@/utils/api/transformer/product";
 import { useRouter } from "next/router";
-import { useQuery } from "react-query";
-import { MegaMenuTransformer } from "@/utils/api/transformer/megaMenu";
+\import { MegaMenuTransformer } from "@/utils/api/transformer/megaMenu";
 import ProductPlaceholder from "./placeholder";
-
-const fetchProductData = async (productId: string, locale?: string) => {
-  const productData = await getData(
-    ProductDetailAPI,
-    { product_id: productId },
-    "",
-    "",
-    locale
-  );
-  return ProductTransformer(productData);
-};
+import { useFetchProductData } from "@/utils/hooks/api/useFetchProductData";
 
 const ProductPage: FC<ProductPageProps> = ({ initialProduct, productId }) => {
   const router = useRouter();
   const locale = router.locale || "en";
 
-  const { data: product, isLoading } = useQuery<ProductType>(
-    ["productData", productId],
-    () => fetchProductData(String(productId), locale),
-    {
-      initialData: initialProduct || undefined,
-      enabled: !initialProduct,
-      refetchOnMount: false,
-    }
-  );
+  const { data: product, isLoading } = useFetchProductData({
+    productId,
+    locale: locale,
+    initialProduct,
+  });
 
   if (isLoading) {
     return <ProductPlaceholder />;

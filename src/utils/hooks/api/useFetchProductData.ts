@@ -39,11 +39,13 @@ export const useFetchProductData = ({
   selectedOption = [],
   locale = "en",
   refresh = false,
+  initialProduct = undefined,
 }: {
   productId: string;
   selectedOption?: { id: string; value: string }[];
   locale?: string;
   refresh?: boolean;
+  initialProduct?: any;
 }) => {
   return useQuery(
     ["productData", productId, selectedOption, locale],
@@ -55,7 +57,9 @@ export const useFetchProductData = ({
         refresh,
       }),
     {
-      enabled: !!productId,
+      initialData: initialProduct || undefined,
+      enabled: !initialProduct,
+      refetchOnMount: false,
     }
   );
 };

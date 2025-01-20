@@ -21,7 +21,7 @@ export interface ProductOptions {
 
 export interface ProductPageProps {
   initialProduct: ProductType;
-  productId: number;
+  productId: string;
 }
 
 export interface GroupAttributes {
