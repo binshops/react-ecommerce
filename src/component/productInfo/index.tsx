@@ -1,10 +1,4 @@
 import React, { FC, useState } from "react";
-import { useQuery } from "react-query";
-
-import { ProductTransformer } from "@/utils/api/transformer/product";
-import { getData } from "@/utils/api/fetchData/apiCall";
-
-import { ProductDetailAPI } from "@/const/endPoint";
 
 import { useCart } from "@/context/cartContext";
 
