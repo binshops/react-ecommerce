@@ -8,6 +8,7 @@ import { ProductTransformer } from "@/utils/api/transformer/product";
 import { useRouter } from "next/router";
 import { useQuery } from "react-query";
 import { MegaMenuTransformer } from "@/utils/api/transformer/megaMenu";
+import ProductPlaceholder from "./placeholder";
 
 const fetchProductData = async (productId: string, locale?: string) => {
   const productData = await getData(
@@ -35,7 +36,7 @@ const ProductPage: FC<ProductPageProps> = ({ initialProduct, productId }) => {
   );
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <ProductPlaceholder />;
   }
 
   return <div>{product && <ProductDetails product={product} />}</div>;
