@@ -6,7 +6,7 @@ import ProductDetails from "@/component/productDetails";
 import { ProductPageProps, ProductType } from "@/utils/type";
 import { ProductTransformer } from "@/utils/api/transformer/product";
 import { useRouter } from "next/router";
-\import { MegaMenuTransformer } from "@/utils/api/transformer/megaMenu";
+import { MegaMenuTransformer } from "@/utils/api/transformer/megaMenu";
 import ProductPlaceholder from "./placeholder";
 import { useFetchProductData } from "@/utils/hooks/api/useFetchProductData";
 
