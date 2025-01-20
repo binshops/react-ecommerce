@@ -17,23 +17,6 @@ import { productInfoProps } from "./productInfo.types";
 import styles from "./productInfo.module.scss";
 import { useFetchProductData } from "@/utils/hooks/api/useFetchProductData";
 
-const fetchProductData = async (
-  productId: string,
-  selectedOption: { id: string; value: string }[]
-) => {
-  const queryString =
-    "&" +
-    selectedOption
-      .map((option) => `group[${option.id}]=${option.value}`)
-      .join("&");
-  const productData = await getData(
-    ProductDetailAPI,
-    { product_id: productId, refresh: true },
-    queryString
-  );
-  return ProductTransformer(productData);
-};
-
 const ProductInfo: FC<productInfoProps> = ({
   id,
   title,
