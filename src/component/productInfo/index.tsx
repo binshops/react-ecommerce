@@ -15,6 +15,7 @@ import Price from "../product/price";
 import { productInfoProps } from "./productInfo.types";
 
 import styles from "./productInfo.module.scss";
+import { useFetchProductData } from "@/utils/hooks/api/useFetchProductData";
 
 const fetchProductData = async (
   productId: string,
@@ -47,13 +48,15 @@ const ProductInfo: FC<productInfoProps> = ({
   const { addToCart, isLoading } = useCart();
   const [quantity, setQuantity] = useState(1);
 
-  const { data: productData } = useQuery(
-    ["productData", id, selectedOption],
-    () => fetchProductData(id, selectedOption),
-    {
-      enabled: selectedOption.length > 0,
-    }
-  );
+  const {
+    data: productData,
+    isFetching,
+    isError,
+  } = useFetchProductData({
+    productId: id,
+    selectedOption,
+    refresh: true,
+  });
 
   const handleSelectOption = (id: string, value: string) => {
     const index = selectedOption.findIndex((option) => option.id === id);
