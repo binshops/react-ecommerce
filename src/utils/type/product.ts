@@ -20,7 +20,8 @@ export interface ProductOptions {
 }
 
 export interface ProductPageProps {
-  data: ProductType;
+  initialProduct: ProductType;
+  productId: string;
 }
 
 export interface GroupAttributes {

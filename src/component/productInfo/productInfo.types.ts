@@ -6,6 +6,5 @@ export interface productInfoProps {
   price: string;
   options: ProductOptions[];
   description: string;
-  setProduct: Function;
   productAttributeId: number;
 }

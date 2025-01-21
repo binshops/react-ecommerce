@@ -14,7 +14,7 @@ import { productDetailsProps } from "./productDetails.types";
 
 import styles from "./productDetails.module.scss";
 
-const ProductDetails: FC<productDetailsProps> = ({ product, setProduct }) => {
+const ProductDetails: FC<productDetailsProps> = ({ product }) => {
   const [featuredProduct, setFeaturedProduct] = useState<Product[]>([]);
   useEffect(() => {
     const fetchData = async () => {
@@ -40,7 +40,6 @@ const ProductDetails: FC<productDetailsProps> = ({ product, setProduct }) => {
           price={product.price}
           options={product.options}
           description={product.description}
-          setProduct={setProduct}
           productAttributeId={product.productAttributeId}
         />
       </div>

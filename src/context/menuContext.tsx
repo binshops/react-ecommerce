@@ -1,9 +1,12 @@
-import { createContext, useContext, useState, useEffect } from "react";
-import { menuItems, MenuPageProps } from "@/utils/type";
+import React, { createContext, useContext, useState, useEffect } from "react";
+import { getData } from "@/utils/api/fetchData/apiCall";
+import { MegaMenuAPI } from "@/const/endPoint";
+import { MegaMenuTransformer } from "@/utils/api/transformer/megaMenu";
+import { menuItems } from "@/utils/type";
 
-const MegaMenuContext = createContext<MenuPageProps | undefined>(undefined);
+type MegaMenuContextType = menuItems[] | null;
 
-export const useMegaMenu = () => useContext(MegaMenuContext);
+const MegaMenuContext = createContext<MegaMenuContextType>(null);
 
 export const MegaMenuProvider: React.FC<{
   children: React.ReactNode;
@@ -12,12 +15,19 @@ export const MegaMenuProvider: React.FC<{
   const [menu, setMenu] = useState<menuItems[]>(initialMenu);
 
   useEffect(() => {
-    setMenu(initialMenu);
+    const fetchMenu = async () => {
+      if (!initialMenu) {
+        const megaMenuData = await getData(MegaMenuAPI);
+        const transformedMenu = MegaMenuTransformer(megaMenuData).menuItems;
+        setMenu(transformedMenu);
+      }
+    };
+    fetchMenu();
   }, [initialMenu]);
 
   return (
-    <MegaMenuContext.Provider value={{ menu }}>
-      {children}
-    </MegaMenuContext.Provider>
+    <MegaMenuContext.Provider value={menu}>{children}</MegaMenuContext.Provider>
   );
 };
+
+export const useMegaMenu = () => useContext(MegaMenuContext);

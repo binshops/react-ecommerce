@@ -11,6 +11,8 @@ import { Toaster } from "react-hot-toast";
 import "./../../i18n";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
+import { QueryClientProvider } from "react-query";
+import { queryClient } from "@/const/queryClient";
 
 const inter = Raleway({ subsets: ["latin"] });
 
@@ -33,19 +35,21 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <>
-      <CartProvider>
-        <MegaMenuProvider initialMenu={pageProps.menu || []}>
-          <main className={inter.className}>
-            <Header />
-            <div className="container">
-              <Toaster />
-              <Component {...pageProps} />
-            </div>
-            <NavigationBar />
-            <Footer />
-          </main>
-        </MegaMenuProvider>
-      </CartProvider>
+      <QueryClientProvider client={queryClient}>
+        <CartProvider>
+          <MegaMenuProvider initialMenu={pageProps.menu || []}>
+            <main className={inter.className}>
+              <Header />
+              <div className="container">
+                <Toaster />
+                <Component {...pageProps} />
+              </div>
+              <NavigationBar />
+              <Footer />
+            </main>
+          </MegaMenuProvider>
+        </CartProvider>
+      </QueryClientProvider>
     </>
   );
 }
