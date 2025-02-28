@@ -5,7 +5,8 @@
   },
   "category": {
     "items": "Item(s)",
-    "filters": "Filters"
+    "filters": "Filters",
+    "clearAll": "clear all"
   },
   "footer": {
     "social": "SOCIAL"
