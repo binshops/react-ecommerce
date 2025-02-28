@@ -1,0 +1,44 @@
+.languageBox {
+  border: none;
+  background-color: transparent;
+  font-size: 16px;
+  padding: 0 4px;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  .lang {
+    width: 120px;
+    font-size: 24px;
+    background-color: transparent;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    .icon {
+      font-size: 14px;
+    }
+  }
+  .languageList {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    border: 1px solid #e4e4e4;
+    padding: 8px;
+    border-radius: 16px;
+    background-color: #fff;
+    .item {
+      padding: 4px 16px;
+      border-bottom: 1px solid #e4e4e4;
+      &:last-child {
+        border: none;
+      }
+    }
+  }
+  @media screen and (min-width: 768px) {
+    position: relative;
+    cursor: pointer;
+    top: auto;
+    right: 0;
+  }
+}
