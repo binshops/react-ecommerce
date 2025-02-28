@@ -23,11 +23,10 @@ const NavigationBar: FC = () => {
   const { lockScroll, unlockScroll } = useScrollLock();
   const [openMenu, setOpenMenu] = useState(false);
   const [openCart, setOpenCart] = useState(false);
-  const megaMenuContext = useMegaMenu();
   const { cart } = useCart();
   const { t } = useTranslation();
 
-  const menu = megaMenuContext?.menu;
+  const menu = useMegaMenu();
 
   return (
     <>

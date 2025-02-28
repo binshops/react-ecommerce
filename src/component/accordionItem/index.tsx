@@ -47,7 +47,15 @@ const AccordionItem: FC<AccordionItemProps> = ({
       <div className={`${styles.linkBox} ${isOpen ? styles.showLink : ""}`}>
         {links.map((link, idx) => {
           return (
-            <Link href={link.link} key={idx} className={styles.subLink}>
+            <Link
+              href={link.link}
+              key={idx}
+              className={styles.subLink}
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsOpen(!isOpen);
+              }}
+            >
               {link.title}
             </Link>
           );
