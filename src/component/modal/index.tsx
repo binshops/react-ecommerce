@@ -21,7 +21,11 @@ const Modal: FC<ModalProps> = ({
   const router = useRouter();
 
   const handleClickOutside = (event: MouseEvent) => {
-    if (divRef.current && !divRef.current.contains(event.target as Node)) {
+    if (
+      divRef.current &&
+      !divRef.current.contains(event.target as Node) &&
+      !isFullScreen
+    ) {
       onClose();
     }
   };

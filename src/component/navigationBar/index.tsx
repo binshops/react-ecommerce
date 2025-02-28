@@ -35,7 +35,7 @@ const NavigationBar: FC = () => {
           className={styles.navigationItem}
           onClick={(e) => {
             e.preventDefault();
-            setOpenMenu(true);
+            setOpenMenu(!openMenu);
             lockScroll();
           }}
         >
@@ -54,7 +54,7 @@ const NavigationBar: FC = () => {
           className={styles.navigationItem}
           onClick={(e) => {
             e.preventDefault();
-            setOpenCart(true);
+            setOpenCart(!openCart);
             lockScroll();
           }}
         >
