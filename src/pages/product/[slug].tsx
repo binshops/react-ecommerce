@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import { MegaMenuTransformer } from "@/utils/api/transformer/megaMenu";
 import ProductPlaceholder from "./placeholder";
 import { useFetchProductData } from "@/utils/hooks/api/useFetchProductData";
+import MetaTags from "@/component/metaTags";
 
 const ProductPage: FC<ProductPageProps> = ({ initialProduct, productId }) => {
   const router = useRouter();
@@ -24,7 +25,12 @@ const ProductPage: FC<ProductPageProps> = ({ initialProduct, productId }) => {
     return <ProductPlaceholder />;
   }
 
-  return <div>{product && <ProductDetails product={product} />}</div>;
+  return (
+    <>
+      <MetaTags title={product.title} />
+      {product && <ProductDetails product={product} />}
+    </>
+  );
 };
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {

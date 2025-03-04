@@ -14,6 +14,7 @@ import { CategoryTransformer } from "@/utils/api/transformer/category";
 import { useMegaMenu } from "@/context/menuContext";
 import { useQuery } from "react-query";
 import { MegaMenuTransformer } from "@/utils/api/transformer/megaMenu";
+import MetaTags from "@/component/metaTags";
 
 const fetchCategoryData = async (
   categoryId: string,
@@ -67,35 +68,39 @@ const CategoryPage: FC<CategoryPageProps> = ({ initialCategory }) => {
   }
 
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.categoryWrapper}>
-        <div className={styles.title}>
-          <p>Categories</p>
+    <>
+      <MetaTags title={category?.title} />
+
+      <div className={styles.wrapper}>
+        <div className={styles.categoryWrapper}>
+          <div className={styles.title}>
+            <p>Categories</p>
+          </div>
+          {menu?.map((item) => (
+            <AccordionItem
+              title={item.label}
+              links={item.children}
+              titleLink={item.link}
+              mode="dark"
+              key={item.id}
+            />
+          ))}
         </div>
-        {menu?.map((item) => (
-          <AccordionItem
-            title={item.label}
-            links={item.children}
-            titleLink={item.link}
-            mode="dark"
-            key={item.id}
-          />
-        ))}
+        {category && (
+          <div className={styles.productWrapper}>
+            <CategoryOptions
+              filters={category.filters}
+              sortOptions={category.sortOptions}
+              count={category.totalProducts}
+              setFilterQuery={setFilterQuery}
+              setOrderQuery={setOrderQuery}
+            />
+            <CategoryProduct product={category.product} />
+            <Pagination totalPages={category.totalPage} />
+          </div>
+        )}
       </div>
-      {category && (
-        <div className={styles.productWrapper}>
-          <CategoryOptions
-            filters={category.filters}
-            sortOptions={category.sortOptions}
-            count={category.totalProducts}
-            setFilterQuery={setFilterQuery}
-            setOrderQuery={setOrderQuery}
-          />
-          <CategoryProduct product={category.product} />
-          <Pagination totalPages={category.totalPage} />
-        </div>
-      )}
-    </div>
+    </>
   );
 };
 

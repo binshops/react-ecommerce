@@ -22,15 +22,6 @@
     .cartIcon {
       display: none;
     }
-    .lang {
-      border: none;
-      background-color: transparent;
-      font-size: 16px;
-      padding: 0 4px;
-      position: absolute;
-      top: 16px;
-      right: 16px;
-    }
   }
   @media screen and (min-width: 768px) {
     height: 80px;
@@ -64,10 +55,6 @@
             color: #fff;
           }
         }
-      }
-      .lang {
-        position: static;
-        cursor: pointer;
       }
     }
   }

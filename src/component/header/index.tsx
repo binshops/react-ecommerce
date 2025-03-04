@@ -13,20 +13,13 @@ import CartContent from "../cartContent";
 import LoadingIndicator from "../loadingIndicator";
 
 import styles from "./header.module.scss";
-import { useTranslation } from "react-i18next";
-import { useRouter } from "next/router";
+import LanguageSelector from "../languageSelector/languageSelector";
 
 const Header: FC = () => {
   const { lockScroll } = useScrollLock();
   const [openCart, setOpenCart] = useState(false);
   const { cart } = useCart();
-  const { i18n } = useTranslation();
-  const router = useRouter();
-  const changeLanguage = (lng: string) => {
-    i18n.changeLanguage(lng);
-    const { pathname, query } = router;
-    router.push({ pathname, query }, undefined, { locale: lng });
-  };
+
   return (
     <header className={styles.header}>
       <div className={`${styles.headerContent} container`}>
@@ -54,21 +47,7 @@ const Header: FC = () => {
               <FontAwesomeIcon icon={faCartShopping} fontSize={20} />
             </div>
           </div>
-          {i18n.language === "en" ? (
-            <button
-              onClick={() => changeLanguage("fr")}
-              className={styles.lang}
-            >
-              French 🇫🇷
-            </button>
-          ) : (
-            <button
-              onClick={() => changeLanguage("en")}
-              className={styles.lang}
-            >
-              English 🇬🇧
-            </button>
-          )}
+          <LanguageSelector />
         </div>
       </div>
       <CartContent isOpen={openCart} setIsOpen={setOpenCart} />

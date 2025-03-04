@@ -65,6 +65,15 @@ const Filter: FC<FilterProps> = ({
               )
             );
           })}
+          <button
+            className={styles.clearFilter}
+            onClick={() => {
+              setFilterQuery("undefined");
+              setIsOpenFilter(false);
+            }}
+          >
+            {t("category.clearAll")}
+          </button>
         </div>
       </Modal>
     </>
