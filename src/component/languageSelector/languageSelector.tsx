@@ -3,6 +3,8 @@ import React, { FC, useEffect, useRef, useState } from "react";
 import styles from "./languageSelector.module.scss";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/router";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 const LanguageSelector: FC = () => {
   const [openLanguage, setOpenLanguage] = useState(false);
@@ -37,6 +39,7 @@ const LanguageSelector: FC = () => {
         className={styles.lang}
       >
         {i18n.language === "en" ? <span> 🇬🇧 </span> : <span> 🇫🇷 </span>}
+        <FontAwesomeIcon icon={faChevronDown} className={styles.icon} />
       </button>
 
       {openLanguage && (

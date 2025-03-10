@@ -9,9 +9,18 @@
   .lang {
     background-color: transparent;
     border: none;
-    font-size: 22px;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    .icon {
+      display: none;
+      font-size: 14px;
+    }
   }
   .languageList {
+    width: 130px;
     position: absolute;
     right: 0;
     top: 100%;
@@ -32,5 +41,10 @@
     cursor: pointer;
     top: auto;
     right: 0;
+    .lang {
+      .icon {
+        display: block;
+      }
+    }
   }
 }
