@@ -10,6 +10,7 @@ import { CartContentProps } from "./cartContent.types";
 import CartItem from "./cardItem";
 
 import styles from "./cartContent.module.scss";
+import useWindowSize from "@/utils/hooks/useWindowSize";
 
 const CartContent: FC<CartContentProps> = ({ isOpen, setIsOpen }) => {
   const { cart } = useCart();
@@ -24,6 +25,7 @@ const CartContent: FC<CartContentProps> = ({ isOpen, setIsOpen }) => {
         unlockScroll();
       }}
       isFullScreen
+      closeClickOutSide={false}
     >
       <div className={styles.cart}>
         <p className={styles.title}>

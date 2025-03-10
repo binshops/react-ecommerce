@@ -7,4 +7,5 @@ export interface ModalProps {
   width?: number;
   height?: number;
   children?: ReactNode;
+  closeClickOutSide?: boolean;
 }
