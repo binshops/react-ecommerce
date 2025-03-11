@@ -82,6 +82,11 @@
       }
     }
   }
+  @media screen and (max-width: 991px) {
+    .searchInput {
+      width: 200px;
+    }
+  }
   @media screen and (min-width: 991px) {
     .searchResult {
       top: 80px;

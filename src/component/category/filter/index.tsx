@@ -44,6 +44,7 @@ const Filter: FC<FilterProps> = ({
           unlockScroll();
         }}
         isFullScreen={!isDeskTop}
+        closeClickOutSide={true}
       >
         <div className={isDeskTop ? styles.row : ""}>
           {filters?.map((filter, idx) => {

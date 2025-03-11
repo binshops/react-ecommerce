@@ -72,6 +72,7 @@ const NavigationBar: FC = () => {
           unlockScroll();
         }}
         isFullScreen
+        closeClickOutSide={false}
       >
         <div className={styles.modalContent}>
           {menu?.map((item) => {

@@ -15,6 +15,7 @@ const Modal: FC<ModalProps> = ({
   height,
   isFullScreen,
   children,
+  closeClickOutSide,
 }) => {
   const modalStyle = isFullScreen ? {} : { width, height };
   const divRef = useRef<HTMLDivElement | null>(null);
@@ -24,7 +25,7 @@ const Modal: FC<ModalProps> = ({
     if (
       divRef.current &&
       !divRef.current.contains(event.target as Node) &&
-      !isFullScreen
+      closeClickOutSide
     ) {
       onClose();
     }
