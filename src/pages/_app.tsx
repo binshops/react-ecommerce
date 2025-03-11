@@ -37,7 +37,10 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <QueryClientProvider client={queryClient}>
         <CartProvider>
-          <MegaMenuProvider initialMenu={pageProps.menu || []}>
+          <MegaMenuProvider
+            initialMenu={pageProps.menu || []}
+            language={router.locale}
+          >
             <main className={inter.className}>
               <Header />
               <div className="container">
