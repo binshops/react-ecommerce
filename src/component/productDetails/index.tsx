@@ -1,7 +1,7 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC } from "react";
+import { useQuery } from "react-query";
 
 import { FeaturedProductAPI } from "@/const/endPoint";
-
 import { FeaturedProductTransformer } from "@/utils/api/transformer/featuredProduct";
 import { Product } from "@/utils/type";
 import { getData } from "@/utils/api/fetchData/apiCall";
@@ -11,23 +11,21 @@ import ProductInfo from "../productInfo";
 import ProductGallery from "../productGallery";
 
 import { productDetailsProps } from "./productDetails.types";
-
 import styles from "./productDetails.module.scss";
+import { useRouter } from "next/router";
 
 const ProductDetails: FC<productDetailsProps> = ({ product }) => {
-  const [featuredProduct, setFeaturedProduct] = useState<Product[]>([]);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const productData = await getData(FeaturedProductAPI);
-        const transformedData = FeaturedProductTransformer(productData);
-        setFeaturedProduct(transformedData);
-      } catch (error) {
-        console.error("Failed to fetch product data:", error);
-      }
-    };
-    product.id && fetchData();
-  }, []);
+  const router = useRouter();
+  const locale = router.locale || "en";
+  const { data: featuredProduct = [] } = useQuery({
+    queryKey: ["featuredProduct", locale],
+    queryFn: async () => {
+      const productData = await getData(FeaturedProductAPI, {}, "", "", locale);
+      return FeaturedProductTransformer(productData);
+    },
+    enabled: !!product.id,
+  });
+
   return (
     <div className={styles.productInfo}>
       <div className={styles.galleryContainer}>
