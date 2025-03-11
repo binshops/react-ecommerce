@@ -109,7 +109,8 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const categoryId = context.query.slug;
   const page = context.query.page;
   const referer = context.req.headers.referer || null;
-
+  const menuData = await getData(MegaMenuAPI, {}, "", "", locale);
+  const menu = MegaMenuTransformer(menuData).menuItems;
   if (!referer) {
     const categoryData = await getData(
       CategoryAPI,
@@ -119,14 +120,13 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       locale
     );
     const data = CategoryTransformer(categoryData);
-    const menuData = await getData(MegaMenuAPI, {}, "", "", locale);
-    const menu = MegaMenuTransformer(menuData).menuItems;
+
     return {
       props: { initialCategory: data, menu },
     };
   }
 
-  return { props: { initialCategory: null, categoryId } };
+  return { props: { initialCategory: null, categoryId, menu } };
 }
 
 export default CategoryPage;

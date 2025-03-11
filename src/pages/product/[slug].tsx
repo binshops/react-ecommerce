@@ -27,7 +27,7 @@ const ProductPage: FC<ProductPageProps> = ({ initialProduct, productId }) => {
 
   return (
     <>
-      <MetaTags title={product.title} />
+      <MetaTags title={product?.title} />
       {product && <ProductDetails product={product} />}
     </>
   );
@@ -37,6 +37,8 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const locale = context.locale;
   const productId = context.query.slug;
   const referer = context.req.headers.referer || null;
+  const menuData = await getData(MegaMenuAPI, {}, "", "", locale);
+  const menu = MegaMenuTransformer(menuData).menuItems;
   if (!referer) {
     const productData =
       productId &&
@@ -48,11 +50,9 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
         locale
       ));
     const data = ProductTransformer(productData);
-    const menuData = await getData(MegaMenuAPI, {}, "", "", locale);
-    const menu = MegaMenuTransformer(menuData).menuItems;
     return { props: { initialProduct: data, productId, menu } };
   }
-  return { props: { initialProduct: null, productId } };
+  return { props: { initialProduct: null, productId, menu } };
 }
 
 export default ProductPage;

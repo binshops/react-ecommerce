@@ -55,13 +55,13 @@ export default function Home({
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const referer = context.req.headers.referer || null;
   const locale = context.locale;
-
+  const menuData = await getData(MegaMenuAPI, {}, "", "", locale);
+  const menu = MegaMenuTransformer(menuData).menuItems;
   if (!referer) {
     const data = await getData(HomePageAPI, {}, "", "", locale);
     const { homeProductCarousel } = HomeTransformer(data);
-    const menuData = await getData(MegaMenuAPI, {}, "", "", locale);
-    const menu = MegaMenuTransformer(menuData).menuItems;
+
     return { props: { homeProductCarousel, menu } };
   }
-  return { props: { homeProductCarousel: null } };
+  return { props: { homeProductCarousel: null, menu } };
 }
