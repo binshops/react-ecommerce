@@ -3,6 +3,7 @@ import React, { FC, useEffect, useRef, useState } from "react";
 import styles from "./languageSelector.module.scss";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/router";
+import { queryClient } from "@/const/queryClient";
 
 const LanguageSelector: FC = () => {
   const [openLanguage, setOpenLanguage] = useState(false);
@@ -22,6 +23,7 @@ const LanguageSelector: FC = () => {
     const { pathname, query } = router;
     router.push({ pathname, query }, undefined, { locale: lng });
     setOpenLanguage(!openLanguage);
+    queryClient.invalidateQueries();
   };
 
   useEffect(() => {

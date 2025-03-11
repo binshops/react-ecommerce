@@ -40,7 +40,7 @@ export default function Home({
 
   return (
     <>
-      <MegaMenuProvider initialMenu={menu}>
+      <MegaMenuProvider initialMenu={menu} language={locale}>
         <MetaTags />
         <MainSlider />
         <HomeCategory />
