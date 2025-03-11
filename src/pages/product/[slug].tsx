@@ -48,7 +48,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
         locale
       ));
     const data = ProductTransformer(productData);
-    const menuData = await getData(MegaMenuAPI);
+    const menuData = await getData(MegaMenuAPI, {}, "", "", locale);
     const menu = MegaMenuTransformer(menuData).menuItems;
     return { props: { initialProduct: data, productId, menu } };
   }
