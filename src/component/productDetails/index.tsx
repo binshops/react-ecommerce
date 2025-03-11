@@ -15,8 +15,6 @@ import styles from "./productDetails.module.scss";
 import { useRouter } from "next/router";
 
 const ProductDetails: FC<productDetailsProps> = ({ product }) => {
-  // const router = useRouter();
-  // const locale = router.locale || "en";
   const { data: featuredProduct = [] } = useQuery({
     queryKey: ["featuredProduct"],
     queryFn: async () => {

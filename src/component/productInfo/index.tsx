@@ -10,6 +10,7 @@ import { productInfoProps } from "./productInfo.types";
 
 import styles from "./productInfo.module.scss";
 import { useFetchProductData } from "@/utils/hooks/api/useFetchProductData";
+import { useRouter } from "next/router";
 
 const ProductInfo: FC<productInfoProps> = ({
   id,
@@ -22,17 +23,16 @@ const ProductInfo: FC<productInfoProps> = ({
   const [selectedOption, setSelectedOption] = useState<
     { id: string; value: string }[]
   >([]);
+  const router = useRouter();
+  const locale = router.locale || "en";
   const { addToCart, isLoading } = useCart();
   const [quantity, setQuantity] = useState(1);
 
-  const {
-    data: productData,
-    isFetching,
-    isError,
-  } = useFetchProductData({
+  const { data: productData } = useFetchProductData({
     productId: id,
     selectedOption,
     refresh: true,
+    locale: locale,
   });
 
   const handleSelectOption = (id: string, value: string) => {
