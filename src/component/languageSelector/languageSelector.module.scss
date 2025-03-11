@@ -9,15 +9,7 @@
   .lang {
     background-color: transparent;
     border: none;
-    font-size: 24px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    .icon {
-      display: none;
-      font-size: 14px;
-    }
+    font-size: 18px;
   }
   .languageList {
     width: 130px;
@@ -42,9 +34,7 @@
     top: auto;
     right: 0;
     .lang {
-      .icon {
-        display: block;
-      }
+      font-size: 20px;
     }
   }
 }

@@ -13,6 +13,7 @@ import { useScrollRestoration } from "@/utils/hooks";
 import { useQuery } from "react-query";
 import { useRouter } from "next/router";
 import { GetServerSidePropsContext } from "next";
+import MetaTags from "@/component/metaTags";
 
 const fetchCHomeData = async (locale: string) => {
   const data = await getData(HomePageAPI, {}, "", "", locale);
@@ -40,6 +41,7 @@ export default function Home({
   return (
     <>
       <MegaMenuProvider initialMenu={menu}>
+        <MetaTags />
         <MainSlider />
         <HomeCategory />
         <ProductCarousel product={carouselData} />

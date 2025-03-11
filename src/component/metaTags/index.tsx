@@ -3,7 +3,7 @@ import { MetaTagsProps } from "./metaTags.types";
 import { FC } from "react";
 
 const MetaTags: FC<MetaTagsProps> = ({
-  title = "React E-Commerce Template",
+  title = "Next.js eCommerce Template",
   description,
 }) => {
   return (
