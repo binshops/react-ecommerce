@@ -10,14 +10,6 @@
     background-color: transparent;
     border: none;
     font-size: 18px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    .icon {
-      display: none;
-      font-size: 14px;
-    }
   }
   .languageList {
     width: 130px;
@@ -42,10 +34,7 @@
     top: auto;
     right: 0;
     .lang {
-      font-size: 24px;
-      .icon {
-        display: block;
-      }
+      font-size: 20px;
     }
   }
 }
