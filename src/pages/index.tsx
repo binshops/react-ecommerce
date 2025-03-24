@@ -15,8 +15,8 @@ import { useRouter } from "next/router";
 import { GetServerSidePropsContext } from "next";
 import MetaTags from "@/component/metaTags";
 
-const fetchCHomeData = async (locale: string) => {
-  const data = await getData(HomePageAPI, {}, "", "", locale);
+const fetchCHomeData = async () => {
+  const data = await getData(HomePageAPI);
   return HomeTransformer(data).homeProductCarousel;
 };
 
@@ -29,7 +29,7 @@ export default function Home({
   const locale = router.locale || "en";
   const { data: carouselData } = useQuery<Product[]>(
     ["homePage"],
-    () => fetchCHomeData(locale),
+    () => fetchCHomeData(),
 
     {
       initialData: homeProductCarousel || undefined,

@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { getData } from "@/utils/api/fetchData/apiCall";
 import { MegaMenuAPI } from "@/const/endPoint";
@@ -14,17 +14,21 @@ export const MegaMenuProvider: React.FC<{
   initialMenu: menuItems[];
   language?: string;
 }> = ({ children, initialMenu, language = "en" }) => {
-  const { data: menu } = useQuery({
-    queryKey: ["megaMenu", language],
-    queryFn: async () => {
+  const [clientMenu, setClientMenu] = useState(initialMenu);
+
+  useEffect(() => {
+    const fetchMenu = async () => {
       const megaMenuData = await getData(MegaMenuAPI);
-      return MegaMenuTransformer(megaMenuData).menuItems;
-    },
-    initialData: initialMenu,
-  });
+      setClientMenu(MegaMenuTransformer(megaMenuData).menuItems);
+    };
+
+    fetchMenu();
+  }, [language]);
 
   return (
-    <MegaMenuContext.Provider value={menu}>{children}</MegaMenuContext.Provider>
+    <MegaMenuContext.Provider value={clientMenu}>
+      {children}
+    </MegaMenuContext.Provider>
   );
 };
 
