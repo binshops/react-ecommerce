@@ -16,7 +16,7 @@ import { GetServerSidePropsContext } from "next";
 import MetaTags from "@/component/metaTags";
 
 const fetchCHomeData = async (locale: string) => {
-  const data = await getData(HomePageAPI, {}, "", "", locale);
+  const data = await getData(HomePageAPI, {}, "", locale);
   return HomeTransformer(data).homeProductCarousel;
 };
 
@@ -40,7 +40,7 @@ export default function Home({
 
   return (
     <>
-      <MegaMenuProvider initialMenu={menu} language={locale}>
+      <MegaMenuProvider initialMenu={menu}>
         <MetaTags />
         <MainSlider />
         <HomeCategory />

@@ -12,10 +12,9 @@ const MegaMenuContext = createContext<MegaMenuContextType>(undefined);
 export const MegaMenuProvider: React.FC<{
   children: React.ReactNode;
   initialMenu: menuItems[];
-  language?: string;
-}> = ({ children, initialMenu, language = "en" }) => {
+}> = ({ children, initialMenu }) => {
   const { data: menu } = useQuery({
-    queryKey: ["megaMenu", language],
+    queryKey: ["megaMenu"],
     queryFn: async () => {
       const megaMenuData = await getData(MegaMenuAPI);
       return MegaMenuTransformer(megaMenuData).menuItems;

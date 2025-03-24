@@ -18,7 +18,6 @@ const inter = Raleway({ subsets: ["latin"] });
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
-  const { i18n } = useTranslation();
 
   useEffect(() => {
     if ("scrollRestoration" in window.history) {
@@ -26,21 +25,11 @@ export default function App({ Component, pageProps }: AppProps) {
     }
   }, [router]);
 
-  useEffect(() => {
-    const { locale } = router;
-    if (locale) {
-      i18n.changeLanguage(locale);
-    }
-  }, [router.locale]);
-
   return (
     <>
       <QueryClientProvider client={queryClient}>
         <CartProvider>
-          <MegaMenuProvider
-            initialMenu={pageProps.menu || []}
-            language={router.locale}
-          >
+          <MegaMenuProvider initialMenu={pageProps.menu || []}>
             <main className={inter.className}>
               <Header />
               <div className="container">
