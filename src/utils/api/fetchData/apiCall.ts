@@ -5,10 +5,9 @@ export async function getData(
   endPoint: string,
   queryParams?: any,
   extraParam?: string,
-  body?: any,
-  locale?: string
+  body?: any
 ): Promise<any> {
-  const currentLanguage = locale || i18n.language;
+  const currentLanguage = i18n.language;
   let url = `/${currentLanguage}/rest${endPoint}`;
 
   if (queryParams && Object.keys(queryParams).length > 0) {

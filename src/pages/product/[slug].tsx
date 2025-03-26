@@ -37,18 +37,11 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const locale = context.locale;
   const productId = context.query.slug;
   const referer = context.req.headers.referer || null;
-  const menuData = await getData(MegaMenuAPI, {}, "", "", locale);
+  const menuData = await getData(MegaMenuAPI);
   const menu = MegaMenuTransformer(menuData).menuItems;
   if (!referer) {
     const productData =
-      productId &&
-      (await getData(
-        ProductDetailAPI,
-        { product_id: productId },
-        "",
-        "",
-        locale
-      ));
+      productId && (await getData(ProductDetailAPI, { product_id: productId }));
     const data = ProductTransformer(productData);
     return { props: { initialProduct: data, productId, menu } };
   }

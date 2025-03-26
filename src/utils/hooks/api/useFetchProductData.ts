@@ -26,9 +26,7 @@ const fetchProductData = async ({
   const productData = await getData(
     ProductDetailAPI,
     { product_id: productId, refresh },
-    queryString,
-    "",
-    locale
+    queryString
   );
 
   return ProductTransformer(productData);
