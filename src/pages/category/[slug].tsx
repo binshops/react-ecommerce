@@ -23,18 +23,12 @@ const fetchCategoryData = async (
   filterQuery?: string,
   orderQuery?: string
 ) => {
-  const categoryData = await getData(
-    CategoryAPI,
-    {
-      id_category: categoryId,
-      page,
-      q: filterQuery,
-      order: orderQuery,
-    },
-    "",
-    "",
-    locale
-  );
+  const categoryData = await getData(CategoryAPI, {
+    id_category: categoryId,
+    page,
+    q: filterQuery,
+    order: orderQuery,
+  });
   return CategoryTransformer(categoryData);
 };
 
@@ -109,16 +103,13 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const categoryId = context.query.slug;
   const page = context.query.page;
   const referer = context.req.headers.referer || null;
-  const menuData = await getData(MegaMenuAPI, {}, "", "", locale);
+  const menuData = await getData(MegaMenuAPI);
   const menu = MegaMenuTransformer(menuData).menuItems;
   if (!referer) {
-    const categoryData = await getData(
-      CategoryAPI,
-      { id_category: categoryId, page },
-      "",
-      "",
-      locale
-    );
+    const categoryData = await getData(CategoryAPI, {
+      id_category: categoryId,
+      page,
+    });
     const data = CategoryTransformer(categoryData);
 
     return {

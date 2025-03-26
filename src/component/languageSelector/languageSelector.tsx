@@ -11,7 +11,7 @@ const LanguageSelector: FC = () => {
   const divRef = useRef<HTMLDivElement | null>(null);
 
   const router = useRouter();
-
+  const locale = router.locale;
   const handleClickOutside = (event: MouseEvent) => {
     if (divRef.current && !divRef.current.contains(event.target as Node)) {
       setOpenLanguage(false);
@@ -22,12 +22,13 @@ const LanguageSelector: FC = () => {
     i18n.changeLanguage(lng);
     const { pathname, query } = router;
     router.push({ pathname, query }, undefined, { locale: lng });
-    setOpenLanguage(!openLanguage);
+    setOpenLanguage(false);
     queryClient.invalidateQueries();
   };
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
+    locale && changeLanguage(locale);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };

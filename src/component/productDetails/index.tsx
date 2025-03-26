@@ -3,7 +3,6 @@ import { useQuery } from "react-query";
 
 import { FeaturedProductAPI } from "@/const/endPoint";
 import { FeaturedProductTransformer } from "@/utils/api/transformer/featuredProduct";
-import { Product } from "@/utils/type";
 import { getData } from "@/utils/api/fetchData/apiCall";
 
 import ProductCarousel from "../productCarousel";
@@ -12,13 +11,12 @@ import ProductGallery from "../productGallery";
 
 import { productDetailsProps } from "./productDetails.types";
 import styles from "./productDetails.module.scss";
-import { useRouter } from "next/router";
 
 const ProductDetails: FC<productDetailsProps> = ({ product }) => {
   const { data: featuredProduct = [] } = useQuery({
     queryKey: ["featuredProduct"],
     queryFn: async () => {
-      const productData = await getData(FeaturedProductAPI, {}, "", "");
+      const productData = await getData(FeaturedProductAPI);
       return FeaturedProductTransformer(productData);
     },
     enabled: !!product.id,
