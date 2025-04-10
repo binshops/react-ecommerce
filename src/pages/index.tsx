@@ -1,12 +1,11 @@
 import MainSlider from "@/component/mainSlider";
 import HomeCategory from "@/component/homeCategory";
 import ProductCarousel from "@/component/productCarousel";
-import { HomePageAPI, MegaMenuAPI } from "@/const/endPoint";
+import { HomePageAPI } from "@/const/endPoint";
 import Subscribe from "@/component/subscribe";
 import InstagramPost from "@/component/instagramPost";
 import { HomeProps, Product } from "@/utils/type";
 import { MegaMenuProvider } from "@/context/menuContext";
-import { MegaMenuTransformer } from "@/utils/api/transformer/megaMenu";
 import { HomeTransformer } from "@/utils/api/transformer/home";
 import { getData } from "@/utils/api/fetchData/apiCall";
 import { useScrollRestoration } from "@/utils/hooks";
@@ -54,14 +53,11 @@ export default function Home({
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const referer = context.req.headers.referer || null;
-  const locale = context.locale;
-  const menuData = await getData(MegaMenuAPI);
-  const menu = MegaMenuTransformer(menuData).menuItems;
   if (!referer) {
     const data = await getData(HomePageAPI);
     const { homeProductCarousel } = HomeTransformer(data);
 
-    return { props: { homeProductCarousel, menu } };
+    return { props: { homeProductCarousel } };
   }
-  return { props: { homeProductCarousel: null, menu } };
+  return { props: { homeProductCarousel: null } };
 }

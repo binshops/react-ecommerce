@@ -7,7 +7,6 @@ import { ProductType } from "@/utils/type";
 const fetchProductData = async ({
   productId,
   selectedOption = [],
-  locale = "en",
   refresh = false,
 }: {
   productId: string;
@@ -35,7 +34,6 @@ const fetchProductData = async ({
 export const useFetchProductData = ({
   productId,
   selectedOption = [],
-  locale = "en",
   refresh = false,
   initialProduct = undefined,
 }: {
@@ -46,12 +44,11 @@ export const useFetchProductData = ({
   initialProduct?: any;
 }) => {
   return useQuery(
-    ["productData", productId, selectedOption, locale],
+    ["productData", productId, selectedOption],
     () =>
       fetchProductData({
         productId,
         selectedOption,
-        locale,
         refresh,
       }),
     {
