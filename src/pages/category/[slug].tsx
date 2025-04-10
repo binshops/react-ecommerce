@@ -1,4 +1,4 @@
-import { CategoryAPI, MegaMenuAPI } from "@/const/endPoint";
+import { CategoryAPI } from "@/const/endPoint";
 import { getData } from "@/utils/api/fetchData/apiCall";
 import { GetServerSidePropsContext } from "next";
 import React, { FC, useState } from "react";
@@ -13,13 +13,11 @@ import Placeholder from "@/component/category/placeholder";
 import { CategoryTransformer } from "@/utils/api/transformer/category";
 import { useMegaMenu } from "@/context/menuContext";
 import { useQuery } from "react-query";
-import { MegaMenuTransformer } from "@/utils/api/transformer/megaMenu";
 import MetaTags from "@/component/metaTags";
 
 const fetchCategoryData = async (
   categoryId: string,
   page: number,
-  locale: string,
   filterQuery?: string,
   orderQuery?: string
 ) => {
@@ -40,15 +38,8 @@ const CategoryPage: FC<CategoryPageProps> = ({ initialCategory }) => {
   const page = parseInt(router.query.page as string, 10) || 0;
   const categoryId = String(router.query.slug);
   const { data: category, isLoading } = useQuery<Category>(
-    ["categoryData", categoryId, page, router.locale, filterQuery, orderQuery],
-    () =>
-      fetchCategoryData(
-        categoryId,
-        page,
-        router.locale!,
-        filterQuery,
-        orderQuery
-      ),
+    ["categoryData", categoryId, page, filterQuery, orderQuery],
+    () => fetchCategoryData(categoryId, page, filterQuery, orderQuery),
     {
       initialData: initialCategory || undefined,
       enabled: !initialCategory,
