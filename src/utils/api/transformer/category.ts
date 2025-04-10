@@ -59,8 +59,8 @@ export const CategoryTransformer = (data: CategoryAPI): Category => {
     product: productTransformer(data.psdata.products),
     filters: filtersTransformer(data.psdata.facets),
     sortOptions: sortTransformer(data.psdata.sort_orders),
-    activeSort: data.psdata.order_param,
-    activeFilter: data.psdata.q_param,
+    activeSort: data.psdata.order_param ?? null,
+    activeFilter: data.psdata.q_param ?? null,
     totalPage: data.psdata.pagination.pages_count,
     totalProducts: data.psdata.pagination.total_items,
   };

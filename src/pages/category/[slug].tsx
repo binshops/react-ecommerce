@@ -39,7 +39,6 @@ const CategoryPage: FC<CategoryPageProps> = ({ initialCategory }) => {
   const menu = useMegaMenu();
   const page = parseInt(router.query.page as string, 10) || 0;
   const categoryId = String(router.query.slug);
-
   const { data: category, isLoading } = useQuery<Category>(
     ["categoryData", categoryId, page, router.locale, filterQuery, orderQuery],
     () =>
@@ -99,12 +98,9 @@ const CategoryPage: FC<CategoryPageProps> = ({ initialCategory }) => {
 };
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const locale = context.locale;
   const categoryId = context.query.slug;
   const page = context.query.page;
   const referer = context.req.headers.referer || null;
-  const menuData = await getData(MegaMenuAPI);
-  const menu = MegaMenuTransformer(menuData).menuItems;
   if (!referer) {
     const categoryData = await getData(CategoryAPI, {
       id_category: categoryId,
@@ -113,11 +109,11 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     const data = CategoryTransformer(categoryData);
 
     return {
-      props: { initialCategory: data, menu },
+      props: { initialCategory: data },
     };
   }
 
-  return { props: { initialCategory: null, categoryId, menu } };
+  return { props: { initialCategory: null, categoryId } };
 }
 
 export default CategoryPage;
