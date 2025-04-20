@@ -14,19 +14,8 @@ export const MegaMenuProvider: React.FC<{
   initialMenu: menuItems[];
   language?: string;
 }> = ({ children, initialMenu, language = "en" }) => {
-  const [clientMenu, setClientMenu] = useState(initialMenu);
-
-  useEffect(() => {
-    const fetchMenu = async () => {
-      const megaMenuData = await getData(MegaMenuAPI);
-      setClientMenu(MegaMenuTransformer(megaMenuData).menuItems);
-    };
-
-    fetchMenu();
-  }, [language]);
-
   return (
-    <MegaMenuContext.Provider value={clientMenu}>
+    <MegaMenuContext.Provider value={initialMenu}>
       {children}
     </MegaMenuContext.Provider>
   );

@@ -14,6 +14,7 @@ import { CategoryTransformer } from "@/utils/api/transformer/category";
 import { useMegaMenu } from "@/context/menuContext";
 import { useQuery } from "react-query";
 import MetaTags from "@/component/metaTags";
+import { getLayoutInitialProps } from "@/component/Layout/layout";
 
 const fetchCategoryData = async (
   categoryId: string,
@@ -92,6 +93,8 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const categoryId = context.query.slug;
   const page = context.query.page;
   const referer = context.req.headers.referer || null;
+  const initialMenu = await getLayoutInitialProps(context);
+
   if (!referer) {
     const categoryData = await getData(CategoryAPI, {
       id_category: categoryId,
@@ -100,11 +103,11 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     const data = CategoryTransformer(categoryData);
 
     return {
-      props: { initialCategory: data },
+      props: { initialCategory: data, initialMenu },
     };
   }
 
-  return { props: { initialCategory: null, categoryId } };
+  return { props: { initialCategory: null, categoryId, initialMenu } };
 }
 
 export default CategoryPage;
