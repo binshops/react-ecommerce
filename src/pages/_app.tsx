@@ -10,48 +10,40 @@ import { MegaMenuProvider } from "@/context/menuContext";
 import { Toaster } from "react-hot-toast";
 import "./../../i18n";
 import { useRouter } from "next/router";
-import { useTranslation } from "react-i18next";
-import { QueryClientProvider } from "react-query";
+import { QueryClientProvider, HydrationBoundary } from "@tanstack/react-query";
 import { queryClient } from "@/const/queryClient";
 
 const inter = Raleway({ subsets: ["latin"] });
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
-  const { i18n } = useTranslation();
-
   useEffect(() => {
     if ("scrollRestoration" in window.history) {
       window.history.scrollRestoration = "manual";
     }
   }, [router]);
 
-  useEffect(() => {
-    const { locale } = router;
-    if (locale) {
-      i18n.changeLanguage(locale);
-    }
-  }, [router.locale]);
-
   return (
     <>
       <QueryClientProvider client={queryClient}>
-        <CartProvider>
-          <MegaMenuProvider
-            initialMenu={pageProps.menu || []}
-            language={router.locale}
-          >
-            <main className={inter.className}>
-              <Header />
-              <div className="container">
-                <Toaster />
-                <Component {...pageProps} />
-              </div>
-              <NavigationBar />
-              <Footer />
-            </main>
-          </MegaMenuProvider>
-        </CartProvider>
+        <HydrationBoundary>
+          <CartProvider>
+            <MegaMenuProvider
+              initialMenu={pageProps.menu || []}
+              language={router.locale}
+            >
+              <main className={inter.className}>
+                <Header />
+                <div className="container">
+                  <Toaster />
+                  <Component {...pageProps} />
+                </div>
+                <NavigationBar />
+                <Footer />
+              </main>
+            </MegaMenuProvider>
+          </CartProvider>
+        </HydrationBoundary>
       </QueryClientProvider>
     </>
   );
