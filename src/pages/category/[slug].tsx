@@ -1,4 +1,4 @@
-import { CategoryAPI } from "@/const/endPoint";
+import { CategoryAPI, MegaMenuAPI } from "@/const/endPoint";
 import { getData } from "@/utils/api/fetchData/apiCall";
 import { GetServerSidePropsContext } from "next";
 import React, { FC, useState } from "react";
@@ -14,6 +14,7 @@ import { CategoryTransformer } from "@/utils/api/transformer/category";
 import { useMegaMenu } from "@/context/menuContext";
 import { useQuery } from "@tanstack/react-query";
 import MetaTags from "@/component/metaTags";
+import { MegaMenuTransformer } from "@/utils/api/transformer/megaMenu";
 
 const fetchCategoryData = async (
   categoryId: string,
@@ -96,9 +97,10 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       page,
     });
     const data = CategoryTransformer(categoryData);
-
+    const megaMenuData = await getData(MegaMenuAPI);
+    const menu = MegaMenuTransformer(megaMenuData).menuItems;
     return {
-      props: { initialCategory: data },
+      props: { initialCategory: data, menu },
     };
   }
 
