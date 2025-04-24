@@ -1,5 +1,4 @@
 import React, { FC, useEffect, useRef, useState } from "react";
-
 import styles from "./languageSelector.module.scss";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/router";
@@ -12,6 +11,7 @@ const LanguageSelector: FC = () => {
 
   const router = useRouter();
   const locale = router.locale;
+
   const handleClickOutside = (event: MouseEvent) => {
     if (divRef.current && !divRef.current.contains(event.target as Node)) {
       setOpenLanguage(false);
@@ -19,20 +19,25 @@ const LanguageSelector: FC = () => {
   };
 
   const changeLanguage = (lng: string) => {
-    i18n.changeLanguage(lng);
-    const { pathname, query } = router;
-    router.push({ pathname, query }, undefined, { locale: lng });
+    if (i18n.language !== lng) {
+      i18n.changeLanguage(lng);
+      const { pathname, query } = router;
+      router.push({ pathname, query }, undefined, { locale: lng });
+      queryClient.invalidateQueries();
+    }
     setOpenLanguage(false);
-    queryClient.invalidateQueries();
   };
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
-    locale && changeLanguage(locale);
+    if (locale && i18n.language !== locale) {
+      changeLanguage(locale);
+    }
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, []);
+  }, [locale, i18n.language]);
+
   return (
     <div className={styles.languageBox}>
       <button
