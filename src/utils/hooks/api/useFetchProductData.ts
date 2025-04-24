@@ -1,4 +1,4 @@
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { getData } from "@/utils/api/fetchData/apiCall";
 import { ProductTransformer } from "@/utils/api/transformer/product";
 import { ProductDetailAPI } from "@/const/endPoint";
@@ -43,18 +43,16 @@ export const useFetchProductData = ({
   refresh?: boolean;
   initialProduct?: any;
 }) => {
-  return useQuery(
-    ["productData", productId, selectedOption],
-    () =>
+  return useQuery({
+    queryKey: ["productData", productId, selectedOption],
+    queryFn: () =>
       fetchProductData({
         productId,
         selectedOption,
         refresh,
       }),
-    {
-      initialData: initialProduct || undefined,
-      enabled: !initialProduct,
-      refetchOnMount: false,
-    }
-  );
+    initialData: initialProduct || undefined,
+    enabled: !initialProduct,
+    refetchOnMount: false,
+  });
 };

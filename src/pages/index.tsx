@@ -9,7 +9,7 @@ import { MegaMenuProvider } from "@/context/menuContext";
 import { HomeTransformer } from "@/utils/api/transformer/home";
 import { getData } from "@/utils/api/fetchData/apiCall";
 import { useScrollRestoration } from "@/utils/hooks";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import { GetServerSidePropsContext } from "next";
 import MetaTags from "@/component/metaTags";
@@ -26,16 +26,13 @@ export default function Home({
   useScrollRestoration();
   const router = useRouter();
   const locale = router.locale || "en";
-  const { data: carouselData } = useQuery<Product[]>(
-    ["homePage"],
-    () => fetchCHomeData(),
-
-    {
-      initialData: homeProductCarousel || undefined,
-      enabled: !homeProductCarousel,
-      refetchOnMount: false,
-    }
-  );
+  const { data: carouselData } = useQuery<Product[]>({
+    queryKey: ["homePage"],
+    queryFn: () => fetchCHomeData(),
+    initialData: homeProductCarousel || undefined,
+    enabled: !homeProductCarousel,
+    refetchOnMount: false,
+  });
 
   return (
     <>

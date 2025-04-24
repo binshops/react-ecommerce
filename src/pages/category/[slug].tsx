@@ -12,7 +12,7 @@ import { useRouter } from "next/router";
 import Placeholder from "@/component/category/placeholder";
 import { CategoryTransformer } from "@/utils/api/transformer/category";
 import { useMegaMenu } from "@/context/menuContext";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import MetaTags from "@/component/metaTags";
 
 const fetchCategoryData = async (
@@ -37,15 +37,13 @@ const CategoryPage: FC<CategoryPageProps> = ({ initialCategory }) => {
   const menu = useMegaMenu();
   const page = parseInt(router.query.page as string, 10) || 0;
   const categoryId = String(router.query.slug);
-  const { data: category, isLoading } = useQuery<Category>(
-    ["categoryData", categoryId, page, filterQuery, orderQuery],
-    () => fetchCategoryData(categoryId, page, filterQuery, orderQuery),
-    {
-      initialData: initialCategory || undefined,
-      enabled: !initialCategory,
-      refetchOnMount: false,
-    }
-  );
+  const { data: category, isLoading } = useQuery<Category>({
+    queryKey: ["categoryData", categoryId, page, filterQuery, orderQuery],
+    queryFn: () => fetchCategoryData(categoryId, page, filterQuery, orderQuery),
+    initialData: initialCategory || undefined,
+    enabled: !initialCategory,
+    refetchOnMount: false,
+  });
 
   if (isLoading) {
     return <Placeholder />;
