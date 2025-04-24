@@ -51,7 +51,6 @@ const Header: FC = () => {
         </div>
       </div>
       <CartContent isOpen={openCart} setIsOpen={setOpenCart} />
-      <LoadingIndicator />
     </header>
   );
 };
