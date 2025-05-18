@@ -1,7 +1,7 @@
 import { SearchAPI } from "@/utils/type";
 
 export const SearchTransformer = (data: SearchAPI) => {
-  const searchProducts = data.psdata.products.map((product) => {
+  const searchProducts = data.psdata?.products?.map((product) => {
     return {
       id: product.id_product,
       name: product.name,

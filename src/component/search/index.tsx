@@ -14,6 +14,7 @@ import ProductCard from "../productCard";
 import { SearchProduct } from "./search.types";
 
 import styles from "./search.module.scss";
+import TextInput from "../textInput";
 
 const Search: FC = () => {
   const [value, setValue] = useState("");
@@ -66,11 +67,19 @@ const Search: FC = () => {
   return (
     <div className={styles.searchBox}>
       <div className={styles.searchInput}>
-        <input
+        {/* <input
           type="text"
           placeholder={t("search.placeHolder")}
           value={value}
           onChange={(e) => {
+            setValue(e.target.value);
+            handleInputChange(e.target.value);
+          }}
+        /> */}
+        <TextInput
+          value={value}
+          placeholder="search.placeHolder"
+          handleInputChange={(e) => {
             setValue(e.target.value);
             handleInputChange(e.target.value);
           }}

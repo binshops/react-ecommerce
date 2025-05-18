@@ -1,0 +1,19 @@
+.inputBox {
+  border-bottom: 2px solid #43464e;
+  width: 300px;
+  position: relative;
+  input {
+    width: 100%;
+    border: none;
+    padding: 2px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22.4px;
+    text-align: left;
+    &:focus-visible,
+    &:focus {
+      border: none;
+      outline: none;
+    }
+  }
+}
