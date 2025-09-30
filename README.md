@@ -12,7 +12,10 @@ Build your e-commerce website quickly and efficiently with:
 
 React e-commerce has everything you need to create the headless e-commerce website.
 
-## [How to Install and Getting started](https://binshops.com/docs/next-ecommerce/)
+## [Officially supported Version 2](https://www.binshops.com/prestashop-headless-pwa)
+Version 2 is the complete version of the eCommerce storefront that comes with a full set of eCommerce features for the customer journey.
+
+## [How to Install and Getting started - Basic Version](https://binshops.com/docs/next-ecommerce/)
 Let's take a look at the doc for getting started: [React.js / Next.js E-Commerce Documentation](https://binshops.com/docs/next-ecommerce/)
 
 ## Project Structure
